@@ -73,7 +73,7 @@
 
 \begin{document}
 
-\title{(tentative) Rotational Spectral Unmixing of Exoplanets}
+\title{(tentative) Rotational Spectral Unmixing of Exoplanets: Degeneracies between Surface Colors and Geography}
 
 
 \author{
@@ -121,30 +121,28 @@ yuka.fujii.ebihara@gmail.com
 \label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Future direct imaging of terrestrial exoplanets is expected to play a vital role in characterizing Earth analogs in habitable zones and beyond. 
+Direct imaging is expected to play a vital role in characterizing Earth analogs in habitable zones and beyond. 
 Substantial work has gone into prediciting detectable features in disk-integrated spectra of the Earth and other planets, as they are observed from an astronomical distance. 
 Atmospheric molecules are identifiable through spectral absorption features \citep[e.g.,][]{DesMarais2002} but surface reflectance spectra also affect the spectra, which could be measured through low-resolution spectra, or multi-band photometry \citep[e.g.,][]{Ford2001}. 
 
-However, interpreting of disk-integrated colors is not trivial. 
+However, interpreting disk-integrated colors is not trivial. 
 This is particularly true for Earth-like planets that harbor diverse atmospheric and surface characteristics including liquid water, partial cloud cover, continents, and possibly vegetation. 
-Disentangling specific features from the disk-integrated colors can be very challenging. 
 
-A key here is to leverage the time variation of the spectrum: the regions that contributes to the scattered light change due to the planetary rotation and  orbital revolution, the time variability can in principle be translated to the heterogeneity of the surface environment.  
-\citet{Cowan2009, Cowan2011} performed Principal Component Analysis (PCA) on the observed multi-band photometry of Earth. They found that number of surface types can be inferred from the number of dominant principle components; (\# of surface types) $\ge $ (\# of principal components) $+ 1$. %) and that the variation pattern is indicative of the surface properties. 
+A key here is to leverage the time variation of the spectrum: the regions that contributes to the scattered light change due to the planetary rotation and  orbital motion, so the time variability can in principle be translated to the heterogeneity of the surface environment.  
+\citet{Cowan2009, Cowan2011} performed Principal Component Analysis (PCA) on the observed multi-band photometry of Earth. They found that the number of surface types can be inferred from the number of dominant principle components: (\# of surface types) $\ge $ (\# of principal components) $+ 1$. %) and that the variation pattern is indicative of the surface properties. 
 \citet{Fujii2010, Fujii2011} decomposed multi-band photometric data of the Earth as a linear inverse problem, assuming the template reflectance spectra of the known major surface types, and they found that the relative abundance and the longitudinal variation of these surface types are approximately recovered. 
 Moreover, by coupling the time variation due to rotation and orbital revolution, a 2-dimensional information of the surface may be retrieved \citep{Kawahara2010, Kawahara2011, Fujii2012}. 
 
 \citet{Cowan2013} took another approach to the same inverse problem. 
-Their strategy is to try to estimate the physically meaningful reflectance spectra and their distribution across the globe simultaneously, by making all of them fitting parameters. 
+Their strategy was to try to estimate the reflectance spectra if surfaces and their distribution across the globe simultaneously, by making all of them fitting parameters. 
 The result appeared successful to the extent that the obtained reflectance spectra roughly match the average spectra of clouds, ocean, and continents. 
-However, the longitudinal map of these components do not match the reality sufficiently well. 
+However, the longitudinal map of these components did not match the actual geographyical distribution of surfaces. 
 
 We were motivated by this unsatisfactory result to revisit their analysis. 
 Specifically, the updates include:
 \begin{itemize}
-\item Revisiting the formulation and point out the inherit degeneracy. 
-\item Introducing regularization terms
-\item Influence of the unknown radius
+\item Revisiting the formulation and point out the inherit degeneracy between surface spectra and geography. 
+\item Introducing regularization terms to enforce smooth longitudinal maps 
 \end{itemize}
 
 The organization of this paper is as follows. 
@@ -159,7 +157,7 @@ Section \ref{s:frame} revisits the problem, ....
     \includegraphics[width=\hsize]{mockdata_3types_albd.pdf}
 	\includegraphics[width=\hsize]{mockdata_3types_t360_lc.pdf}
     \end{center}
-    \caption{Top: our mock data based on IGBP classification map of the Earth, with 3 surface types (ocean: blue, soil: red, vegetation: green). }
+    \caption{Top: our mock data based on IGBP classification map of the Earth, with 3 surface types (ocean: blue, soil: red, vegetation: green). \memoYF{Note that the labels indicate phase angles. }}
 \label{fig:mockdata}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -180,20 +178,21 @@ Although the original classification assumes 16 land surface types plus ocean, i
 
 
 The assumed albedo spectra of these surface types in 4 photometric bands are shown in the upper right panel of Figure \ref{fig:mockdata}. 
-These 4 photometric bands actually correspond to the 0.4-0.5 $\mu $m, 0.5-0.6 $\mu $m, 0.6-0.7 $\mu $m, and 0.7-0.8 $\mu $m, respectively, but they will be simply called by the band indices unless otherwise needed. 
-The albedo spectra for ocean are based on \citet{Mclinden1997}, 
+These 4 photometric bands actually correspond to the 0.4-0.5 $\mu $m, 0.5-0.6 $\mu $m, 0.6-0.7 $\mu $m, and 0.7-0.8 $\mu $m, respectively, but they will be simply called by the band indices unless otherwise noted . 
+The albedo spectrum for ocean is based on \citet{Mclinden1997}, 
 and the data for soil and vegetation are taken from ASTER spectral library\footnote{\url{https://speclib.jpl.nasa.gov/}. 
 Specifically, we adopt  ``Brown to dark brown sand'' for ``soil'', and ``Grass'' for the ``vegetation''}. 
 The scattering phase function by the surface is assumed to obey the Lambert law, i.e., the radiance is (incident flux)$\times $(albedo)/$\pi$, independent of the direction of the scattering. 
 
-The light curves are synthesized given the relative configuration of the star, planet, and the observer.  
-For the sake of simplicity in explaining the geometry, we consider a planet with zero obliquity in an edge-on orbit, and change the phase angle (the planet-centric angle between the star and the observer) denoted by $\alpha $. 
-However, the discussion in the following is generic and does not depend on these assumptions. 
+The light curves are synthesized given the relative potisions of the star, planet, and observer.  
+For the sake of simplicity, we consider a planet with zero obliquity in an edge-on orbit, and change the phase angle (the planet-centric angle between the star and the observer) denoted by $\alpha $. 
+However, the following discussion does not depend on these assumptions. 
 
-The bottom panels of Figure \ref{fig:mockdata} displays the examples of diurnal light curves in 4 photometric bands, represented in terms of {\it apparent albedo}. 
+The bottom panels of Figure \ref{fig:mockdata} display the examples of diurnal light curves in 4 photometric bands, represented in terms of {\it apparent albedo}. 
 Apparent albedo is the planetary intensity normalized by that of a loss-less Lambert sphere with the same radius and at the same phase \citep{Qiu2003, Seager2010}; in this paper we will use apparent albedo unless otherwise noted. 
 The apparent albedo is straightforwardly obtained from the observed planetary intensity, if and only if the planetary radius and the observational geometry are completely known: latitude/longitude of the sub-stellar/sub-observer points, and the distance between the star and the planet. 
-(We will discuss the effect of this assumptions later in Section ??.)
+\memoYF{Later in the paper, mention that the uncertainty in radius estimation severely affects the constraints. }
+%(We will discuss the effect of this assumptions later in Section ??.)
 
 The problem throughout this paper is, from this kind of multi-band diurnal light curves, how and how well we can retrieve the albedo spectra of different surface types as well as the longitudinal distribution of these surface types. 
 
@@ -241,19 +240,24 @@ d_{i} (\lambda_j) &=& \displaystyle \frac{ \int_{{\rm IV}_i} s_{\vec \Omega }(\l
 &=& \sum _{i,k} \fast_{ik} \, s_{kj} \label{eq:tilde_d_f_ast_s}
 \end{eqnarray}
 %%%
-where
+where the surface spectra are:
 %%%
-\begin{eqnarray}
-s _{kj} &\equiv & s_k (\lambda _j) \\
-\tilde f_{ik} &\equiv & \frac{ \int_{{\rm IV}_{i}} f_k (\vec \Omega ) \cos \theta_0 ({\vec \Omega}) \cdot \cos \theta_1 ({\vec \Omega}) \cdot d\vec \Omega }{ \int_{{\rm IV}_i}  \cos \theta_0 ({\vec \Omega}) \cdot \cos \theta_1 ({\vec \Omega}) \cdot d\vec \Omega }
-\end{eqnarray}
+\begin{equation}
+s _{kj} \equiv  s_k (\lambda _j)
+\end{equation}
+%%%
+and the apparent cover fractions are:
+%%%
+\begin{equation}
+\tilde f_{ik} \equiv  \frac{ \int_{{\rm IV}_{i}} f_k (\vec \Omega ) \cos \theta_0 ({\vec \Omega}) \cdot \cos \theta_1 ({\vec \Omega}) \cdot d\vec \Omega }{ \int_{{\rm IV}_i}  \cos \theta_0 ({\vec \Omega}) \cdot \cos \theta_1 ({\vec \Omega}) \cdot d\vec \Omega }
+\end{equation}
 %%%
 and $i$, $j$, and $k$ are indices for the observation epochs, bands, and the surface types, respectively, ${\rm IV }_i$ denotes the illuminated and visible area over the planetary surface at $i$-th observation, and $f (\vec \Omega )$ is the area fraction of $k$-th surface type in $d\vec \Omega$. 
-In the last expression, $\fast_{lk}$ represents the apparent covering fraction of the $k$-th surface type at $i$-th observational epoch, and 
+In the last expression, $\fast_{ik}$ represents the apparent covering fraction of the $k$-th surface type at $i$-th observational epoch, and 
 $s_{kj}$ is the reflectance spectra of $k$-th surface type at $j$-th band. 
 The maximum number of $i$, $j$ and $k$ will be denoted by $I$, $J$, and $K$, below, as summarized in Table \ref{tab:index}. 
 
-By definition, the area fraction $\fast $ and reflectance spectra $s$ are subject to the following conditions:
+By definition, the area fraction $\fast $ and reflectance spectra $s$ are subject to the following conditions \memoYF{comments from Nick: explain this in words}:
 %%%
 \begin{subnumcases}
 {}
@@ -276,7 +280,7 @@ By definition, the area fraction $\fast $ and reflectance spectra $s$ are subjec
 
 %\subsection{Estimating the Composition\\of Longitudinal Slices}
 
-The time variability of the apparent covering fraction $\fast $ due to spin rotation is related to the surface inhomogeneity along the equator. Approximately, $\fast _{ik}$ may be written as the weighted summation of the area fraction of $k$-th surface type in each of (the finite number $L$ of) longitudinal slices, i.e.,
+The time variability of the apparent covering fraction $\fast $ due to the planet's rotation is related to the surface inhomogeneity along the equator. Approximately, $\fast _{ik}$ may be written as the weighted summation of the area fraction of $k$-th surface type in each of (the finite number $L$ of) longitudinal slices, i.e.,
 %%%
 \begin{eqnarray}
 \fast _{ik} &=& \frac{ \int_{{\rm IV}_{i}} f_k (\vec \Omega ) \cos \theta_0 ({\vec \Omega}) \cdot \cos \theta_1 ({\vec \Omega}) \cdot d\vec \Omega }{ \int_{{\rm IV}_i}  \cos \theta_0 ({\vec \Omega}) \cdot \cos \theta_1 ({\vec \Omega}) \cdot d\vec \Omega }  \\
@@ -287,6 +291,7 @@ The time variability of the apparent covering fraction $\fast $ due to spin rota
 %%%
 where $l$ is the index for longitudinal slices, $f_{lk}$ is the area fraction of the $k$-th surface type in the $l$-th longitudinal slice. 
 Strictly speaking, the approximation is valid only when $f_k(\vec \Omega)$ does not change or changes little across the $l$-th slice for all $k$ and $l$. 
+\memoYF{Comment from Nick: is this approximation exact in the zero obliquity, edge-on limit?}
 In the last equation, $W_{il}$ is the weight function for $i$-th epoch and $l$-th longitudinal slice which depends only on the observational geometry. 
 As a result,
 %%%
@@ -294,7 +299,7 @@ As a result,
 d_{ij} = \sum _{l,k} W_{il} \, f_{lk} \, s_{kj} \label{eq:d_f_s}
 \end{equation}
 %%%
-with the following condition similar to Equations (\ref{eq:tilde_s_range})-(\ref{eq:tilde_f_sum}):
+with the following condition similar to Equations (\ref{eq:tilde_s_range})-(\ref{eq:tilde_f_sum}) \memoYF{Comment from Nick: Explain in words}:
 %%%
 \begin{subnumcases}
 {}
@@ -318,7 +323,7 @@ Now, the relevant problem is, given $d$, estimate $\{f, s\}$ subject to the cons
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Graphical Conception on PC (Hyper-)Plane\\and Formal Degeneracy}
+\subsection{Graphical Conception on Principal Component (Hyper-)Plane\\and Formal Degeneracy}
 \label{ss:PCplane}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
