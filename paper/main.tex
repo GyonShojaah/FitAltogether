@@ -73,7 +73,7 @@
 
 \begin{document}
 
-\title{(tentative) Rotational Spectral Unmixing of Exoplanets: Degeneracies between Surface Colors and Geography}
+\title{Rotational Spectral Unmixing of Exoplanets:\\Degeneracies between Surface Colors and Geography}
 
 
 \author{
@@ -153,11 +153,11 @@ Section \ref{s:frame} revisits the problem, ....
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
     \begin{center}
-	\includegraphics[width=\hsize]{mockdata_3types_map.pdf}
-    \includegraphics[width=\hsize]{mockdata_3types_albd.pdf}
-	\includegraphics[width=\hsize]{mockdata_3types_t360_lc.pdf}
+	\includegraphics[width=\hsize]{mockdata.pdf}
+%    \includegraphics[width=\hsize]{mockdata_3types_albd.pdf}
+%	\includegraphics[width=\hsize]{mockdata_3types_t360_lc.pdf}
     \end{center}
-    \caption{Top: our mock data based on IGBP classification map of the Earth, with 3 surface types (ocean: blue, soil: red, vegetation: green). \memoYF{Note that the labels indicate phase angles. } \memoYF{Remove white spaces?}}
+    \caption{Our mock data based on IGBP classification map of the Earth. Top panel: distribution of 3 surface types (ocean: blue, soil: red, vegetation: green). Middle panel: assumed albedo spectra with matching colors. Bottom 4 panels: rotational light curves in 4 photometric band with varying phase angle, $\alpha = 135^{\circ }$ (purple, dot-dashed), $90^{\circ }$ (olive, solid), and $45^{\circ }$ (gold, dashed). }
 \label{fig:mockdata}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,7 +171,7 @@ Section \ref{s:frame} revisits the problem, ....
 The aim of this paper is to present how to constrain the albedo spectra of representative surface types from multi-band light curves. 
 In order to facilitate the discussions about the procedures in the following sections, in this section we shall introduce a dataset to be used for demonstrations. 
 
-We consider diurnal light curves of a toy model of the Earth, in 4 photometric bands. 
+We consider diurnal light curves of a toy model of the atmosphere-less Earth, in 4 photometric bands. 
 We use a simplified surface map as shown in the upper left panel of Figure \ref{fig:mockdata}. 
 This map is based on the land classification by the International Geosphere-Biosphere Programme (IGBP)\footnote{\url{https://climatedataguide.ucar.edu/climate-data/ceres-igbp-land-classification}}. 
 Although the original classification assumes 16 land surface types plus ocean, in this paper we assume 3 surface types for simplicity regarding ``Open Shrubs'', ``Urban'', ``Snow/Ice'', and ``Barren/Desert'' as ``soil'' (red in the upper left panel of Figure \ref{fig:mockdata}) and other land surface types as ``vegetation'' (green), while keeping the ``ocean'' regions. 
@@ -257,11 +257,11 @@ In the last expression, $\fast_{ik}$ represents the apparent covering fraction o
 $s_{kj}$ is the reflectance spectra of $k$-th surface type at $j$-th band. 
 The maximum number of $i$, $j$ and $k$ will be denoted by $I$, $J$, and $K$, below, as summarized in Table \ref{tab:index}. 
 
-By definition, the area fraction $\fast $ and reflectance spectra $s$ are subject to the following conditions \memoYF{comments from Nick: explain this in words}:
+By definition, the area fraction, $\fast $, should not be negative and sum up to unity, and reflectance spectra, $s$, should be between 0 and 1. Therefore,
 %%%
 \begin{subnumcases}
 {}
-0 \leq \fast_{lk} \leq 1 \;\;\; & \mbox{for any $l$, $k$} \label{eq:tilde_f_range} \\
+0 \leq \fast_{lk} \;\;\; & \mbox{for any $l$, $k$} \label{eq:tilde_f_range} \\
 \sum_k \fast_{lk} = 1 & \mbox{for any $l$} \label{eq:tilde_f_sum} \\
 0 \leq s_{kj} \leq 1 \;\;\; & \mbox{for any $k$, $j$} \label{eq:tilde_s_range} 
 \end{subnumcases}
@@ -299,11 +299,11 @@ As a result,
 d_{ij} = \sum _{l,k} W_{il} \, f_{lk} \, s_{kj} \label{eq:d_f_s}
 \end{equation}
 %%%
-with the following condition similar to Equations (\ref{eq:tilde_s_range})-(\ref{eq:tilde_f_sum}) \memoYF{Comment from Nick: Explain in words}:
+where $f_{lk}$ is the average area fraction of $k$-th surface type at $l$-th longitudinal slice, Again, the area fractions at longitudinal slices, $f_{lk}$, cannot be negative and should sum up to unity. Thus, a set of condition similar to Equations (\ref{eq:tilde_s_range})-(\ref{eq:tilde_f_sum}) are imposed:
 %%%
 \begin{subnumcases}
 {}
-0 \leq f_{lk} \leq 1 \;\;\; & \mbox{for any $l$, $k$} \label{eq:f_range} \\
+0 \leq f_{lk} \;\;\; & \mbox{for any $l$, $k$} \label{eq:f_range} \\
 \sum_k f_{lk} = 1 & \mbox{for any $l$} \label{eq:f_sum} \\
 0 \leq s_{kj} \leq 1 \;\;\; & \mbox{for any $k$, $j$} \label{eq:s_range}
 \end{subnumcases}
@@ -321,6 +321,18 @@ Now, the relevant problem is, given $d$, estimate $\{f, s\}$ subject to the cons
 
 %\newpage
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[b!]
+    \begin{center}
+\includegraphics[width=\hsize]{schematics.pdf}
+    \end{center}
+    \caption{Schematic figure to illustrate the relation between $\{{\bf s}_k\} $ and $\{{\bf d}_i\} $ (see text). }
+\label{fig:schematic}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Graphical Conception on \\Principal Component (Hyper-)Plane}
 \label{ss:PCplane}
@@ -328,39 +340,46 @@ Now, the relevant problem is, given $d$, estimate $\{f, s\}$ subject to the cons
 
 %A question is whether the above formulation leads us to a unique solution of either $\{ {\bf \fast},\,{\bf s} \}$ or $\{ {\bf f},\,{\bf s}\}$, given the data matrix, ${\bf d}$. 
 
-Equation (\ref{eq:tilde_d_f_ast_s}) coupled with the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) indicates the geometrical relationship among ${\bf d}$, ${\bf \fast }$, and ${\bf s}$ in the $J$-th dimensional space, where $\{{\bf d}_i\}$ correspond to the points that are located on the hyperplane defined by $K$ ($<J$) number of points, $\{{\bf s}_k\} $ and are enclosed by $\{{\bf s}_k \}$. \memoYF{How is it called in one word in mathematics?}\ 
-We show this graphically in Figure \ref{fig:trajectory}, using the mock datasets shown in Section \ref{s:mockdata}. 
+Equation (\ref{eq:tilde_d_f_ast_s}) coupled with the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) indicates the geometrical relationship among ${\bf d}$, ${\bf \fast }$, and ${\bf s}$ in the $J$-th dimensional space, where $\{{\bf d}_i\}$ correspond to the points that are located on the (hyper-)plane defined by $K$ ($<J$) number of points, $\{{\bf s}_k\} $, and are enclosed by $\{{\bf s}_k \}$. \memoYF{How is it called in one word in mathematics?}
+Figure \ref{fig:schematic} graphically shows this relations in the case of $J=3$ and $K=3$. 
+Note that the dimension of this (hyper-)plane is $K-1$; In other words, the number of spectrally distinct major surface types ($=K$) is the number of dominant principal components (PCs) plus 1 in theory \citep{Cowan2011}. 
+%We show this graphically in Figure \ref{fig:trajectory}, using the mock datasets shown in Section \ref{s:mockdata}. 
 
-The original data, however, have 4 photometric bands (i.e., $J=4$), and $J$-the dimensional space is inconvenient for visualization. 
-We thus reduce the dimensionality using principal component analysis (PCA). 
-As mentioned in \citet{Cowan2011}, the number of the spectrally distinct major surface types is number of dominant principal components (PCs) plus 1 in theory. 
-We extract two dominant PCs through PCA (other components have virtually zero contribution from the mock light curves prepared in Section \ref{s:mockdata}). 
+This (hyper-)plane can be identified through Principal Component Analysis (PCA) \citep{Cowan2009,Cowan2011}, as PCA extracts the major axes along which the scatter among the data points are significant. 
+% used Principal Component Analysis (PCA) to 
+% The original data, however, have 4 photometric bands (i.e., $J=4$), and $J$-the dimensional space is inconvenient for visualization. 
+We thus start by performing principal component analysis (PCA). 
+From the mock light curves prepared in Section \ref{s:mockdata}), we extract two dominant PCs through PCA (other components are found to have virtually zero contribution). 
 The PCs extracted from the light curves at $\alpha = 90^{\circ }$ (olive lines in Figure \ref{fig:mockdata}) are presented in Figure \ref{fig:PCs}. 
 In the following, we adopt these two PCs as the axes of the PC plane. \memoYF{Comment from Nick: This is true by definition?}
-Although the PCs from other light curves are not necessarily same as the one shown in Figure \ref{fig:PCs}, the plane they make should be the same plane (under the noiseless condition). 
-\memoYF{you mean if you have the same 3 surfaces?}
+Although the PCs from other light curves with different phase angles are not necessarily same as the one shown in Figure \ref{fig:PCs}, the PC plane itself should be the same plane, because we assume the same 3 surface types (under the noiseless condition). Thus it is ok to use these PCs to discuss other light curves as well. 
 
 Figure \ref{fig:trajectory} shows the trajectories of the mock light curves with varying phase angle on the plane defined by PC 1 and PC 2. 
 The excursion of the trajectory is larger for the light curve at a larger phase angle, i.e., at crescent phase, and shrinks as the phase angle decreases because a larger surface area is averaged together.  
 The points in the figure indicate the input albedo spectra of the three surface types. 
-Because the apparent albedo at any time of the observations is a linear combination of input surface colors (Equation \ref{eq:tilde_d_f_ast_s}) under the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}), the trajectories should always be inside the triangle defined by these points.  
+As described above, the trajectories are always inside the triangle defined by these points. 
+%Because the apparent albedo at any time of the observations is a linear combination of input surface colors (Equation \ref{eq:tilde_d_f_ast_s}) under the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}), the trajectories should always be inside the triangle defined by these points.  
+
+
+
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbh!]
-    \begin{center}
-\includegraphics[width=\hsize]{PCA_V_jn.pdf}
-    \end{center}
-    \caption{Principal components of the light curves shown in the bottom of Figure \ref{fig:mockdata}. }
-\label{fig:PCs}
-\end{figure}
+%\begin{figure}[tbh!]
+%    \begin{center}
+%\includegraphics[width=\hsize]{PCA_V_jn.pdf}
+%    \end{center}
+%    \caption{Principal components of the light curves shown in the bottom of Figure \ref{fig:mockdata}. }
+%\label{fig:PCs}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
     \begin{center}
-\includegraphics[width=\hsize]{mockdata_3types_t360_lc_PCplane.pdf}
+\includegraphics[width=\hsize]{mockdata_PCplane.pdf}
     \end{center}
-    \caption{Lines: trajectory of the 4-band light curves projected on the PC plane, in the case of $\alpha = 135^{\circ }$ (thick indigo), $\alpha = 90^{\circ }$ (olive), and $\alpha = 45^{\circ }$ (gold). Points: The input albedo spectra of ocean (blue circle), soil (red square), and vegetation (green triangle), projected on the PC plane. The surface albedo spectra cannot be located in the ray region, because it violates the condition (\ref{eq:tilde_s_range}). \memoYF{Add an arbitrary triangle!} \memoYF{Add an enlarged panel!} \memoYF{Note which inequalities correspond to the border lines. }}
+    \caption{Upper panel: principal components (PCs) of the light curves at $\alpha = 90^{\circ }$ shown in olive lines in Figure \ref{fig:mockdata}. Lower panel: trajectories of the 4-band light curves on the PC plane set by 2 PCs shown in the upper panel, in the case of $\alpha = 135^{\circ }$ (indigo thick line), $\alpha = 90^{\circ }$ (olive line), and $\alpha = 45^{\circ }$ (gold thin line). Points indicate the input albedo spectra of ocean (blue circle), soil (red square), and vegetation (green triangle) on the PC plane. Points in the gray region violate the condition (\ref{eq:tilde_s_range}); specifically, the left, right, and bottom boundaries are set by $s_{k,4}> 0$, $s_{k,1}> 0$, and $s_{k,3}> 0$, respectively. 
+Dotted lines are random triangle that could be solutions (see text). \memoYF{I have to redo the first panel!!}}
     \label{fig:trajectory}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -372,14 +391,15 @@ Because the apparent albedo at any time of the observations is a linear combinat
 
 On the other hand, when it comes to the stage where we must estimate the surface spectra given the trajectory/-ies, {\it any} set of $\{ {\bf s}_k \}$ that enclose the data points $\{{\bf d}_i\}$ in the hyperplane can be a solution of Equation (\ref{eq:tilde_d_f_ast_s}) subject to the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}). 
 Note that the associated matrix, $\fast _{ik}$, can always be found. 
-For example, in Figure \ref{fig:trajectory} we show a random triangle that encloses the trajectory; this triangle satisfies the conditions, so do many other triangles. 
-To rephrase, one can have spectrally interesting surface spectra and boring geography (small longitudinal variation in area fractions) {\it or} one can have boring surface spectra (closer to flat) and interesting geography. 
-
 Additional constraint comes from the condition (\ref{eq:tilde_s_range}). 
 In Figure \ref{fig:trajectory} any points in the shadowed region are rejected based on this condition (the specific inequalities corresponding to the border lines are noted in the figure caption. ). 
 While this limits the region where $\{ {\bf s}_k \}$ can exist,   
 this is in general not sufficient to result in a unique solution. 
+In Figure \ref{fig:trajectory} we show two random triangles that enclose the trajectory; these triangles satisfy the conditions, so do many others. 
+One can have spectrally interesting surface spectra and boring geography (small longitudinal variation in area fractions) {\it or} one can have boring surface spectra (closer to flat) and interesting geography. \memoYF{Need to reconsider this phrasing. }
 Therefore, predicting ${\bf \fast }$ and ${\bf s}$ from ${\bf d}$ is clearly a ill-posed problem. 
+
+
 
 
 
@@ -395,28 +415,28 @@ For disk-integrated light curves, the color excursions are more muted than the i
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[bth!]
+\begin{figure*}[tbh!]
+   \begin{minipage}{0.33\hsize}
     \begin{center}
 \includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_noreg.pdf}
     \end{center}
-    \caption{Probability of surface albedo spectra estimated from colors of longitudinal slices, without regularization term (``flat'' prior?). }
-\label{fig:noreg}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbh!]
+     \end{minipage}   
+    \begin{minipage}{0.33\hsize}
     \begin{center}
 %\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_noreg.pdf}
 \includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l30deg.pdf}
+    \end{center}
+     \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
 \includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l40deg.pdf}
     \end{center}
-    \caption{Upper panel: on the assumption of gaussian process with correlation length $30^{\circ }$. Lower panel: correlation length $40^{\circ }$. }
+     \end{minipage}
+    \caption{Left: Probability of surface albedo spectra estimated from colors of longitudinal slices, without regularization term (``flat'' prior?). Middle: on the assumption of gaussian process with correlation length $30^{\circ }$. Right panel: correlation length $40^{\circ }$. }
 \label{fig:noreg}
-\end{figure}
+\end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 Given that any combinations that enclose the trajectory/-ies can be a solution, the choice of the solution critically depends on the prior probability distribution. 
 % Thus, we need to be careful about the implicit assumptions that are made  
