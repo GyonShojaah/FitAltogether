@@ -139,11 +139,8 @@ The result appeared successful to the extent that the obtained reflectance spect
 However, the longitudinal map of these components did not match the actual geographyical distribution of surfaces. 
 
 We were motivated by this unsatisfactory result to revisit their analysis. 
-Specifically, the updates include:
-\begin{itemize}
-\item Revisiting the formulation and point out the inherit degeneracy between surface spectra and geography. 
-\item Introducing regularization terms to enforce smooth longitudinal maps 
-\end{itemize}
+Specifically, the updates are (1) Revisiting the formulation and point out the inherit degeneracy between surface spectra and geography, and (2) Introducing regularization terms to enforce smooth longitudinal maps. 
+We limit our discussions to the analysis of noise-free data. Clearly, noise in realistic observations of exoplanets are expected to be substantially larger, and the effect of such observations will be discussed elsewhere. 
 
 The organization of this paper is as follows. 
 Section \ref{s:frame} revisits the problem, ....
@@ -168,8 +165,8 @@ Section \ref{s:frame} revisits the problem, ....
 \label{s:mockdata}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The aim of this paper is to present how to constrain the albedo spectra of representative surface types from multi-band light curves. 
-In order to facilitate the discussions about the procedures in the following sections, in this section we shall introduce a dataset to be used for demonstrations. 
+%The aim of this paper is to present how to constrain the albedo spectra of representative surface types from multi-band light curves. 
+In order to facilitate the discussions in the following sections about the procedures to constrain the albedo spectra of representative surface types from multi-band light curves, we shall introduce a dataset to be used for demonstrations in this section. 
 
 We consider diurnal light curves of a toy model of the atmosphere-less Earth, in 4 photometric bands. 
 We use a simplified surface map as shown in the upper left panel of Figure \ref{fig:mockdata}. 
@@ -191,7 +188,7 @@ However, the following discussion does not depend on these assumptions.
 The bottom panels of Figure \ref{fig:mockdata} display the examples of diurnal light curves in 4 photometric bands, represented in terms of {\it apparent albedo}. 
 Apparent albedo is the planetary intensity normalized by that of a loss-less Lambert sphere with the same radius and at the same phase \citep{Qiu2003, Seager2010}; in this paper we will use apparent albedo unless otherwise noted. 
 The apparent albedo is straightforwardly obtained from the observed planetary intensity, if and only if the planetary radius and the observational geometry are completely known: latitude/longitude of the sub-stellar/sub-observer points, and the distance between the star and the planet. 
-\memoYF{Later in the paper, mention that the uncertainty in radius estimation severely affects the constraints. }
+%\memoYF{Later in the paper, mention that the uncertainty in radius estimation severely affects the constraints. }
 %(We will discuss the effect of this assumptions later in Section ??.)
 
 The problem throughout this paper is, from this kind of multi-band diurnal light curves, how and how well we can retrieve the albedo spectra of different surface types as well as the longitudinal distribution of these surface types. 
@@ -346,16 +343,27 @@ Note that the dimension of this (hyper-)plane is $K-1$.
 %We show this graphically in Figure \ref{fig:trajectory}, using the mock datasets shown in Section \ref{s:mockdata}. 
 
 This (hyper-)plane can be identified through Principal Component Analysis (PCA) \citep{Cowan2009,Cowan2011}, as PCA extracts the major, mutually-orthogonal axes along which the scatter among the data points are significant. 
+Consequently, the number of major principal components (PCs) are $K-1$ \citep{Cowan2011}. 
 %Note that the number of principal components In other words, the number of spectrally distinct major surface types ($=K$) is the number of dominant principal components (PCs) plus 1 in theory \citep{Cowan2011}. 
 % used Principal Component Analysis (PCA) to 
 % The original data, however, have 4 photometric bands (i.e., $J=4$), and $J$-the dimensional space is inconvenient for visualization. 
 %We thus start by performing principal component analysis (PCA). 
-From the mock light curves prepared in Section \ref{s:mockdata}, we extract two dominant Principal Components (PCs) through PCA with other components having virtually zero contributions, consistent with the 3 input surface types.  
+From the mock light curves prepared in Section \ref{s:mockdata}, we extract two dominant PCs through PCA with other components having virtually zero contributions, consistent with the 3 input surface types.  
 The PCs extracted from the light curves at $\alpha = 90^{\circ }$ (olive lines in Figure \ref{fig:mockdata}) are presented in the upper panel of Figure \ref{fig:trajectory}. 
-In the following, we adopt these two PCs as the axes of the PC plane. \memoYF{Comment from Nick: This is true by definition?}
-Although the PCs from other light curves with different phase angles are not necessarily same as the one shown in the upper panel of Figure \ref{fig:trajectory}, the PC plane itself should be the same plane (under the noiseless condition), because we assume the same 3 surface types. Thus it is ok to use these PCs to discuss other light curves as well. 
+In the following, we adopt these two PCs as the axes of the PC plane. 
+\memoYF{Comment from Nick: This is true by definition?}
+For the later use, we denote these PCs by $V_{nj}$ where $n=1$ or $2$  corresponding to the 1st and 2nd PC. 
+Although the PCs from other light curves with different phase angles are not necessarily same as the one shown in the upper panel of Figure \ref{fig:trajectory}, the PC plane itself should be the same plane (under the noiseless condition), because we assume the same 3 surface types. 
+Thus in this section we keep using is PCs to discuss other light curves as well. 
 
 The lower panel of Figure \ref{fig:trajectory} shows the trajectories of the mock light curves with varying phase angle on the plane defined by PC 1 and PC 2. 
+For the later use, these trajectories on the PC plane is denoted by $U_{in}$, in other words 
+%%%
+\begin{equation}
+d_{ij} = \sum_n U_{in} V_{nj} + \bar d_j
+\end{equation}
+%%%
+where $\bar d_j$ is the offset of the PC plane, which is in our case the time average of apparent albedo in the case of $\alpha = 90^{\circ }$. 
 The excursion of the trajectory is larger for the light curve at a larger phase angle, i.e., at crescent phase, and shrinks as the phase angle decreases because a larger surface area is averaged together.  
 The points in the figure indicate the input albedo spectra of the three surface types. 
 As described above, the trajectories are always inside the triangle defined by these points. 
@@ -379,7 +387,7 @@ As described above, the trajectories are always inside the triangle defined by t
     \begin{center}
 \includegraphics[width=\hsize]{mockdata_PCplane.pdf}
     \end{center}
-    \caption{Upper panel: principal components (PCs) of the light curves at $\alpha = 90^{\circ }$ shown in olive lines in Figure \ref{fig:mockdata}. Lower panel: trajectories of the 4-band light curves on the PC plane set by 2 PCs shown in the upper panel, in the case of $\alpha = 135^{\circ }$ (indigo thick line), $\alpha = 90^{\circ }$ (olive line), and $\alpha = 45^{\circ }$ (gold thin line). Points indicate the input albedo spectra of ocean (blue circle), soil (red square), and vegetation (green triangle) on the PC plane. Points in the gray region violate the condition (\ref{eq:tilde_s_range}); specifically, the left, right, and bottom boundaries are set by $s_{k,4}> 0$, $s_{k,1}> 0$, and $s_{k,3}> 0$, respectively. 
+    \caption{Upper panel: principal components (PCs) of the light curves at $\alpha = 90^{\circ }$ shown in olive lines in Figure \ref{fig:mockdata}. Lower panel: trajectories of the 4-band light curves on the PC plane set by 2 PCs shown in the upper panel, in the case of $\alpha = 135^{\circ }$ (indigo thick line), $\alpha = 90^{\circ }$ (olive line), and $\alpha = 45^{\circ }$ (gold thin line). Points indicate the input albedo spectra of ocean (blue circle), soil (red square), and vegetation (green triangle) on the PC plane. Points in the gray region violate the condition (\ref{eq:tilde_s_range}); specifically, the left, right, and bottom boundaries are set by $s_{k,4} > 0$, $s_{k,1} > 0$, and $s_{k,3}> 0$, respectively. 
 Dotted lines are random triangle that could be solutions (see text). }
     \label{fig:trajectory}
 \end{figure}
@@ -395,24 +403,25 @@ Note that the associated matrix, $\fast _{ik}$, can always be found.
 
 Additional constraint comes from the condition (\ref{eq:tilde_s_range}). 
 In Figure \ref{fig:trajectory} any points in the shadowed region are rejected based on this condition: specifically, the left, right, and bottom boundaries are set by $s_{k,4}> 0$, $s_{k,1}> 0$, and $s_{k,3}> 0$. 
-While in this particular example, the permitted region happen to have a triangle shape, the shapes can have a different shape depending on the relative configuration of the boundariese\memoYF{In more detail?}. 
+While in this particular example the permitted region happen to have a triangle shape, the shapes can have a different shape depending on the relative configuration of the boundariese\memoYF{In more detail?}. 
 Although these limits the region where $\{ {\bf s}_k \}$ can exist,   
 this is in general not sufficient to result in a unique solution. 
 
-In Figure \ref{fig:trajectory} we show two random triangles that enclose the trajectory; these triangles satisfy the conditions, so do many others. 
+In Figure \ref{fig:trajectory} we show two random triangles that enclose the trajectory; these triangles satisfy the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}), so do many others. 
 One can have spectrally interesting surface spectra and boring geography (small longitudinal variation in area fractions) {\it or} one can have boring surface spectra (closer to flat) and interesting geography. \memoYF{Need to reconsider this phrasing. }
 Therefore, predicting ${\bf \fast }$ and ${\bf s}$ from ${\bf d}$ is clearly a ill-posed problem. 
 
 A formally equivalent degeneracy is found in Equation (\ref{eq:d_f_s}) coupled with the conditions (\ref{eq:f_range})-(\ref{eq:s_range}). 
 Essentially, the term $\sum _k f_{lk} s_{kj}$ represents the average albedo spectra of $l$-th slice and $W_{il}$ is the matrix that convolve them into the light curves. 
-But again, we can have different sets of $\{ {\bf s}_k \}$ that enclose the averaged albedo spectra of longitudinal slices {\it and} are located in the range of condition (\ref{eq:s_range}), any of which can make up the given averaged albedo spectra with the associated $f_{lk}$. 
-For disk-integrated light curves, the color excursions are more muted than the intrinsic longitudinal map, so the degeneracy becomes severer. 
-
+Suppose idealistically that we can retrieve the average spectra of longitudinal slices from the light curves through $W_{il}$; the trajectory in the panel C of Figure \ref{fig:trajectory} represents the color variation along the longitude.  
+Again, we can have different sets of $\{ {\bf s}_k \}$ that enclose the averaged albedo spectra of longitudinal slices {\it and} are located in the range of condition (\ref{eq:s_range}), any of which can make up the given averaged albedo spectra with the associated $f_{lk}$. 
+Nevertheless, the excursions of the longitudinal colors are more dramatic than the disk-integrated colors of the light curves, thus the possible solutions are somewhat more restricted. 
+% For disk-integrated light curves, the color excursions are more muted than the intrinsic longitudinal map, so the degeneracy becomes severer. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{``Best Guess'' of the Surface Types}
-\label{ss:constraining}
+\label{ss:guess}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -420,7 +429,7 @@ For disk-integrated light curves, the color excursions are more muted than the i
 \begin{figure*}[tbh!]
    \begin{minipage}{0.33\hsize}
     \begin{center}
-\includegraphics[width=\hsize]{mockdata_45deg_3types_t360_lc_noreg.pdf}
+\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_noreg.pdf}
     \end{center}
      \end{minipage}   
     \begin{minipage}{0.33\hsize}
@@ -439,7 +448,17 @@ For disk-integrated light curves, the color excursions are more muted than the i
 \includegraphics[width=\hsize]{mockdata_90deg_3types2_t360_lc_noreg.pdf}
     \end{center}
      \end{minipage} 
-    \caption{}%Left: Probability of surface albedo spectra estimated from colors of longitudinal slices, without regularization term (``flat'' prior?). Middle: on the assumption of gaussian process with correlation length $30^{\circ }$. Right panel: correlation length $40^{\circ }$. }
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l30deg.pdf}
+    \end{center}
+     \end{minipage}      
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l40deg.pdf}
+    \end{center}
+     \end{minipage}
+    \caption{(From top-left) A: Probability of surface albedo spectra estimated from the light curves of $\alpha = 90^{\circ }$ in the procedure described in Section \ref{ss:guess}. B: same as A but from the light curves of  $\alpha = 135^{\circ }$. C: same as C but from the colors of longitudinal slices.  D: same as A but from the light curves where the geographical map of soil and vegetation are switched. E: same as A but with regularization with $\lambda = 30^{\circ }$. same as A but with regularization with $\lambda = 40^{\circ }$. }
 \label{fig:noreg}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -458,35 +477,46 @@ Then, we assumed that all of the combinations that enclose the trajectory are eq
 Specifically, we consider the following Bayesean expression and attempt to find the posterior distribution:
 %%%
 \begin{equation}
-P_{\rm posterior} ( s_{kn}' | d_{ij} ) = P ( d_{ij} | s_{kn}' ) \cdot P_{\rm prior} (  s_{kn}' ) 
+P_{\rm posterior} ( t_{kn} | U_{in} ) = P ( U_{in} | t_{kn} ) \cdot P_{\rm prior} (  t_{kn} ) 
 \end{equation}
 %%%
-where $s_{kn}'$ represents the coordinates of the $k$-th surface type on the PC plane ($n$ is either 1 or 2, corresponding to PC 1 and PC 2): $ s_{kn}' = s_{kj} V_{jn} $. 
+where $t_{kn}$ represents the coordinates of the $k$-th surface type on the PC plane ($n$ is either 1 or 2, corresponding to PC 1 and PC 2), i.e., 
+%%%
+\begin{equation}
+s_{kj} = \sum_n t_{kn} V_{nj} + \bar d_j . 
+\end{equation}
 Assuming that any facet has the same prior probability per area of being a surface type, the prior for each $k$ is:
 %%%
 \begin{eqnarray}
-P_{\rm prior} (s_{k1}', s_{k2}' ) \, ds_{k1}' ds_{k2}' &=& \frac{ds_{k1}'  ds_{k2}'}{\iint _{\rm allowed} d^2{\bf s}_k'}. 
+&& P_{\rm prior} (t_{k1}, t_{k2} ) \, dt_{k1} dt_{k2} \\
+&& = \left\{
+\begin{array}{ll}
+\displaystyle \frac{dt_{k1}  dt_{k2}}{\iint _{\rm allowed} d^2{\bf t}_k} & \;\;\;\;\;\; \mbox{if satisfies (\ref{eq:tilde_s_range})} \\
+0 & \;\;\;\;\;\; \mbox{otherwise}
+\end{array}
+\right.
 \end{eqnarray}
 %%%
 On the other hand, the likelihood is 
 %%%
-\begin{equation}
-P ( d_{ij} | s_{kn}' ) \propto \left\{
+\begin{eqnarray}
+&& P ( U_{in} | t_{kn} ) \\
+&& \propto \left\{
 \begin{array}{ll}
-1 \;\;\; & \mbox{if satisfies conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum})} \\
-0 \;\;\; & \mbox{otherwise}
+1 \;\;\; & \;\;\;\;\;\; \mbox{if satisfies (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_range})} \\
+0 \;\;\; & \;\;\;\;\;\; \mbox{otherwise}
 \end{array}
 \right.
-\end{equation}
+\end{eqnarray}
 %%%
 Although the graphical meaning of conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) is simply to enclose the data, the judgement is numerically made as follows. 
 We first find $\fast $ that satisfies condition (\ref{eq:tilde_f_sum}) from
 %%%
 \begin{equation}
 \begin{pmatrix}
-d'_{11} & d'_{12} & 1 \\
+U_{11} & U_{12} & 1 \\
 ... & & 1 \\
-d'_{I1} & d'_{I2} & 1 
+U_{I1} & U_{I2} & 1 
 \end{pmatrix}
 = 
 \begin{pmatrix}
@@ -495,9 +525,9 @@ d'_{I1} & d'_{I2} & 1
 \fast_{I1} & \fast_{I2} & \fast_{I3}
 \end{pmatrix}
 \begin{pmatrix}
-s'_{11} & s'_{12} & 1 \\
-s'_{21} & s'_{22} & 1 \\
-s'_{31} & s'_{32} & 1 
+t_{11} & t_{12} & 1 \\
+t_{21} & t_{22} & 1 \\
+t_{31} & t_{32} & 1 
 \end{pmatrix}
 \end{equation}
 %%%
@@ -510,857 +540,164 @@ or,
 \end{pmatrix}
 =
 \begin{pmatrix}
-d'_{11} & d'_{12} & 1 \\
+U_{11} & U_{12} & 1 \\
 ... & & 1 \\
-d'_{I1} & d'_{I2} & 1 
+U_{I1} & U_{I2} & 1 
 \end{pmatrix}
 \begin{pmatrix}
-s'_{11} & s'_{12} & 1 \\
-s'_{21} & s'_{22} & 1 \\
-s'_{31} & s'_{32} & 1 
+t_{11} & t_{12} & 1 \\
+t_{21} & t_{22} & 1 \\
+t_{31} & t_{32} & 1 
 \end{pmatrix}^{-1}
+\label{eq:f=ds-1}
 \end{equation}
 %%%
-Note that the last matrix is always a $K\times K$ matrix, and thus inverse is usually found. 
+Note that the last matrix is a $K\times K$ matrix, and thus inverse is found if $\{ {\bf t}_k \}$ forms a triangle (rather than a straight line or a single dot, in which case $\{ {\bf t}_k \}$ is not a solution anyways).
 Then. we ask if the resultant $\fast_{ik}$ are within the range of (\ref{eq:tilde_f_range}). 
 
 Finally, we marginalize the posterior distribution, i.e.,
 %%%
 \begin{equation} 
-P_{\rm posterior} ( {\bf s}_1) = \iint P_{\rm posterior} ( s_{kn}' | d_{ij} ) d^2 {\bf s}_2 d^2 {\bf s}_3
+P_{\rm posterior} ( {\bf t}_1) = \iint P_{\rm posterior} ( t_{kn} | d_{ij} ) d^2 {\bf t}_2 d^2 {\bf t}_3
 \end{equation}
 %%%
-This is because of the symmetry of ${\bf s}_1$, ${\bf s}_2$, and ${\bf s}_3$. 
-$P_{\rm posterior} ( {\bf s}_1) $ is normalized so that it sums up to unity. 
+given the symmetry of ${\bf t}_1$, ${\bf t}_2$, and ${\bf t}_3$. 
+$P_{\rm posterior} ( {\bf t}_1) $ is normalized so that it sums up to unity. 
 
 The resultant probability distribution is shown in Figure \ref{fig:noreg}. 
 As expected, we find a relatively definite peak near the point of ocean. 
 On the other hand, the peak that corresponds to soil is a blur, and it is almost not constrained. 
 The vegetation in the bottom right corner is moderately constrained. 
-We also have to note that 
+
+We iterate that in this framework the success of the guess critically depends on the relative configuration of the trajectory and allowed region. 
+In panel D of Figure \ref{fig:noreg}, we show another example where we switched the geographical map of soil and vegetation; as a result, the trajectory moves toward soil rather than vegetation. However, because the allowed region near the soil is large, soil is still not sufficiently constrained. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Additional Constraints}
+\subsection{Additional Assumptions}
 \label{ss:regularization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-A possible constraining condition we might impose is the correlation length of the light curves, or of the map. 
-Smooth time or longitudinal variation of covering area fraction with correlation lengths may be imposed as Gaussian Process \citep{Rasmussen2005}, which means the any finite number of the covering fractions have a joint Gaussian distribution. 
-Note that the actual covering fraction of surface types do not necessarily obey gaussian process. 
-Therefore, the prior knowledge may rather keep the ``solution'' away from the ground truth. 
-
+A possible constraining assumption we might make is the correlation length of the area fraction as a function of time, or as a function of longitude.  
+Smooth time or longitudinal variation with correlation lengths may be imposed as Gaussian Process \citep{Rasmussen2005}, which means the any finite number of the covering fractions have a joint Gaussian distribution. 
+In our case, the prior for $f_{lk}$ for each $k$ is then:
 %%%
 \begin{eqnarray}
-P_{\rm posterior} ( s_{kn}' | d_{ij} ) &=& P ( d_{ij} | s_{kn}', f_{lk} ) \\
-&& \times \, P_{\rm prior} (  s_{kn}' ) P_{\rm prior} (  f_{lk} ) \\
-P ( d_{ij} | s_{kn}', f_{lk} ) &=& \delta( f_{lk} - f'_{lk} )
+&& P_{\rm prior} (  \fast_{1k}, \fast_{2k}, ..., \fast_{Ik} ) \\
+&& \propto \frac{1}{\sqrt{| \tilde \Sigma^{(k)} |}}  \exp\left[ - (\fast^{T})_{ki} ( \tilde \Sigma ^{(k)} )^{-1}_{ii'} \fast_{i'k} \right]
 \end{eqnarray}
 %%%
-
+where
 %%%
 \begin{equation}
-P_{\rm prior} (  f_{lk} ) \propto \frac{1}{\sqrt{| \Sigma^{(k)} |}}  \exp\left[ - (f^{T})_{kl} ( \Sigma ^{(k)} )^{-1}_{ll'} f_{l'k} \right]
+\tilde \Sigma _{ll'} = \lambda \exp \left( - \frac{|t_i- t_i'|^2}{2 \Delta_ t^2} \right)
+\end{equation}
+%%%
+or
+%%%
+\begin{eqnarray}
+&& P_{\rm prior} (  f_{1k}, f_{2k}, ..., f_{Lk} ) \\
+&& \propto \frac{1}{\sqrt{| \Sigma^{(k)} |}}  \exp\left[ - (f^{T})_{kl} ( \Sigma ^{(k)} )^{-1}_{ll'} f_{l'k} \right]
+\end{eqnarray}
+%%%
+where
+%%%
+\begin{equation}
+\Sigma _{ll'} = \lambda \exp \left( - \frac{|\phi_l- \phi_{l'}|^2}{2 \Delta _{\phi }^2} \right). 
 \end{equation}
 %%%
 
+The posterior will be
+%%%
+\begin{eqnarray}
+P_{\rm posterior} ( t_{kn} | d_{ij} ) &=& P ( d_{ij} | t_{kn}, f_{lk} ) \\
+&& \times \, P_{\rm prior} (  t_{kn} ) P_{\rm prior} (  f_{lk} ) \\
+P ( d_{ij} | t_{kn}, f_{lk} ) &=& \delta( f_{lk} - f_{lk}^{(0)} (t_{kn}) )
+\end{eqnarray}
+%%%
+where $f_{lk}^{(0)}$ is the solution of Equation (\ref{eq:f=ds-1}). 
+\memoYF{Very acrobatic. Am I doing right? I am not sure.}
+
+Panel E and F of Figure \ref{fig:noreg} are the results where $\Delta_ t = 2$ hr and $2.7$ hr, respectively. 
+In this case, we find the higher peak of albedo spectra of ocean closer to the ``answer'', while the vegetation is identified far off the ``answer''; vegetation is intermediate. 
+
+We must take caution here that the actual covering fraction of surface types do not necessarily obey gaussian process. 
+In this particular case, it appears that the dominant surface types are better approximated by gaussian processes.... \memoYF{??}
+
+
+\memoYF{Have to do with regularization on the maps}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{EPOXI data}
+\label{s:EPOXI}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbh]
+\begin{figure}[tbh!]
     \begin{center}
 	\includegraphics[width=\hsize]{raddata_2_PCplane_noreg.pdf}
     \end{center}
-    \caption{a}
+    \caption{}
 \label{fig:EPOXI}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\bibliography{ref}
+In this section, we apply our analysis procedure to the observed multi-band light curves of the Earth observed by EPOXI mission. 
+Specifically we use the same datasets as \citet{Cowan2013}, i.e., the diurnal light curves observed in June of 2008. 
+Using two dominant PCs we extracted, we performed the same analysis described in the previous section 
 
-\end{document}
+Figure \ref{fig:EPOXI} shows the trajectory of the light curve projected onto the PC plane, with the grayed region being the forbidden region. 
+While the permitted region appears to be close to a square, it is in fact a heptagon, bounded by 7 inequalities. Overall, the upper boundaries come from the requirement of $s_{kj}<1$ while the lower boundaries comes from the requirement of $s_{kj}<0$. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Constraining the Surface Types}
-%\label{ss:constraining}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Prior: Gaussian Processes}
-%\label{ss:gp}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\memoYF{This is just a quick draft and will need to be updated significantly.}
-
-A more constraining condition we might impose is the correlation length of the light curves. 
-This accounts to assuming a longitudinal correlation length in the planet's geography. 
+In this case, the trajectory of planetary light curves is away from the boundary because the color variations of the real Earth are muted by the cloud cover \memoYF{Right?}. 
+Consequently, we do not see three peaks but a spectrum of the potential. 
+Nevertheless, we are likely to find one surface type near the upper right part of the allowed region. 
 
 
-
-%%%
-\begin{eqnarray}
-&&Posterior 
-\\ &&= \prod\limits_{i,j}\left[  \frac{1}{\sqrt{2\pi }\sigma_{ij}} \exp \left\{ - \frac{(d_{ij} - \sum _{lk} W_{il} f_{lk} s_{kj})^2}{2 \sigma _{ij}^2} \right\} \right] \notag \\
-&& \;\;\;\;\;\;\;\;\;\; \times \; \mathcal{P} (\{f_{lk}\}) \cdot \mathcal{P}(\{s_{kj}\}) 
-\end{eqnarray}
-%%%
-where $\mathcal{P} (X) $ is a prior for $X$. 
-
-The assumption of smooth time variation of covering area fraction may be imposed using the concept of Gaussian Process \citep{Rasmussen2005}. 
-We assume that the variation of the covering fraction follows Gaussian Process, which means the any finite number of the covering fractions have a joint Gaussian distribution. 
-Such assumption can be represented by the prior of 
-%%%
-\begin{equation}
-\mathcal{P}_{\fast} = \frac{1}{\sqrt{ 2 \pi }^{L(K-1)} \sqrt{| \tilde \Sigma |} } \exp( - \fast^{T} \tilde \Sigma ^{-1} \fast ) 
-\end{equation}
-%%%
-or
-%%%
-\begin{equation}
-\mathcal{P}_f = \frac{1}{\sqrt{ 2 \pi }^{L(K-1)} \sqrt{| \Sigma  |}} \exp( - f^{T} \Sigma ^{-1} f ) 
-\end{equation}
-%%%
-where $\Sigma $ is the kernel representing the property of the gaussian processes assumed for $f$.
-In this paper, we assume squared exponential covariance function, i.e., 
-%%%
-\begin{equation}
-\tilde \Sigma _{ii'} = \lambda \exp \left( - \frac{|t_i- t_i'|^2}{2 (\Delta t_0) ^2} \right)
-\end{equation}
-%%%
-where $t_i$ is the time of $i$-th observation and $(\Delta t_0)$ is characteristic time scale over which $\fast $ is supposedly correlated, or 
-%%%
-\begin{equation}
-\Sigma _{ll'} = \lambda \exp \left( - \frac{|\phi_l- \phi_{l'}|^2}{2 \phi_0^2} \right)
-\end{equation}
-%%%
-where $\phi_l$ is the longitude of $l$-th slice, and $\phi_0$ is the characteristic longitudes over which $f$ is correlated.  
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbh!]
-    \begin{center}
-%\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_noreg.pdf}
-\includegraphics[width=\hsize]{IGBP_lon_noreg.pdf}
-\includegraphics[width=\hsize]{IGBP_lon_reg_l30deg.pdf}
-    \end{center}
-    \caption{Probability of surface albedo spectra estimated from colors of longitudinal slices, without (upper) and with (lower) regularization term. The regularization term for the lower panel assumes correlation length $30^{\circ }$. }
-\label{fig:noreg}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-\end{document}
-
-
+\memoYF{Draw a spectra at the upper left!!}
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Fit data with $\fast $ or with $f$ ?}
-\label{ss:degeneracy}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\memoYF{I am not 100\% sure if the following statement is right. Need to check. The argument below probably makes sense for the noiseless case. What if the data are noisy?}
- 
-We argue that estimating $\{ f, s \}$ is no superior to estimating $\{ \fast, s \}$. 
-%
-One reason comes from the approximation adopted in equation (\ref{eq:discretize}) is valid only when $f_k (\vec \Omega)$ does not change significantly in the $l$-th slice. 
-Otherwise, fitting data with $f$ by equation (\ref{eq:Wf}) produces some errors by design. 
-
-%Suppose the above approximation is justified. 
-In essence, $\fast_{ik}$ and $f_{lk}$ contains the same information, where they are related through a fixed $W_{il}$ (eq. \ref{eq:Wf}). 
-%
-If $L=I$, in general there is a one-to-one relationship between $\fast_{ik}$ and $f_{lk}$ through $W_{il}$ as far as ${\rm rank}(W)=L(=I)$. 
-In this case, clearly, equations (\ref{eq:cond_f_ast}) and (\ref{eq:cond_f}) are equivalent, given $W_{il}>0$ (for any $i$ and $j$) and $\sum _l W_{il} = 1$. 
-%
-If $L<I$, the matrix $W$ works as a low-pass filter \citep{Cowan2013}. 
-In this case, the inverse problem described by equation (\ref{eq:Wf}), $\fast=Wf$, is an overdetermined system, and one must to find the solution for $f$ by some means (e.g. the least squares method), and the resultant $f$ may not automatically satisfy the condition listed by equation (\ref{eq:cond_f}). 
-
-However, this is because of the design of the problem and the assumed lowered resolution. 
-
-Therefore, although either $\{ \fast, s \}$ or $\{ f, s \}$ could be fitting parameters to the data, the estimation for $s$ should not be affected by this conversion in fitting parameters. 
-In that sense, $\{ f, s \}$ is not likely to return a better solution than $\{ \fast, s \}$ does. 
-Rather, it could return less reasonable results because of the approximation adopted in equation (\ref{eq:discretize}). 
-
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Degeneracy}
-\label{ss:degeneracy}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\memoYF{The degeneracy in solving $\{ \fast ,\,s\} $ is already indicated in \citet{Cowan2013}, but might be worth clarifying here again. }
-
-
-One could try to find the solutions for $\{ \fast, s \}$ given $d$ using equation (\ref{eq:d_f_ast_s}), or the solutions for  $\{ f, s \}$ using equation (\ref{eq:d_f_s}), but we must keep in mind that 
-these two formulations both embrace intrinsic degeneracies in the solutions if there is no other information about $\fast$ (or $f$) and $s$. 
-
-%%%
-%\begin{equation}
-%d_{ij} = \sum _{i,k} f^{\ast }_{ik} \, s_{kj} \tag{\ref{eq:d_f_ast_s}}
-%\end{equation}
-%%%
-%When one tries to find solutions for both $\fast$ and $s$ given $d$, the results are strongly degenerate if there are not other information about $\fast$ and $s$. 
-
-Without any constraints on $\fast$ (or $f$) and $s$, it is trivial to notice the degeneracy in the solutions. 
-Using an arbitrary regular matrix $X$ with rank $K$, a particular set of solution $\{ \fast ,\,s\}$ implies another set of solution $\{ \fast X^{-1},\,Xs\}$. 
-
-Now that they are subject to the constraints (equation (\ref{eq:cond_f_ast}) or (\ref{eq:cond_f})), the range of the acceptable solution is limited. Nevertheless, the constraints cannot be sufficient to narrow them to a unique set of solution. 
-%
-To see this, %let us consider equation (\ref{eq:d_f_ast_s}) for the moment.
-imagine a $J$-dimensional space.
-Suppose there are $K$ number of vertices in that space, $\vec x_1,\,\vec x_2,\,...,\,\vec x_K$, and that all of the coordinate of $\vec x_k$ in this $J$-dimensional space is between 0 and 1. 
-Mathematically, any points (say, $\vec y_1$, $\vec y_2$, ..., $\vec y_I$) that are {\it enclosed} in the hyperplane defined by these vertices may be represented by $\vec y_i=\sum _k^K p_{ik} \vec x_k $ where $\sum _k^K p_{ik} = 1$ for any $i$. 
-%In the matrix form, $Y_{ij} = P_{ik} X_{kj}$. 
-This is essentially same as the situation described by equation (\ref{eq:d_f_ast_s}). 
-
-In other words, any set of vertices in $J$-dimensional space that can enclose all of the observed data, $\vec d_i$ can be the solutions for equation (\ref{eq:d_f_ast_s}), as long as all of the element in $x_{kj}$ satisfy $0<x_{kj}<1$. 
-The condition $0<x_{kj}<1$ generally constrains the outer boundary of the possible locations for the vertices. 
-Therefore, the ``answer'' vertices allowed by the observations are somewhere outside the polygon that tightly encloses the observed data and inside the outer boundary defined by the condition $0<x_{kj}<1$ (see \S\ref{ss:shrinkwrap} below). 
-
-Note that in an exceptional case where the apparent covering fractions of all of the surface type come close to unity to different epochs, the allowed region for the vertices would be narrow, i.e., better estimation can be expected. 
-
-
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Bayesian Formulation ?}
-\label{ss:regularization}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Assuming the observational noise is distributed as Gaussian, 
-%%%
-\begin{eqnarray}
-&&Posterior 
-\\ &&= \prod\limits_{i,j}\left[  \frac{1}{\sqrt{2\pi }\sigma_{ij}} \exp \left\{ - \frac{(d_{ij} - \sum _{lk} W_{il} f_{lk} s_{kj})^2}{2 \sigma _{ij}^2} \right\} \right] \notag \\
-&& \;\;\;\;\;\;\;\;\;\; \times \; \mathcal{P} (\{f_{lk}\}) \cdot \mathcal{P}(\{s_{kj}\}) 
-\end{eqnarray}
-%%%
-where $\mathcal{P} (X) $ is a prior for $X$. 
-
-In order to take account of constraints (equation (\ref{eq:constraints})), we adopt the following transformation of variables: 
-%%%
-\begin{eqnarray}
-\begin{cases}
-t_{kj} = \displaystyle \ln \left[ \frac{ s_{kj} }{1 - s_{kj} } \right]  \;\;\; & \mbox{for any $k$, $j$} \\
-g_{lk} = \displaystyle \ln \left[ \frac{ f_{lk} }{1 - \sum _{m=0}^{k} f_{lm} } \right] \;\;\; & \mbox{for $k=1, ..., K-1$} %, any $j$} 
-\end{cases}
-\end{eqnarray}
-%%%
-Note that there is a 1-to-1 correspondence between $t$ and $s$ or $g$ and $f$ where $s$. 
-
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Prior: Gaussian Processes}
-\label{ss:gp}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\memoYF{This is just a quick draft and will need to be updated significantly.}
-
-As seen in Section \ref{ss:degeneracy}, the solution is highly degenerate, and in general we cannot reduce to a unique solution. 
-Therefore, we may want to give a prior in estimating the area fractions. 
-What kind of assumptions can we make?
-
-In general, the large time/longitude variations in apparent area fractions corresponds to spectrally similar surface types, because such solution correspond to the proximity of the inner boundary in the $J$-dimensional space discussed above. 
-On the contrary, spectrally well-separated surface types correspond to small time/longitude variations in the apparent area fractions. 
-In the real world, we might expect that the latter is more likely, i.e., covering area fraction of any surface type would not change significantly along the longitude (or in time). 
-This would be a reasonable assumption for the estimation of $\{s, \fast \}$, since the illuminated and visible area is usually broad and tend to change the averaged area fraction of each surface type only gently. 
-Although there is no physical proof for this assumption...
-
-The assumption of the smoothness of the time variation of covering area fraction may be imposed using the concept of Gaussian Process \citep{Rasmussen2005}. 
-We assume that the variation of the covering fraction follows Gaussian Process, which means the any finite number of the covering fractions have a joint Gaussian distribution. 
-Such assumption can be represented by the prior of 
-%%%
-\begin{equation}
-\mathcal{P}_{\fast} = \frac{1}{\sqrt{ 2 \pi }^{L(K-1)} \sqrt{| \tilde \Sigma |} } \exp( - \fast^{T} \tilde \Sigma ^{-1} \fast ) 
-\end{equation}
-%%%
-or
-%%%
-\begin{equation}
-\mathcal{P}_f = \frac{1}{\sqrt{ 2 \pi }^{L(K-1)} \sqrt{| \Sigma  |}} \exp( - f^{T} \Sigma ^{-1} f ) 
-\end{equation}
-%%%
-where $\Sigma $ is the kernel representing the property of the gaussian processes assumed for $f$.
-In this paper, we assume squared exponential covariance function, i.e., 
-%%%
-\begin{equation}
-\tilde \Sigma _{ii'} = \lambda \exp \left( - \frac{|t_i- t_i'|^2}{2 (\Delta t_0) ^2} \right)
-\end{equation}
-%%%
-where $t_i$ is the time of $i$-th observation and $(\Delta t_0)$ is characteristic time scale over which $\fast $ is supposedly correlated, or 
-%%%
-\begin{equation}
-\Sigma _{ll'} = \lambda \exp \left( - \frac{|\phi_l- \phi_{l'}|^2}{2 \phi_0^2} \right)
-\end{equation}
-%%%
-where $\phi_l$ is the longitude of $l$-th slice, and $\phi_0$ is the characteristic longitudes over which $f$ is correlated.  
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Questions}
-
-\begin{itemize}
-\item Is this a right usage of Gaussian Process?
-\item
-\end{itemize}
-
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Test with idealized mock data}
-\label{s:mockdata}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Creating Mock Data}
-\label{ss:createmockdata}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[bth!]
-    \begin{minipage}{0.5\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{IGBP_simplemap.pdf}
-    \end{center}
-     \end{minipage}
-  \begin{minipage}{0.5\hsize}
-    \begin{center}
-    \includegraphics[width=\hsize]{mockdata_quadrature_bandsp.pdf}
-    \end{center}
-\end{minipage}
-  \begin{minipage}{0.5\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_quadrature_factor.pdf}
-    \end{center}
- \end{minipage}
-   \begin{minipage}{0.5\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_quadrature_lc.pdf}
-    \end{center}
- \end{minipage}
-    \caption{Our mock data based on Earth surface. }
-\label{fig:mockdata}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Before applying to the observed data, we shall demonstrate the analysis procedure with a mock dataset with the known answer. 
-For this purpose, we use a simplified albedo map of the Earth based on the IGBP classification. 
-We re-classify the IGBP map into four surface types, ``ocean', ``vegetation', and ``soil'' and following Table 2 of \citet{Fujii2010} except that we merge ``snow'' into ``soil'' considering its small fraction. 
-The upper left panel of Figure \ref{fig:mockdata} depicts such an surface classification. 
-The reflectance spectra for these three surface types ($s_{kj}$) are adopted from ASTER spectral library \citep{Baldridge2009} in the same way as \citet{Fujii2010} (Figure 7 in that paper), and are shown in the upper right panel of Figure \ref{fig:mockdata}. 
-
-We then compute the geometrically weighted area fraction of each surface type (``apparent covering fraction'' or $f^{\ast }_{ik}$) assuming an equatorial view at the quadrature, as is shown in the lower left panel of Figure \ref{fig:mockdata}. 
-Specifically, we fix the sub-observer latitude at $0^{\circ }$, sub-observer at $0^{\circ }$, the sub-solar latitude at $0^{\circ }$, and sub-solar longitude at $90^{\circ }$. 
-Using $s_{kj}$ and $f^{\ast }_{ik}$, we compute the apparent albedo at each observation frame, on the assumption that the surfaces are ``Lambert'' scatterers. The effect of atmosphere is completely ignored. 
-The mock lightcurves created through the above-mentioned procedure is presented in the lower right panel of Figure \ref{fig:mockdata}. 
-
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{PCA and Shrink-Wrapping}
-\label{ss:shrinkwrap}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-Now, we analyze the mock data created in the preceding section (Figure \ref{fig:mockdata}). 
-In this section, the result of PCA and shrink-wrapping are presented and discussed. 
-
-PCA on the mock data indicated one dominant component (contribution: $\sim $98\%) and one minor component (contribution: $\sim $2\%). The residual is virtually zero, leaving 2 components in total, consistent with the assumption of 3 surface types. 
-The corresponding principal components are shown in Figure \ref{fig:PCs}. 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[th]
-    \begin{center}
-\includegraphics[width=0.9\hsize]{PCA_V_jn.pdf}
-    \end{center}
-    \caption{Principal Components. }
-\label{fig:PCs}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[bht]
-    \begin{center}
-%\includegraphics[width=\hsize]{PCA_projected.pdf}
-\includegraphics[width=\hsize]{mockdata_quadrature_PCplane.pdf}
-    \end{center}
-    \caption{Colors of 3 surface types and the light curves projected to the plane of 1st and 2nd principal components. }
-\label{fig:shrinkwrap}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Then, we performed simplex shrink-wrapping analysis in the plane defined by these two principal components, based on the algorithm described in \citet{Fuhrmann1999}. 
-The result are presented in Figure \ref{fig:shrinkwrap}. 
-The black solid line indicates the trajectory of the light curves projected in this plane. 
-The minimum-volume triangle that encloses the data points are found at the orange line in the same figure. 
-For reference, the locations of the assumed three surface colors projected onto this plane are shown as points. 
-As can be seen, the light curves the minimum-volume enclosure does not match the colors of physical surfaces, except for ocean. 
-This is a natural consequence from the fact that the soil and vegetation are minor components and never dominate the surface in the illuminated and visible area, while the apparent covering fraction of ocean comes close to unity. 
-
-
-\clearpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{[NEW] Effect of Regularization Term}
-\label{ss:shrinkwrap}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Fitting with $\fast$}
-
-%%%
-\begin{eqnarray}
-\mathcal{P}_{\fast} &=& \prod _k \left[ \frac{1}{(\sqrt{ 2 \pi })^{I} \sqrt{| \tilde \Sigma |} } \right. \\
-&& \left. \times \exp \left\{ - \sum _{i,\,i'} (\fast ^{T})_{ki} \tilde \Sigma_{ii'} ^{-1} \fast_{i'k} \right\} \right] \\
-\tilde \Sigma _{ii'} (\lambda,  \Delta_t ) &=& \exp \left( - \frac{|t_i- t_i'|^2}{2 \Delta_t^2} \right)
-\end{eqnarray}
-%%%
-
-%%%
-\begin{eqnarray}
-- \log \mathcal{P}_{\fast} &\propto & \frac{1}{2} | \tilde \Sigma | + \mathcal{F}(\lambda, \Delta_t; \fast) \\
-\mathcal{\tilde F}(\lambda, \Delta_t; \fast)&\equiv & \sum _k \sum_{i,\,i'} (\fast ^{T})_{ki} \tilde \Sigma_{ii'} ^{-1} \fast_{i'k}
-\end{eqnarray}
-%%%
-
-...I think $\fast $ here should be zero mean for each $k$. 
-%%%
-\begin{equation}
-\fast_{ik} \rightarrow ( \fast_{ik} - \fast^{(ave)}_k )
-\end{equation}
-%%%
-In the following figures, the vertices of each triangle indicates the sample combination of the colors projected onto the principal component plane, and the colors is scaled by $\mathcal{\tilde F}^{\ast } (\Delta_t; \fast) = \lambda ^2 \mathcal{\tilde F}$. 
-
-
-\subsubsection{Concerns}
-
-%%%
-\begin{itemize}
-\item $\fast_{lk}$'s or $f_{lk}$'s are not mutually independent. (Sum is unity.) 
-\item Same regularization 
-\end{itemize}
-%%%
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[b]
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_regf_PCplane_l90deg_2013.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_regf_PCplane_l90deg_2017.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_regf_PCplane_l90deg_2019.pdf}
-    \end{center}
-    \end{minipage}    
-    \caption{The vertices of each triangle indicates the sample combination of the colors projected onto the principal component plane, and the colors is scaled by $\mathcal{\tilde F}^{\ast }$ with $\Delta_t=1.75$ \color{red} when the lightcurves are sampled 11 times in one rotation. \color{black}.The difference between the three panels is just the seed for \url{np.randam.uniform}}
-\label{fig:regterm}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[b]
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_regf_PCplane_l120deg_2013.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_regf_PCplane_l120deg_2017.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_regf_PCplane_l120deg_2019.pdf}
-    \end{center}
-    \end{minipage}
-    \caption{The vertices of each triangle indicates the sample combination of the colors projected onto the principal component plane, and the colors is scaled by $\mathcal{\tilde F}^{\ast }$ with $\Delta_t\sim 2.3$ \color{red} when the lightcurves are sampled 11 times in one rotation. \color{black}. The difference between the three panels is just the seed for \url{np.randam.uniform}}
-\label{fig:regterm}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[b]
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time11_lc_regf_PCplane_l90deg_2013.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time11_lc_regf_PCplane_l90deg_2017.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time11_lc_regf_PCplane_l90deg_2019.pdf}
-    \end{center}
-    \end{minipage}
-    \caption{The vertices of each triangle indicates the sample combination of the colors projected onto the principal component plane, and the colors is scaled by $\mathcal{\tilde F}^{\ast }$ \color{red} when the lightcurves are sampled 11 times in one rotation. \color{black} The difference between the three panels is just the seed for \url{np.randam.uniform}}
-\label{fig:regterm}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[b]
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time15_lc_regf_PCplane_l90deg_2013.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time15_lc_regf_PCplane_l90deg_2017.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time15_lc_regf_PCplane_l90deg_2019.pdf}
-    \end{center}
-    \end{minipage}
-    \caption{The vertices of each triangle indicates the sample combination of the colors projected onto the principal component plane, and the colors is scaled by $\mathcal{\tilde F}^{\ast }$ \color{red} when the lightcurves are sampled 15 times in one rotation. \color{black}. The difference between the three panels is just the seed for \url{np.randam.uniform}}
-\label{fig:regterm}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[b]
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_2_regf_PCplane_l90deg_2013.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_2_regf_PCplane_l90deg_2017.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_2_regf_PCplane_l90deg_2019.pdf}
-    \end{center}
-    \end{minipage}    
-    \caption{The vertices of each triangle indicates the sample combination of the colors projected onto the principal component plane, and the colors is scaled by $\mathcal{\tilde F}^{\ast }$ with $\Delta_t=1.75$ \color{red} when the lightcurves are sampled 7 times in one rotation. \color{black}.The difference between the three panels is just the seed for \url{np.randam.uniform}. In the regularization term, not $f_{lk}$ but $(f_{lk}-f_{k}^{\rm (ave)})/f_{k}^{\rm (ave)}$ are used where $f_{k}^{\rm (ave)} = (\sum_l f_{lk})/L$. }
-\label{fig:regterm}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[b]
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_g_regf_PCplane_l90deg_2013.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_g_regf_PCplane_l90deg_2017.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_time7_lc_g_regf_PCplane_l90deg_2019.pdf}
-    \end{center}
-    \end{minipage}    
-    \caption{The vertices of each triangle indicates the sample combination of the colors projected onto the principal component plane, and the colors is scaled by $\mathcal{\tilde F}^{\ast }$ with $\Delta_t=1.75$ \color{red} when the lightcurves are sampled 7 times in one rotation. \color{black}.The difference between the three panels is just the seed for \url{np.randam.uniform}. In the regularization term, not $f_{lk}$ but $g_{lk}$ are used. }
-\label{fig:regterm}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[b]
-    \begin{minipage}{0.5\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{simpleIGBP_quadrature_lc_l90deg_2013_X_albd_jk_best.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.5\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{simpleIGBP_quadrature_lc_l90deg_2013_X_area_ik_best.pdf}
-    \end{center}
-    \end{minipage}
-    \caption{Solution with smallest regularization term when $\Delta_t=1.75$ ($\Delta \phi = 90^{\circ }$).}
-\label{fig:regterm}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure*}[b]
-%    \begin{minipage}{0.5\hsize}
-%    \begin{center}
-%\includegraphics[width=\hsize]{simpleIGBP_quadrature_lc_l120deg_2013_X_albd_jk_best.pdf}
-%    \end{center}
-%    \end{minipage}
-%    \begin{minipage}{0.5\hsize}
-%    \begin{center}
-%\includegraphics[width=\hsize]{simpleIGBP_quadrature_lc_l120deg_2013_X_area_ik_best.pdf}
-%    \end{center}
-%    \end{minipage}
-%    \caption{Solution with smallest regularization term. }
-%\label{fig:regterm}
-%\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-\clearpage
-
-\subsubsection{Fitting with $f$}
-
-What if $f$ is used instead of $\fast$ in fitting?
-
-From equation (\ref{eq:d_f_s}), the solution for $f_{lk} s_{kj}$ that is found through the least-square method is
-%%%
-\begin{equation}
-\sum_i (W^{+})_{li} d_{ij} = \sum_k f_{lk} s_{kj}
-\end{equation}
-%%%
-So, with an analogy to equation (\ref{eq:d_f_ast_s}), we could make similar plots of the principal components plane (with the principal components found from $\sum_i (W^{+})_{li} d_{ij}$ instead of $d_{ij}$). 
-
-Then, the regularization term would be $\mathcal{F}^{\ast } (\Delta_{\phi }; f) = \lambda ^2 \mathcal{F}$ will be used where
-%%%
-\begin{equation}
-\mathcal{F}(\lambda, \Delta_{\phi }; f)\equiv  \sum _k \sum_{i,\,i'} (f^{T})_{ki} \Sigma_{ii'} ^{-1} f_{i'k}. 
-\end{equation}
-%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[h]
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{simpleIGBP_quadrature_lc_fitmap_regf_PCplane_l90deg_2013.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{simpleIGBP_quadrature_lc_fitmap_regf_PCplane_l90deg_2017.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{simpleIGBP_quadrature_lc_fitmap_regf_PCplane_l90deg_2019.pdf}
-    \end{center}
-    \end{minipage}
-    \caption{The vertices of each triangle indicates the sample combination of the colors projected onto the principal component plane, and the colors is scaled by $\mathcal{F}^{\ast }$ with $\Delta_t\sim 1.25$. The difference between the three panels is just the seed for \url{np.randam.uniform}.}
-\label{fig:regterm}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[h]
-    \begin{minipage}{0.5\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{simpleIGBP_quadrature_lc_fitmap_l90deg_2013_X_albd_jk_best.pdf}
-    \end{center}
-    \end{minipage}
-    \begin{minipage}{0.5\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{simpleIGBP_quadrature_lc_fitmap_l90deg_2013_X_area_ik_best.pdf}
-    \end{center}
-    \end{minipage}
-    \caption{Solution with smallest regularization term when $\Delta \phi = 90^{\circ }$. }
-\label{fig:regterm}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\bibliography{ref}
-
-\acknowledgments
-
-ISSI Exo-cartography workshop in Bern. 
-
-\end{document}
-
-\clearpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[!htbp]
-    \begin{center}
-%\includegraphics[width=\hsize]{xmed_std_regtime_s1e-2.pdf}
-%\includegraphics[width=\hsize]{xmed_std_regtime_s1e-4.pdf}
-\includegraphics[width=\hsize]{xmed_std_regtime_l1e-2.pdf}
-\includegraphics[width=\hsize]{xmed_std_regtime_l1e-4.pdf}
-    \end{center}
-    \caption{Regularization in terms of time. Upper: $\lambda = 0.01$. Lower: $\lambda = 0.0001$. \memoYF{But the MC chains do not converge after 5000 steps!}}
-\label{fig:shrinkwrap}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[!htbp]
-    \begin{center}
-\includegraphics[width=\hsize]{xmed_std_reglong_l1e-2.pdf}
-%\includegraphics[width=\hsize]{xmed_std_reglong_l1e-4.pdf}
-    \end{center}
-    \caption{Regularization in terms of longitude. Upper: $\sigma = 0.01$. Lower: $\sigma = 0.0001$. \memoYF{But the MC chains do not converge after 5000 steps!}}
-\label{fig:xmed_std_reglong_l1e-2}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[!htbp]
-    \begin{center}
-\includegraphics[width=\hsize]{reglong_l1e-2_trace0.png}
-\includegraphics[width=\hsize]{reglong_l1e-2_trace8.png}
-\includegraphics[width=\hsize]{reglong_l1e-2_trace13.png}
-    \end{center}
-    \caption{Examples of MC chains in estimating $\{ f,\,s\}$ with $\lambda = 0.01$, corresponding to Figure \ref{fig:xmed_std_reglong_l1e-2}. }
-\label{fig:shrinkwrap}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure*}[!htbp]
-%    \begin{center}
-%\includegraphics[width=\hsize]{xmed_std_reglong_s1e-4.pdf}
-%    \end{center}
-%    \caption{Result of estimation for $\{ f,\,s\}$ with $\lambda = 0.0001$. \memoYF{MC chains do not fully converge in 5000 steps.}}
-%\label{fig:shrinkwrap}
-%\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure*}[!htbp]
-%    \begin{center}
-%\includegraphics[width=\hsize]{xmed_std_time.pdf}
-%\includegraphics[width=\hsize]{xmed_std_longitude.pdf}
-%    \end{center}
-%    \caption{Left: result of estimation for $\{ \fast,\,s\}$. Right: result of estimation for $\{ f,\,s\}$}
-%\label{fig:shrinkwrap}
-%\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-\clearpage
-
-\acknowledgments
-
-\bibliography{ref}
-
-\newpage
-
-\appendix
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 \label{s:discussion}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Uncertainty in Radius}
-\label{ss:radius}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+So far we have assumed that the geometrical parameters are completely known, including the planetary orbit, planetary spin axis and the planetary radius. 
+In this section we discuss the influence of incomplete knowledge of these parameters. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Summary}
-\label{s:summary}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The decomposition into $\fast $ and $s$ does not require the information of spin axis or spin period. 
+What matters most in this case is the uncertainty in the normalization of apparent albedo. 
+In reality, direct imaging observations provide the intensity of the 
+planetary light and the intensity of the stellar light. 
+In order to convert this to the unit of albedo, we need to know the orbital distance from the star, phase angle, and the planetary radius. 
+If there is uncertainties in these measurements, the constraints originating from the upper boundary for albedo, $s_{jk} < 1$ may be unconstrained. 
+For example, in the case of EPOXI data, about a half of the boundaries would be uncertain if the normalization of albedo is uncertain. 
+Note that this is not always the case; in the case of our mockdata presented in Sections \ref{s:mockdata} and \ref{s:frame}, by coincidence \memoYF{?} all of the boundaries come from non-negativity of albedo, $s_{jk} > 0$. 
+Thus, depending on the nature of the planetary surface, there is a possibility that the planetary radius is now strongly affected by the unknown planetary radius, orbital distance, or orbital phase. \memoYF{Really?????}
+
+If the normalization of apparent albedo is not known, we do not have the boundaries 
 
 
 
+\memoYF{Instability of inverse problem}
 
-\acknowledgments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+\label{s:conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this paper, we revisited the framework to estimate the albedo spectra of major surface types of exoplanets and their distribution from disk-integrated multi-band photometric data. 
+We pointed out the inherit degeneracy which makes it impossible to find unique solutions. 
+Under some assumptions, constraints may be found about the likely solutions, due to the nature of albedo which is between 0 and 1. 
+We demonstrate how such constraints may be obtained using a simplified toy model of the Earth. 
+
+The constraints can be 
 
 \bibliography{ref}
-
-\appendix
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Application to 4 EPOXI observations of the Earth}
-\label{s:epoxi}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{EPOXI data}
-\label{ss:epoxidata}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[b!]
-    \begin{center}
-\includegraphics[width=\hsize]{EPOXI_vislightcurve_4obs.pdf}
-    \end{center}
-    \caption{4 light curves of the Earth obtained with EPOXI mission.}
-\label{fig:EPOXIlc}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-We now apply our framework to the observed multi-band reflected light curves of the Earth obtained with EPOXI \citep{Livengood2011, Cowan2011}. 
-There are 7 photometric filters from about 300 nm to 1000 nm, each of which has roughly 100-nm band width. 
-In total, 5 series of observations were conducted, each of which spans $\sim $24 hours with 1-hour intervals. 
-Since one of them includes lunar transit in front of the Earth and the interpretation is not straightforward, we just remove it from our data and consider only 4 series of observations, which were conducted on March 2008, June 2008, March 2009, and October 2009. 
-The data are presented in Figure \ref{fig:EPOXIlc} in terms of {\it apparent albedo}. 
-
-The geometrical configuration among the star, the target (the Earth), and the detector varies from observation to observation. 
-The information is summarized in \citet{Cowan2011}, but we also outline in Table \ref{tab:EPOXI} just for reference. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[!bt]
-    \begin{center}
-    \includegraphics[width=\hsize]{June_xmed_std_GPReg.pdf}
-    \end{center}
-    \caption{Result of inversion of EPOXI June data. \memoYF{to be revised}}
-\label{fig:mcmc_June_tmp}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table*}[htp]
-\caption{EPOXI Observations}
-\begin{center}
-\begin{tabular}{lcccc} \hline \hline
-& Equator (equinox) & Equator (solstice) & North & South \\ \hline
-Date & 2008 Mar 18-19 & 2008 Jun 4-5 & 2009 Mar 27-28 & 2009 Oct 4-5 \\ 
-Phase & $57.7^{\circ }$ & $76.6^{\circ }$ & $85.9^{\circ }$ & $86.4^{\circ }$ \\ 
-average sub-solar latitude & $-0.4^{\circ }$ & $22.6^{\circ }$ & $3.0^{\circ }$ & $-4.6^{\circ }$ \\
-average sub-observer latitude & $1.6^{\circ }$ & $0.3^{\circ }$ & $61.5^{\circ }$ & $-73.7^{\circ }$  \\
-initial sub-solar longitude & $267.6^{\circ }$ & $286.0^{\circ }$ & $296.7^{\circ }$ & $33.2^{\circ }$ \\
-initial sub-observer longitude & $210.1^{\circ }$ & $210.5^{\circ }$ & $210.1^{\circ }$ & $300.6^{\circ }$ \\ \hline
-\end{tabular}
-\end{center}
-\label{tab:EPOXI}
-\end{table*}%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \end{document}
