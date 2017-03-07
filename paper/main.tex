@@ -342,19 +342,20 @@ Now, the relevant problem is, given $d$, estimate $\{f, s\}$ subject to the cons
 
 Equation (\ref{eq:tilde_d_f_ast_s}) coupled with the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) indicates the geometrical relationship among ${\bf d}$, ${\bf \fast }$, and ${\bf s}$ in the $J$-th dimensional space, where $\{{\bf d}_i\}$ correspond to the points that are located on the (hyper-)plane defined by $K$ ($<J$) number of points, $\{{\bf s}_k\} $, and are enclosed by $\{{\bf s}_k \}$. \memoYF{How is it called in one word in mathematics?}
 Figure \ref{fig:schematic} graphically shows this relations in the case of $J=3$ and $K=3$. 
-Note that the dimension of this (hyper-)plane is $K-1$; In other words, the number of spectrally distinct major surface types ($=K$) is the number of dominant principal components (PCs) plus 1 in theory \citep{Cowan2011}. 
+Note that the dimension of this (hyper-)plane is $K-1$.  
 %We show this graphically in Figure \ref{fig:trajectory}, using the mock datasets shown in Section \ref{s:mockdata}. 
 
-This (hyper-)plane can be identified through Principal Component Analysis (PCA) \citep{Cowan2009,Cowan2011}, as PCA extracts the major axes along which the scatter among the data points are significant. 
+This (hyper-)plane can be identified through Principal Component Analysis (PCA) \citep{Cowan2009,Cowan2011}, as PCA extracts the major, mutually-orthogonal axes along which the scatter among the data points are significant. 
+%Note that the number of principal components In other words, the number of spectrally distinct major surface types ($=K$) is the number of dominant principal components (PCs) plus 1 in theory \citep{Cowan2011}. 
 % used Principal Component Analysis (PCA) to 
 % The original data, however, have 4 photometric bands (i.e., $J=4$), and $J$-the dimensional space is inconvenient for visualization. 
-We thus start by performing principal component analysis (PCA). 
-From the mock light curves prepared in Section \ref{s:mockdata}), we extract two dominant PCs through PCA (other components are found to have virtually zero contribution). 
-The PCs extracted from the light curves at $\alpha = 90^{\circ }$ (olive lines in Figure \ref{fig:mockdata}) are presented in Figure \ref{fig:PCs}. 
+%We thus start by performing principal component analysis (PCA). 
+From the mock light curves prepared in Section \ref{s:mockdata}, we extract two dominant Principal Components (PCs) through PCA with other components having virtually zero contributions, consistent with the 3 input surface types.  
+The PCs extracted from the light curves at $\alpha = 90^{\circ }$ (olive lines in Figure \ref{fig:mockdata}) are presented in the upper panel of Figure \ref{fig:trajectory}. 
 In the following, we adopt these two PCs as the axes of the PC plane. \memoYF{Comment from Nick: This is true by definition?}
-Although the PCs from other light curves with different phase angles are not necessarily same as the one shown in Figure \ref{fig:PCs}, the PC plane itself should be the same plane, because we assume the same 3 surface types (under the noiseless condition). Thus it is ok to use these PCs to discuss other light curves as well. 
+Although the PCs from other light curves with different phase angles are not necessarily same as the one shown in the upper panel of Figure \ref{fig:trajectory}, the PC plane itself should be the same plane (under the noiseless condition), because we assume the same 3 surface types. Thus it is ok to use these PCs to discuss other light curves as well. 
 
-Figure \ref{fig:trajectory} shows the trajectories of the mock light curves with varying phase angle on the plane defined by PC 1 and PC 2. 
+The lower panel of Figure \ref{fig:trajectory} shows the trajectories of the mock light curves with varying phase angle on the plane defined by PC 1 and PC 2. 
 The excursion of the trajectory is larger for the light curve at a larger phase angle, i.e., at crescent phase, and shrinks as the phase angle decreases because a larger surface area is averaged together.  
 The points in the figure indicate the input albedo spectra of the three surface types. 
 As described above, the trajectories are always inside the triangle defined by these points. 
@@ -379,7 +380,7 @@ As described above, the trajectories are always inside the triangle defined by t
 \includegraphics[width=\hsize]{mockdata_PCplane.pdf}
     \end{center}
     \caption{Upper panel: principal components (PCs) of the light curves at $\alpha = 90^{\circ }$ shown in olive lines in Figure \ref{fig:mockdata}. Lower panel: trajectories of the 4-band light curves on the PC plane set by 2 PCs shown in the upper panel, in the case of $\alpha = 135^{\circ }$ (indigo thick line), $\alpha = 90^{\circ }$ (olive line), and $\alpha = 45^{\circ }$ (gold thin line). Points indicate the input albedo spectra of ocean (blue circle), soil (red square), and vegetation (green triangle) on the PC plane. Points in the gray region violate the condition (\ref{eq:tilde_s_range}); specifically, the left, right, and bottom boundaries are set by $s_{k,4}> 0$, $s_{k,1}> 0$, and $s_{k,3}> 0$, respectively. 
-Dotted lines are random triangle that could be solutions (see text). \memoYF{I have to redo the first panel!!}}
+Dotted lines are random triangle that could be solutions (see text). }
     \label{fig:trajectory}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -391,25 +392,26 @@ Dotted lines are random triangle that could be solutions (see text). \memoYF{I h
 
 On the other hand, when it comes to the stage where we must estimate the surface spectra given the trajectory/-ies, {\it any} set of $\{ {\bf s}_k \}$ that enclose the data points $\{{\bf d}_i\}$ in the hyperplane can be a solution of Equation (\ref{eq:tilde_d_f_ast_s}) subject to the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}). 
 Note that the associated matrix, $\fast _{ik}$, can always be found. 
+
 Additional constraint comes from the condition (\ref{eq:tilde_s_range}). 
-In Figure \ref{fig:trajectory} any points in the shadowed region are rejected based on this condition (the specific inequalities corresponding to the border lines are noted in the figure caption. ). 
-While this limits the region where $\{ {\bf s}_k \}$ can exist,   
+In Figure \ref{fig:trajectory} any points in the shadowed region are rejected based on this condition: specifically, the left, right, and bottom boundaries are set by $s_{k,4}> 0$, $s_{k,1}> 0$, and $s_{k,3}> 0$. 
+While in this particular example, the permitted region happen to have a triangle shape, the shapes can have a different shape depending on the relative configuration of the boundariese\memoYF{In more detail?}. 
+Although these limits the region where $\{ {\bf s}_k \}$ can exist,   
 this is in general not sufficient to result in a unique solution. 
+
 In Figure \ref{fig:trajectory} we show two random triangles that enclose the trajectory; these triangles satisfy the conditions, so do many others. 
 One can have spectrally interesting surface spectra and boring geography (small longitudinal variation in area fractions) {\it or} one can have boring surface spectra (closer to flat) and interesting geography. \memoYF{Need to reconsider this phrasing. }
 Therefore, predicting ${\bf \fast }$ and ${\bf s}$ from ${\bf d}$ is clearly a ill-posed problem. 
-
-
-
-
 
 A formally equivalent degeneracy is found in Equation (\ref{eq:d_f_s}) coupled with the conditions (\ref{eq:f_range})-(\ref{eq:s_range}). 
 Essentially, the term $\sum _k f_{lk} s_{kj}$ represents the average albedo spectra of $l$-th slice and $W_{il}$ is the matrix that convolve them into the light curves. 
 But again, we can have different sets of $\{ {\bf s}_k \}$ that enclose the averaged albedo spectra of longitudinal slices {\it and} are located in the range of condition (\ref{eq:s_range}), any of which can make up the given averaged albedo spectra with the associated $f_{lk}$. 
 For disk-integrated light curves, the color excursions are more muted than the intrinsic longitudinal map, so the degeneracy becomes severer. 
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Constraining the Surface Types}
+\subsection{``Best Guess'' of the Surface Types}
 \label{ss:constraining}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -418,21 +420,26 @@ For disk-integrated light curves, the color excursions are more muted than the i
 \begin{figure*}[tbh!]
    \begin{minipage}{0.33\hsize}
     \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_noreg.pdf}
+\includegraphics[width=\hsize]{mockdata_45deg_3types_t360_lc_noreg.pdf}
     \end{center}
      \end{minipage}   
     \begin{minipage}{0.33\hsize}
     \begin{center}
 %\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_noreg.pdf}
-\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l30deg.pdf}
+\includegraphics[width=\hsize]{mockdata_135deg_3types_t360_lc_noreg.pdf}
     \end{center}
      \end{minipage}
    \begin{minipage}{0.33\hsize}
     \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l40deg.pdf}
+\includegraphics[width=\hsize]{IGBP_lon_noreg.pdf}
     \end{center}
      \end{minipage}
-    \caption{Left: Probability of surface albedo spectra estimated from colors of longitudinal slices, without regularization term (``flat'' prior?). Middle: on the assumption of gaussian process with correlation length $30^{\circ }$. Right panel: correlation length $40^{\circ }$. }
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+\includegraphics[width=\hsize]{mockdata_90deg_3types2_t360_lc_noreg.pdf}
+    \end{center}
+     \end{minipage} 
+    \caption{}%Left: Probability of surface albedo spectra estimated from colors of longitudinal slices, without regularization term (``flat'' prior?). Middle: on the assumption of gaussian process with correlation length $30^{\circ }$. Right panel: correlation length $40^{\circ }$. }
 \label{fig:noreg}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -445,20 +452,132 @@ While such an assumption does not seem to work at all to choose the surface type
 This is because of the relative configuration of the trajectory and the permitted region. 
 For example, in Figure \ref{fig:trajectory}, in order to enclose the trajectory with three surface types within the permitted region, we must have at least one point near the bottom left corner of the permitted region (white triangle); this is consistent with the fact that one of the input albedo spectra (ocean) resides there. 
 
+
 In order to see this more quantitatively, we make a grid on the PC plane  with an interval of 0.2 and consider all combinations of three grid points. 
-Then, we assumed that all of the combinations that enclose the trajectory (in the case of $\alpha =90^{\circ }$) are equally likely to be a solution, and found the marginalized probability of having a surface type at each location of the PC plane, as shown in Figure \ref{fig:noreg}. 
-%
+Then, we assumed that all of the combinations that enclose the trajectory are equally likely to be a solution, and found the marginalized probability of having a surface type at each location of the PC plane. 
+Specifically, we consider the following Bayesean expression and attempt to find the posterior distribution:
+%%%
+\begin{equation}
+P_{\rm posterior} ( s_{kn}' | d_{ij} ) = P ( d_{ij} | s_{kn}' ) \cdot P_{\rm prior} (  s_{kn}' ) 
+\end{equation}
+%%%
+where $s_{kn}'$ represents the coordinates of the $k$-th surface type on the PC plane ($n$ is either 1 or 2, corresponding to PC 1 and PC 2): $ s_{kn}' = s_{kj} V_{jn} $. 
+Assuming that any facet has the same prior probability per area of being a surface type, the prior for each $k$ is:
+%%%
+\begin{eqnarray}
+P_{\rm prior} (s_{k1}', s_{k2}' ) \, ds_{k1}' ds_{k2}' &=& \frac{ds_{k1}'  ds_{k2}'}{\iint _{\rm allowed} d^2{\bf s}_k'}. 
+\end{eqnarray}
+%%%
+On the other hand, the likelihood is 
+%%%
+\begin{equation}
+P ( d_{ij} | s_{kn}' ) \propto \left\{
+\begin{array}{ll}
+1 \;\;\; & \mbox{if satisfies conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum})} \\
+0 \;\;\; & \mbox{otherwise}
+\end{array}
+\right.
+\end{equation}
+%%%
+Although the graphical meaning of conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) is simply to enclose the data, the judgement is numerically made as follows. 
+We first find $\fast $ that satisfies condition (\ref{eq:tilde_f_sum}) from
+%%%
+\begin{equation}
+\begin{pmatrix}
+d'_{11} & d'_{12} & 1 \\
+... & & 1 \\
+d'_{I1} & d'_{I2} & 1 
+\end{pmatrix}
+= 
+\begin{pmatrix}
+\fast_{11} & \fast_{12} & \fast_{13}  \\
+... & \\
+\fast_{I1} & \fast_{I2} & \fast_{I3}
+\end{pmatrix}
+\begin{pmatrix}
+s'_{11} & s'_{12} & 1 \\
+s'_{21} & s'_{22} & 1 \\
+s'_{31} & s'_{32} & 1 
+\end{pmatrix}
+\end{equation}
+%%%
+or,
+\begin{equation}
+\begin{pmatrix}
+\fast_{11} & \fast_{12} & \fast_{13}  \\
+... & \\
+\fast_{I1} & \fast_{I2} & \fast_{I3}
+\end{pmatrix}
+=
+\begin{pmatrix}
+d'_{11} & d'_{12} & 1 \\
+... & & 1 \\
+d'_{I1} & d'_{I2} & 1 
+\end{pmatrix}
+\begin{pmatrix}
+s'_{11} & s'_{12} & 1 \\
+s'_{21} & s'_{22} & 1 \\
+s'_{31} & s'_{32} & 1 
+\end{pmatrix}^{-1}
+\end{equation}
+%%%
+Note that the last matrix is always a $K\times K$ matrix, and thus inverse is usually found. 
+Then. we ask if the resultant $\fast_{ik}$ are within the range of (\ref{eq:tilde_f_range}). 
+
+Finally, we marginalize the posterior distribution, i.e.,
+%%%
+\begin{equation} 
+P_{\rm posterior} ( {\bf s}_1) = \iint P_{\rm posterior} ( s_{kn}' | d_{ij} ) d^2 {\bf s}_2 d^2 {\bf s}_3
+\end{equation}
+%%%
+This is because of the symmetry of ${\bf s}_1$, ${\bf s}_2$, and ${\bf s}_3$. 
+$P_{\rm posterior} ( {\bf s}_1) $ is normalized so that it sums up to unity. 
+
+The resultant probability distribution is shown in Figure \ref{fig:noreg}. 
 As expected, we find a relatively definite peak near the point of ocean. 
 On the other hand, the peak that corresponds to soil is a blur, and it is almost not constrained. 
 The vegetation in the bottom right corner is moderately constrained. 
-
-
+We also have to note that 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Additional Constraints}
 \label{ss:regularization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+A possible constraining condition we might impose is the correlation length of the light curves, or of the map. 
+Smooth time or longitudinal variation of covering area fraction with correlation lengths may be imposed as Gaussian Process \citep{Rasmussen2005}, which means the any finite number of the covering fractions have a joint Gaussian distribution. 
+Note that the actual covering fraction of surface types do not necessarily obey gaussian process. 
+Therefore, the prior knowledge may rather keep the ``solution'' away from the ground truth. 
+
+%%%
+\begin{eqnarray}
+P_{\rm posterior} ( s_{kn}' | d_{ij} ) &=& P ( d_{ij} | s_{kn}', f_{lk} ) \\
+&& \times \, P_{\rm prior} (  s_{kn}' ) P_{\rm prior} (  f_{lk} ) \\
+P ( d_{ij} | s_{kn}', f_{lk} ) &=& \delta( f_{lk} - f'_{lk} )
+\end{eqnarray}
+%%%
+
+%%%
+\begin{equation}
+P_{\rm prior} (  f_{lk} ) \propto \frac{1}{\sqrt{| \Sigma^{(k)} |}}  \exp\left[ - (f^{T})_{kl} ( \Sigma ^{(k)} )^{-1}_{ll'} f_{l'k} \right]
+\end{equation}
+%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbh]
+    \begin{center}
+	\includegraphics[width=\hsize]{raddata_2_PCplane_noreg.pdf}
+    \end{center}
+    \caption{a}
+\label{fig:EPOXI}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\bibliography{ref}
+
+\end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Constraining the Surface Types}
@@ -471,10 +590,12 @@ The vegetation in the bottom right corner is moderately constrained.
 %\label{ss:gp}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\memoYF{This is just a quick draft and will need to be updated significantly.}
+%\memoYF{This is just a quick draft and will need to be updated significantly.}
 
 A more constraining condition we might impose is the correlation length of the light curves. 
 This accounts to assuming a longitudinal correlation length in the planet's geography. 
+
+
 
 %%%
 \begin{eqnarray}
@@ -529,7 +650,7 @@ where $\phi_l$ is the longitude of $l$-th slice, and $\phi_0$ is the characteris
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\bibliography{ref}
+
 
 
 \end{document}
