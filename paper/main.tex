@@ -492,8 +492,7 @@ With no assumptions or information on the spectral albedo of the surface types o
 %While such an assumption does not seem to work at all to choose the surface types, it does put some constrains. 
 While such an assumption does not uniquely specify the colors of all $K$ surface types, it does offer constraints due to the relative light curve trajectory within the permitted region. 
 %This is because of the relative configuration of the trajectory and the permitted region. 
-For example, in Figure \ref{fig:trajectory}, in order to enclose the trajectory with three surface types within the permitted region, we must have at least one point near the bottom left corner of the permitted region (white triangle); this is consistent with the fact that one of the input albedo spectra (ocean) resides there. \memoJLY{and is a dominant surface type...?}
-
+For example, in Figure \ref{fig:trajectory}, in order to enclose the trajectory with three surface types within the permitted region, we must have at least one point near the bottom left corner of the permitted region (white triangle); this is consistent with the fact that one of the input albedo spectra (ocean) resides there. 
 
 In order to see this more quantitatively, we make a grid on the PC plane  with an interval of 0.2 and consider all combinations of three grid points. 
 Then, we assumed that all of the combinations that enclose the trajectory are equally likely to be a solution, and found the marginalized probability of having a surface type at each location of the PC plane. 
@@ -649,8 +648,7 @@ In this case, we find the higher peak of albedo spectra of ocean closer to the `
 We must take caution here that the actual covering fraction of surface types do not necessarily obey gaussian process. 
 In this particular case, it appears that the dominant surface type (ocean) is better approximated by gaussian processes.... \memoYF{??}
 
-
-\memoYF{Have to do with regularization on the maps, but how should we proceed without doing MCMC with both $f_{lk}$ and $s_{kj}$ being fitting parameters? I could operate $W^{+}_{li} \fast_{ik}$ to find $f_{lk}$ with condition (\ref{eq:f_range}) and (\ref{eq:f_sum}); this itself is a bounded linear inversion problem and thus needs some minimization. Also, without regularization, I tend to find scattered $f_{lk}$, perhaps because of the instability of inverse matrix??. }
+%\memoYF{Have to do with regularization on the maps, but how should we proceed without doing MCMC with both $f_{lk}$ and $s_{kj}$ being fitting parameters? I could operate $W^{+}_{li} \fast_{ik}$ to find $f_{lk}$ with condition (\ref{eq:f_range}) and (\ref{eq:f_sum}); this itself is a bounded linear inversion problem and thus needs some minimization. Also, without regularization, I tend to find scattered $f_{lk}$, perhaps because of the instability of inverse matrix??. }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -663,7 +661,7 @@ In this particular case, it appears that the dominant surface type (ocean) is be
     \begin{center}
 	\includegraphics[width=\hsize]{raddata_2_PCplane_noreg.pdf}
     \end{center}
-    \caption{PC plane from EPOXI observation of June 2008. }
+    \caption{PC plane from EPOXI observation of June 2008. \memoYF{I have not computed the exact location of ocean, soil, or clouds, but roughly, ocean is probably around (-0.2, 0.4), soil is around (0.5, 0.0), and cloud is around (0.1,-0.5).}}
 \label{fig:EPOXI}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -677,7 +675,7 @@ Using two dominant PCs we extracted, we performed the same analysis described in
 Figure \ref{fig:EPOXI} shows the trajectory of the light curve projected onto the PC plane, with the grayed region being the forbidden region. 
 While the permitted region appears to be close to a square, it is in fact a heptagon, bounded by 7 inequalities. Overall, the upper boundaries come from the requirement of $s_{kj}>0$ while the lower boundaries comes from the requirement of $s_{kj}<1$. 
 
-In this case, the trajectory of planetary light curves is away from the boundary because the color variations of the real Earth are muted by the cloud cover \memoYF{True?}. 
+In this case, the trajectory of planetary light curves is away from the boundary because the color variations of the real Earth are muted by the cloud cover. 
 Consequently, we do not see three peaks but a spectrum of the potential. 
 Nevertheless, we are likely to find one surface type near the upper right part of the allowed region. 
 
@@ -712,7 +710,7 @@ planetary light and the intensity of the stellar light.
 In order to convert this to the unit of albedo, we need to know the orbital distance from the star, phase angle, and planetary radius. 
 If there are uncertainties in these estimates, the relative configuration among the light curve trajectories, the boundaries coming from $s_{jk} < 1$, and those coming from $s_{jk} > 0$ are changed, thus the estimates are affected.  
 
-\memoYF{Problem in inverse matrix...!}
+%\memoYF{Problem in inverse matrix...!}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
