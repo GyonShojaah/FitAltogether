@@ -188,7 +188,7 @@ The albedo spectrum for ocean is based on \citet{Mclinden1997},
 and the data for soil and vegetation are taken from ASTER spectral library\footnote{\url{https://speclib.jpl.nasa.gov/}. 
 Specifically, we adopt  ``Brown to dark brown sand'' for ``soil'', and ``Grass'' for the ``vegetation''}. 
 The scattering phase function by the surface is assumed to obey the Lambert law, i.e., the radiance is (incident flux)$\times $(albedo)/$\pi$, independent of the direction of the scattering. 
-Note that in reality they are not Lambertian scatterers; among others,  scattering by ocean is very anisotropic.  
+Note that in reality they are not Lambertian scatterers; among others,  scattering by ocean is very anisotropic (Section \ref{ss:deviateLambert}).  
 
 % and the albedo spectra of ocean overlaid with atmosphere  
 %\memoJLY{A phase of 135 deg is right in the range that Ty (Robinson et al. 2010; 2011) shows will deviate most from a Lambertian scatterer due the ocean glint...}
@@ -357,7 +357,8 @@ Now, the relevant problem is, given $d$, estimate $\{f, s\}$ subject to the cons
 
 %A question is whether the above formulation leads us to a unique solution of either $\{ {\bf \fast},\,{\bf s} \}$ or $\{ {\bf f},\,{\bf s}\}$, given the data matrix, ${\bf d}$. 
 
-Equation (\ref{eq:tilde_d_f_ast_s}) coupled with the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) indicates the geometrical relationship among ${\bf d}$, ${\bf \fast }$, and ${\bf s}$ in the $J$-th dimensional space, where $\{{\bf d}_i\}$ correspond to the points that are located on the (hyper-)plane defined by $K$ ($<J$) number of points, $\{{\bf s}_k\} $, and are enclosed by $\{{\bf s}_k \}$. \memoYF{How is it called in one word in mathematics?}
+Equation (\ref{eq:tilde_d_f_ast_s}) coupled with the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) indicates the geometrical relationship among ${\bf d}$, ${\bf \fast }$, and ${\bf s}$ in the $J$-th dimensional space, where $\{{\bf d}_i\}$ correspond to the points that are located on the (hyper-)plane defined by $K$ ($<J$) number of points, $\{{\bf s}_k\} $, and are enclosed by $\{{\bf s}_k \}$. 
+%\memoYF{How is it called in one word in mathematics?}
 Figure \ref{fig:schematic} graphically shows this relations in the case of $J=3$ and $K=3$. 
 Note that the dimension of this (hyper-)plane is $K-1$.  
 %We show this graphically in Figure \ref{fig:trajectory}, using the mock datasets shown in Section \ref{s:mockdata}. 
@@ -709,17 +710,14 @@ planetary light and the intensity of the stellar light, and in order to convert 
 If there are uncertainties in these estimates, the relative configuration among the light curve trajectories, the boundaries coming from $s_{jk} < 1$, and those coming from $s_{jk} > 0$ are changed, thus the estimates can be substantially biased. 
 
 \subsection{Deviation from Lambert's Law}
+\label{ss:deviateLambert}
 
-<<<<<<< HEAD
 We have assumed that the scattering by surface obeys Lambert's law, but in reality they are not perfect Lambert scatterers, as noted. 
 In particular, scattering by ocean exhibits prominent specular reflection and the reflectivity increases when the incident light is grazing, or equivalently at crescent phase \citep[e.g.,][]{Williams2008}. 
 Furthermore, when we take account of an atmosphere above the surface, the albedo spectra of surface overlaid by an atmosphere changes in phase angle.  
 Considering these effects, the trajectories of the light curves at different phases do not have to reside in the same PC plane. 
 These light curves can be analyzed independently, and the components varying with phase would rather give us insights into the anisotropic scatterers. 
 
-=======
->>>>>>> 57352beba28d68a6fc6c23a7fa06d35b1918251f
-%\memoYF{Problem in inverse matrix...!}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
