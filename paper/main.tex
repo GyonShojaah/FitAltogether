@@ -188,9 +188,10 @@ The albedo spectrum for ocean is based on \citet{Mclinden1997},
 and the data for soil and vegetation are taken from ASTER spectral library\footnote{\url{https://speclib.jpl.nasa.gov/}. 
 Specifically, we adopt  ``Brown to dark brown sand'' for ``soil'', and ``Grass'' for the ``vegetation''}. 
 The scattering phase function by the surface is assumed to obey the Lambert law, i.e., the radiance is (incident flux)$\times $(albedo)/$\pi$, independent of the direction of the scattering. 
-In reality, ocean is not a Lambertian scatterer, 
+Note that in reality they are not Lambertian scatterers; among others,  scattering by ocean is very anisotropic.  
 
-\memoJLY{A phase of 135 deg is right in the range that Ty (Robinson et al. 2010; 2011) shows will deviate most from a Lambertian scatterer due the ocean glint...}
+% and the albedo spectra of ocean overlaid with atmosphere  
+%\memoJLY{A phase of 135 deg is right in the range that Ty (Robinson et al. 2010; 2011) shows will deviate most from a Lambertian scatterer due the ocean glint...}
 
 The light curves are synthesized given the relative potisions of the star, planet, and observer.  
 For the sake of simplicity, we consider a planet with zero obliquity in an edge-on orbit, and change the phase angle (the planet-centric angle between the star and the observer) denoted by $\alpha $. 
@@ -370,13 +371,14 @@ Consequently, the number of major principal components (PCs) are $K-1$ \citep{Co
 From the mock light curves prepared in Section \ref{s:mockdata}, we extract two dominant PCs through PCA with other components having virtually zero contributions, consistent with the 3 input surface types.  
 The PCs extracted from the light curves at $\alpha = 90^{\circ }$ (olive lines in Figure \ref{fig:mockdata}) are presented in the upper panel of Figure \ref{fig:trajectory}. 
 In the following, we adopt these two PCs as the axes of the PC plane. 
-\memoNBC{This is true by definition?}
-\memoNBC{You mean if you have the same 3 surfaces?}
-\memoYF{What I meant was that because we assume the same 3 surface types, the data (apparent albedo) should lie in the same plane determined by these surface types. So although it is not guaranteed that we extract the same PCs from the light curves with different phase angles (because it is determined by the variation pattern of the data), the PC plane itself should be the same. So, if our purpose of doing PCs are to find the PC plane and display it, we could use a consistent PCs to show the trajectories on PC plane. }
+%\memoNBC{This is true by definition?}
+%\memoNBC{You mean if you have the same 3 surfaces?}
+%\memoYF{What I meant was that because we assume the same 3 surface types, the data (apparent albedo) should lie in the same plane determined by these surface types. So although it is not guaranteed that we extract the same PCs from the light curves with different phase angles (because it is determined by the variation pattern of the data), the PC plane itself should be the same. So, if our purpose of doing PCs are to find the PC plane and display it, we could use a consistent PCs to show the trajectories on PC plane. }
 For the later use, we denote these PCs by $V_{nj}$ where $n=1$ or $2$  corresponding to the 1st and 2nd PC. 
-Although the PCs from other light curves with different phase angles are not necessarily same as the one shown in the upper panel of Figure \ref{fig:trajectory}, the PC plane itself should be the same plane (under the noiseless condition), because we assume the same 3 surface types. 
-\memoJLY{I'm skeptical of this claim...Does it break down when the Lambertian assumption is relaxed? This would change the apparent albedo of some surfaces as a function of phase...}
-Thus in this section we keep using is PCs to discuss other light curves as well. 
+Although the PCs from other light curves with different phase angles are not necessarily same as the one shown in the upper panel of Figure \ref{fig:trajectory}, the PC plane itself should be the same plane (under the noiseless condition), because we use the same 3 surface types assuming that they are Lambertian scatterers. 
+% \memoJLY{I'm skeptical of this claim...Does it break down when the Lambertian assumption is relaxed? This would change the apparent albedo of some surfaces as a function of phase...}
+Thus in this section we keep using this PCs to discuss other light curves as well. 
+
 
 The lower panel of Figure \ref{fig:trajectory} shows the trajectories of the mock light curves with varying phase angle on the plane defined by PC 1 and PC 2. 
 For the later use, these trajectories on the PC plane is denoted by $U_{in}$, in other words 
@@ -463,11 +465,6 @@ Nevertheless, the excursions of the longitudinal colors are more dramatic than t
    \begin{minipage}{0.33\hsize}
     \begin{center}
 \includegraphics[width=\hsize]{IGBP_lon_noreg.pdf}
-    \end{center}
-     \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_3types2_t360_lc_noreg.pdf}
     \end{center}
      \end{minipage} 
    \begin{minipage}{0.33\hsize}
@@ -702,17 +699,26 @@ Nevertheless, we are likely to find one surface type near the upper right part o
 
 \memoYF{This section could be merged with Conclusion section.}
 
-So far we have assumed that the geometrical parameters are completely known, including the planetary orbit, planetary spin axis and the planetary radius. 
-In this section we discuss the influence of incomplete knowledge of these parameters. 
+\subsection{Effect of Uncertain Planetary Radius and Orbit}
 
-The decomposition into $\fast $ and $s$ does not require the information of spin axis or spin period. 
+So far we have assumed that the geometrical parameters are completely known, including the planetary orbit, planetary spin axis and the planetary radius. 
+% In this section we discuss the influence of incomplete knowledge of these parameters. 
+How would the uncertainties in these parameters affect our retrieval?
+In fact, the decomposition into $\fast $ and $s$ does not require the information of spin axis or spin period. 
 What matters most in this case is the uncertainty in the normalization of apparent albedo. 
 In reality, direct imaging observations alone provide the intensity of the 
-planetary light and the intensity of the stellar light. 
-In order to convert this to the unit of albedo, we need to know the orbital distance from the star, phase angle, and planetary radius. 
-If there are uncertainties in these estimates, the relative configuration among the light curve trajectories, the boundaries coming from $s_{jk} < 1$, and those coming from $s_{jk} > 0$ are changed, thus the estimates are affected.  
+planetary light and the intensity of the stellar light, and in order to convert this to the unit of albedo we need to know the orbital distance from the star, phase angle, and planetary radius. 
+If there are uncertainties in these estimates, the relative configuration among the light curve trajectories, the boundaries coming from $s_{jk} < 1$, and those coming from $s_{jk} > 0$ are changed, thus the estimates can be substantially biased. 
 
-\memoYF{Problem in inverse matrix...!}
+\subsection{Deviation from Lambert's Law}
+
+We have assumed that the scattering by surface obeys Lambert's law, but in reality they are not perfect Lambert scatterers, as noted. 
+In particular, scattering by ocean exhibits prominent specular reflection and the reflectivity increases when the incident light is grazing, or equivalently at crescent phase \citep[e.g.,][]{Williams2008}. 
+Furthermore, when we take account of an atmosphere above the surface, the albedo spectra of surface overlaid by an atmosphere changes in phase angle.  
+Considering these effects, the trajectories of the light curves at different phases do not have to reside in the same PC plane. 
+These light curves can be analyzed independently, and the components varying with phase would rather give us insights into the anisotropic scatterers. 
+
+%\memoYF{Problem in inverse matrix...!}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
@@ -732,7 +738,62 @@ We demonstrate using a simplified toy model of the Earth that such constraints w
 
 \appendix
 
-\subsection{Additional Figures}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Swapping Geographical Maps}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% In this section we demonstrate how the albedo spectra and geographical maps of the surface types affect our retrieval. 
+In our fiducial model, i.e., Figure \ref{fig:noreg}, the color of ocean was best constrained. 
+%
+This appears to be due to the combination of the large covering fraction of ocean and the location of the color of ocean in the PC plane. 
+To illustrate these two effects, we created two additional mock light curves, (a) with the geographical maps of the soil and vegetation being swapped, and  (b) with the geographical maps of the soil and ocean being swapped. 
+The left and right panels of Figure \ref{fig:swap} correspond to (a) and (b), respectively. 
+%
+When we swap soil and vegetation, i.e., (a), the covering fraction of vegetation becomes smaller, and the trajectory of the light curves come toward the color of vegetation only a little bit. As a result, the constraints of the color of vegetation becomes weaker. Thus, a large covering fraction of the surface type tend to yield a better constraint on the albedo spectra of that type. 
+%
+In the meanwhile, in (b) where we swapped the soil and ocean, although soil is the dominant component, the true location of the soil is rather not preferred based on our analysis to other locations toward the top, because there are larger space there. 
+Therefore, large covering fraction is not a sufficient condition to better constrain the spectral albedo. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbh!]
+    \begin{center}
+   \begin{minipage}{0.33\hsize}
+\includegraphics[width=\hsize]{mockdata_90deg_3types2_t360_lc_noreg.pdf}
+     \end{minipage}
+   \begin{minipage}{0.33\hsize}
+%    \begin{center}
+\includegraphics[width=\hsize]{mockdata_90deg_3types3_t360_lc_noreg.pdf}
+%    \end{center}
+     \end{minipage}
+    \end{center}
+    \caption{Left: Trajectory of the light curves with the geographical maps of the soil and vegetation being swapped, and the resultant color contour of the posterior probability of albedo spectra of surface types. (b) Same as (a) but with the geographical maps of the soil and ocean being swapped. }
+\label{fig:swap}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Difficulty in Longitudinal Observations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\memoYF{Looking for better description. }
+
+The difficulty in color retrieval from the rotational light curves is simply that we cannot resolve the planetary surface with high spatial resolution; if we had extremely high spatial resolution of the planetary surface, the colors of individual surface patches would be well represented by the colors of either ocean, soil, or vegetation, and it is trivial to identify the surface types. 
+Figure \ref{fig:lowresolution} displays how the lowering the spatial resolution of the map mixes the colors of individual pixels, using HEALPix pixelization. 
+From left to right, we change the resolution from 192 pixels, 48 pixels to 12 pixels, based on the top panel of Figure \ref{fig:mockdata}. 
+As expected, the fraction of pixels with intermediate colors increases as we lower the resolution. 
+When the number of pixel is as small as 12, there is no longer a pixel composed purely of soil or vegetation. 
+With 48 pixels, the triangle shape is marginally seen. 
+
+In the case of observations of diurnal light curves, as we go closer to crescent phase, the illuminated and visible area becomes narrower and the colors go more extreme (Figure \ref{fig:trajectory}), which is better  constraining the colors of the surface types. 
+However, changing the width of the illuminated and visible are is different from changing the spatial resolution using HEALPix as described above. 
+This is because even at crescent phase, colors of very distant pixels, beyond the correlation length of the geography, are mixed together---for example, the color of the North Pole and that of South Pole are merged in an equatorial observation, no matter how thinner phase we observe. 
+% On the other hand, lowering resolution in HEALPix maintain the 
+Figure \ref{fig:lowresolution} should thus be compared with the trajectory in the upper right panel of Figure \ref{fig:noreg}, which is the colors of 360 longitudinal slices (width: $1^{\circ }$). 
+Despite the number of slices, the colors of individual slices minimally get close to the location of vegetation or soil. 
+This limits our ability to retrieve the surface types. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[tbh!]
@@ -752,19 +813,10 @@ We demonstrate using a simplified toy model of the Earth that such constraints w
     \end{center}
      \end{minipage}
     \caption{Making the map coarser using HealPix. Left: 192 pixels, Middle: 48 pixels, Right: 12 pixels. }
-\label{fig:}
+\label{fig:lowresolution}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbh!]
-    \begin{center}
-	\includegraphics[width=0.4\hsize]{mockdata_90deg_3types3_t360_lc_noreg.pdf}
-    \end{center}
-    \caption{Swapping soil and ocean. }
-\label{fig:EPOXI}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \end{document}
