@@ -747,16 +747,18 @@ Institut de Recherle sur les exoplanetis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % In this section we demonstrate how the albedo spectra and geographical maps of the surface types affect our retrieval. 
-In our fiducial model, i.e., Figure \ref{fig:noreg}, the color of ocean was best constrained. 
+In our fiducial model, the color of ocean was best constrained (see Figure \ref{fig:noreg}). 
 %
-This appears to be due to the combination of the large covering fraction of ocean and the location of the color of ocean in the PC plane. 
+This appears to be due to the combination of the large covering fraction of ocean and the location of the color of ocean close to a corner in the PC plane (due to low albedo at longer wavelength). 
+In other words, something about the geography and/or color of ocean makes it relatively easy to retrieve. 
 To illustrate these two effects, we created two additional mock light curves, (a) with the geographical maps of the soil and vegetation being swapped, and  (b) with the geographical maps of the soil and ocean being swapped. 
 The left and right panels of Figure \ref{fig:swap} correspond to (a) and (b), respectively. 
 %
-When we swap soil and vegetation, i.e., (a), the covering fraction of vegetation becomes smaller, and the trajectory of the light curves come toward the color of vegetation only a little bit. As a result, the constraints of the color of vegetation becomes weaker. Thus, a large covering fraction of the surface type tend to yield a better constraint on the albedo spectra of that type. 
+When we swap soil and vegetation (left panel) the covering fraction of vegetation becomes smaller, and the trajectory of the light curves does not approach the vegetation endmember. As a result, the constraints of the color of vegetation becomes weaker. Thus, a large covering fraction of the surface type tend to yield a better constraint on the albedo spectra of that type. 
 %
-In the meanwhile, in (b) where we swapped the soil and ocean, although soil is the dominant component, the true location of the soil is rather not preferred based on our analysis to other locations toward the top, because there are larger space there. 
+Meanwhile, in (b) where we swapped the soil and ocean, although soil is the dominant component, the true location of the soil is rather not preferred based on our analysis to other locations toward the top, because there are larger space there. 
 Therefore, large covering fraction is not a sufficient condition to better constrain the spectral albedo. 
+In other words, a surface spectrum can be well retrieved if it has favorable geography (ideally an entire hemisphere solely covered with that surface) and it has favorable albedo spectrum (albedo close to 0 or 1 at as many wavelengths as possible). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh!]
@@ -770,7 +772,7 @@ Therefore, large covering fraction is not a sufficient condition to better const
 %    \end{center}
      \end{minipage}
     \end{center}
-    \caption{Left: Trajectory of the light curves with the geographical maps of the soil and vegetation being swapped, and the resultant color contour of the posterior probability of albedo spectra of surface types. (b) Same as (a) but with the geographical maps of the soil and ocean being swapped. }
+    \caption{Left: Trajectory of the light curves with the geographical maps of the soil and vegetation being swapped, and the resultant color contour of the posterior probability of albedo spectra of surface types. (b) Same as (a) but with the geographical maps of the soil and ocean being swapped. \memoNBC{Show the corresponding maps!} }
 \label{fig:swap}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -782,19 +784,19 @@ Therefore, large covering fraction is not a sufficient condition to better const
 
 \memoYF{Looking for better description. }
 
-The difficulty in color retrieval from the rotational light curves is simply that we cannot resolve the planetary surface with high spatial resolution; if we had extremely high spatial resolution of the planetary surface, the colors of individual surface patches would be well represented by the colors of either ocean, soil, or vegetation, and it is trivial to identify the surface types. 
-Figure \ref{fig:lowresolution} displays how the lowering the spatial resolution of the map mixes the colors of individual pixels, using HEALPix pixelization. 
-From left to right, we change the resolution from 192 pixels, 48 pixels to 12 pixels, based on the top panel of Figure \ref{fig:mockdata}. 
+The difficulty in color retrieval from the rotational light curves is simply that we cannot resolve the planetary surface with high spatial resolution; if we had extremely high spatial resolution of the planetary surface, the colors of individual surface patches would be well represented by the colors of either ocean, soil, or vegetation, and it would be trivial to identify the surface types. 
+Figure \ref{fig:lowresolution} shows how lowering the spatial resolution of the map mixes the colors of individual pixels, using HEALPix pixelization. 
+From left to right, we change the resolution from 192 pixels, 48 pixels to 12 pixels, starting from the map in Figure \ref{fig:mockdata}. 
 As expected, the fraction of pixels with intermediate colors increases as we lower the resolution. 
 When the number of pixel is as small as 12, there is no longer a pixel composed purely of soil or vegetation. 
-With 48 pixels, the triangle shape is marginally seen. 
+With 48 pixels, the triangular shape of the locus of points is marginally seen. 
 
-In the case of observations of diurnal light curves, as we go closer to crescent phase, the illuminated and visible area becomes narrower and the colors go more extreme (Figure \ref{fig:trajectory}), which is better  constraining the colors of the surface types. 
-However, changing the width of the illuminated and visible are is different from changing the spatial resolution using HEALPix as described above. 
-This is because even at crescent phase, colors of very distant pixels, beyond the correlation length of the geography, are mixed together---for example, the color of the North Pole and that of South Pole are merged in an equatorial observation, no matter how thinner phase we observe. 
+In the case of observations of diurnal light curves, as we go closer to crescent phase, the illuminated and visible area becomes narrower and the colors go more extreme (Figure \ref{fig:trajectory}), which is better for   constraining the colors of the surface types. 
+However, changing the width of the illuminated and visible area is different from changing the spatial resolution using HEALPix as described above. 
+This is because even at crescent phase, colors of very distant pixels, beyond the correlation length of the geography, are mixed together---for example, the colors of the arctic, tropics, and antarctic are mixed in an equatorial observation, no matter how extreme the orbital phase is. 
 % On the other hand, lowering resolution in HEALPix maintain the 
 Figure \ref{fig:lowresolution} should thus be compared with the trajectory in the upper right panel of Figure \ref{fig:noreg}, which is the colors of 360 longitudinal slices (width: $1^{\circ }$). 
-Despite the number of slices, the colors of individual slices minimally get close to the location of vegetation or soil. 
+Despite the number of slices, the colors of individual slices never approach the colors of vegetation or soil. 
 This limits our ability to retrieve the surface types. 
 
 
