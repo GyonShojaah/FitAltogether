@@ -192,13 +192,13 @@ Note that in reality they are not Lambertian scatterers; among others,  scatteri
 % and the albedo spectra of ocean overlaid with atmosphere  
 %\memoJLY{A phase of 135 deg is right in the range that Ty (Robinson et al. 2010; 2011) shows will deviate most from a Lambertian scatterer due the ocean glint...}
 
-\color{red} 
+{\color{red} 
 The diurnal light curves are synthesized given the relative positions of the star, planet, and observer. 
 % We consider light curves of 1 rotation at a fixed orbital phases. 
 For the sake of simplicity, we consider a planet with zero obliquity in an edge-on orbit, and change the phase angle (the planet-centric angle between the star and the observer) denoted by $\alpha $. 
 We also assume that spin period is significantly shorter than the orbital period and the orbital phase does not change while the planet rotates. 
 However, the following discussion does not depend on these assumptions. 
-We consider noise-free data. Clearly, noise in realistic observations of exoplanets are expected to be substantially large, and the effect of such observations will be discussed elsewhere. 
+We consider noise-free data. Clearly, noise in realistic observations of exoplanets are expected to be substantially large, and the effect of such observations will be discussed elsewhere.}
 \color{black}
 
 The bottom panels of Figure \ref{fig:mockdata} display the examples of diurnal light curves in 4 photometric bands, represented in terms of {\it apparent albedo}. 
@@ -206,8 +206,6 @@ Apparent albedo is the albedo of the planet weighted by illumination and visibil
 More specifically, it is obtained by normalizing the planetary intensity by that of a loss-less Lambert sphere with the same radius and at the same phase \citep{Qiu2003, Seager2010}. 
 In this paper we will use apparent albedo unless otherwise noted. 
 The apparent albedo is straightforwardly obtained from the observed planetary intensity, if and only if the planetary radius and the observational geometry are completely known: latitude/longitude of the sub-stellar/sub-observer points, and the distance between the star and the planet. 
-%\memoYF{Later in the paper, mention that the uncertainty in radius estimation severely affects the constraints. }
-%(We will discuss the effect of this assumptions later in Section ??.)
 
 The problem throughout this paper is, from these kinds of multi-band diurnal light curves, how and how well we can retrieve the albedo spectra of different surface types and the longitudinal distribution of these surface types. 
 
@@ -218,9 +216,8 @@ The problem throughout this paper is, from these kinds of multi-band diurnal lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In this section, we discuss the general framework to analyze the diurnal light curves, and present some demonstrations using the mock data created in the previous section. 
-Sections \ref{ss:model} and \ref{ss:PCplane} are essentially the recapitulation of the previous papers, in particular \citet{Cowan2013} \citep[but see also][]{Cowan2009,Cowan2011,Fujii2010,Fujii2011}.  
-We, however, choose to include these discussions as a baseline to establish the later arguments. 
-\memoYF{Too many overlaps??}
+Sections \ref{ss:model} and \ref{ss:PCplane} are essentially the recapitulation of previous papers, in particular \citet{Cowan2013} \citep[but see also][]{Cowan2009,Cowan2011,Fujii2010,Fujii2011}.  
+We choose to include these discussions, however, as a baseline to establish the later arguments. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Algebraic Formulation}
@@ -245,7 +242,7 @@ Longitudinal Slice  & $l$ & L \\ \hline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-On the assumption that the planetary surface is Lambertian scatterer everywhere, and that it is composed of a certain number $K$ of spectrally distinct surface types, the disk-integrated scattered light is a weighted summation of the reflectance spectra of different surface types. 
+On the assumption that the planetary surface is everywhere Lambertian scatterer, and that it is composed of a certain number $K$ of spectrally distinct surface types, the disk-integrated scattered light is a weighted summation of the reflectance spectra of different surface types. 
 Using the local surface albedo $s_{\vec \Omega }$, the zenith angle of the insolation, $\theta _0$, and the zenith angle of the observer $\theta _1$ (both defined at each surface point),
 the apparent albedo of the planet, $d_{ij}$ (``$d$'' for data) is written as follows \citep[see][]{Fujii2010}: 
 %%%
@@ -261,7 +258,7 @@ where the surface spectra are:
 s _{kj} \equiv  s_k (\lambda _j)
 \end{equation}
 %%%
-and the apparent cover fractions are:
+and the apparent covering fractions are:
 %%%
 \begin{equation}
 \tilde f_{ik} \equiv  \frac{ \int_{{\rm IV}_{i}} f_k (\vec \Omega ) \cos \theta_0 ({\vec \Omega}) \cdot \cos \theta_1 ({\vec \Omega}) \cdot d\vec \Omega }{ \int_{{\rm IV}_i}  \cos \theta_0 ({\vec \Omega}) \cdot \cos \theta_1 ({\vec \Omega}) \cdot d\vec \Omega }
@@ -272,7 +269,8 @@ In the last expression, $\fast_{ik}$ represents the apparent covering fraction o
 $s_{kj}$ is the reflectance spectra of $k$-th surface type at $j$-th band. 
 The maximum number of $i$, $j$ and $k$ will be denoted by $I$, $J$, and $K$, below, as summarized in Table \ref{tab:index}. 
 
-By definition, the area fraction, $\fast $, should not be negative and sum up to unity, and reflectance spectra, $s$, should be between 0 and 1. Therefore,
+By definition, the area fractions, $\fast $, should not be negative and they should sum up to unity, and reflectance spectra, $s$, should be between 0 and 1. 
+Therefore, the constraints on geography ($\fast_{ik}$) and colors ($s_{kj}$) of the surfaces are:
 %%%
 \begin{subnumcases}
 {}
@@ -308,18 +306,13 @@ W_{il} &\equiv & \frac{ \int  W_i (\vec \Omega  ) \cdot d\vec \Omega_l }{ \int W
 
 where $l$ is the index for longitudinal slices, $f_{lk}$ is the area fraction of the $k$-th surface type in the $l$-th longitudinal slice. 
 Strictly speaking, the approximation is valid only when $f_k(\vec \Omega)$ does not change or changes little across the $l$-th slice for all $k$ and $l$. 
-\memoNBC{Is this approximation exact in the zero obliquity, edge-on limit?} \memoYF{I don't think so. It is due to pixelization, and does not depend on geometry, I think. ( Perhaps am I not understanding your question properly?) If we suppose the equation were exact, 
-%%%
-\begin{eqnarray}
-f_{lk} &=& \frac{ \int f_k (\vec \Omega ) W_i (\vec \Omega  ) \cdot d\vec \Omega_l }{ \int W_i (\vec \Omega )  \cdot d\vec \Omega_l }\\
-\end{eqnarray}
-%%%
-} 
+
 In the last equation, $W_{il}$ is the weight function for $i$-th epoch and $l$-th longitudinal slice which depends only on the observational geometry. 
+\citet{Cowan2013} refer to this as the convolution kernel, $K$. 
 As a result,
 %%%
 \begin{equation}
-d_{ij} = \sum _{l,k} W_{il} \, f_{lk} \, s_{kj} \label{eq:d_f_s}
+d_{ij} \approx \sum _{l,k} W_{il} \, f_{lk} \, s_{kj} \label{eq:d_f_s}
 \end{equation}
 %%%
 where $f_{lk}$ is the average area fraction of $k$-th surface type at $l$-th longitudinal slice, Again, the area fractions at longitudinal slices, $f_{lk}$, cannot be negative and should sum up to unity. Thus, a set of condition similar to Equations (\ref{eq:tilde_s_range})-(\ref{eq:tilde_f_sum}) are imposed:
@@ -350,52 +343,46 @@ Now, the relevant problem is, given $d$, estimate $\{f, s\}$ subject to the cons
     \begin{center}
 \includegraphics[width=\hsize]{schematics.pdf}
     \end{center}
-    \caption{Schematic figure to illustrate the relation between $\{{\bf s}_k\} $ and $\{{\bf d}_i\} $ (see text). }
+    \caption{Schematic figure to illustrate the relation between $\{{\bf s}_k\} $ and $\{{\bf d}_i\} $ (see text). \memoNBC{Explain ``observed data"" in caption instead of as legend. }}
 \label{fig:schematic}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Graphical Conception on \\Principal Component (Hyper-)Plane}
+\subsection{Graphical Conception on \\Principal Component Plane}
 \label{ss:PCplane}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %A question is whether the above formulation leads us to a unique solution of either $\{ {\bf \fast},\,{\bf s} \}$ or $\{ {\bf f},\,{\bf s}\}$, given the data matrix, ${\bf d}$. 
 
-Equation (\ref{eq:tilde_d_f_ast_s}) coupled with the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) indicates the geometrical relationship among ${\bf d}$, ${\bf \fast }$, and ${\bf s}$ in the $J$-th dimensional space, where $\{{\bf d}_i\}$ correspond to the points that are located on the (hyper-)plane defined by $K$ ($<J$) number of points, $\{{\bf s}_k\} $, and are enclosed by $\{{\bf s}_k \}$. 
+Equation (\ref{eq:tilde_d_f_ast_s}) coupled with the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) indicates the geometrical relationship among ${\bf d}$, ${\bf \fast }$, and ${\bf s}$ in the $J$-th dimensional space, where $\{{\bf d}_i\}$ correspond to the points that are located on the plane defined by $K$ ($<J$) number of surface, $\{{\bf s}_k\} $, and are enclosed by $\{{\bf s}_k \}$. 
 %\memoYF{How is it called in one word in mathematics?}
 Figure \ref{fig:schematic} graphically shows this relations in the case of $J=3$ and $K=3$. 
-Note that the dimension of this (hyper-)plane is $K-1$.  
+Note that the dimension of this plane is $K-1$, so in general it is a hyper-plane.  
 %We show this graphically in Figure \ref{fig:trajectory}, using the mock datasets shown in Section \ref{s:mockdata}. 
 
-This (hyper-)plane can be identified through Principal Component Analysis (PCA) \citep{Cowan2009,Cowan2011}, as PCA extracts the major, mutually-orthogonal axes along which the scatter among the data points are significant. 
+This plane can be identified through Principal Component Analysis (PCA) \citep{Cowan2009,Cowan2011}, as PCA extracts the major, mutually-orthogonal axes along which the scatter among the data points are significant. 
 Consequently, the number of major principal components (PCs) are $K-1$ \citep{Cowan2011}. 
-%Note that the number of principal components In other words, the number of spectrally distinct major surface types ($=K$) is the number of dominant principal components (PCs) plus 1 in theory \citep{Cowan2011}. 
-% used Principal Component Analysis (PCA) to 
-% The original data, however, have 4 photometric bands (i.e., $J=4$), and $J$-the dimensional space is inconvenient for visualization. 
-%We thus start by performing principal component analysis (PCA). 
 From the mock light curves prepared in Section \ref{s:mockdata}, we extract two dominant PCs through PCA with other components having virtually zero contributions, consistent with the 3 input surface types.  
+{\color{red} Non-Lambertian reflectance, partially transparent cloud cover, or observational noise would in practice ensure that the PC plane has some thickness. }
 The PCs extracted from the light curves at $\alpha = 90^{\circ }$ (olive lines in Figure \ref{fig:mockdata}) are presented in the upper panel of Figure \ref{fig:trajectory}. 
-In the following, we adopt these two PCs as the axes of the PC plane. 
-%\memoNBC{This is true by definition?}
-%\memoNBC{You mean if you have the same 3 surfaces?}
-%\memoYF{What I meant was that because we assume the same 3 surface types, the data (apparent albedo) should lie in the same plane determined by these surface types. So although it is not guaranteed that we extract the same PCs from the light curves with different phase angles (because it is determined by the variation pattern of the data), the PC plane itself should be the same. So, if our purpose of doing PCs are to find the PC plane and display it, we could use a consistent PCs to show the trajectories on PC plane. }
-For the later use, we denote these PCs by $V_{nj}$ where $n=1$ or $2$  corresponding to the 1st and 2nd PC. 
-Although the PCs from other light curves with different phase angles are not necessarily same as the one shown in the upper panel of Figure \ref{fig:trajectory}, the PC plane itself should be the same plane (under the noiseless condition), because we use the same 3 surface types assuming that they are Lambertian scatterers. 
-% \memoJLY{I'm skeptical of this claim...Does it break down when the Lambertian assumption is relaxed? This would change the apparent albedo of some surfaces as a function of phase...}
-Thus in this section we keep using this PCs to discuss other light curves as well. 
+For later use, we denote these PCs by $V_{nj}$ where $n=1$ or $2$  corresponding to the 1st and 2nd PC. 
 
-
-The lower panel of Figure \ref{fig:trajectory} shows the trajectories of the mock light curves with varying phase angle on the plane defined by PC 1 and PC 2. 
-For the later use, these trajectories on the PC plane is denoted by $U_{in}$, in other words 
+Using $V_{nj}$, the light curves at $\alpha = 90^{\circ }$ ($d_{ij}$) is projected onto the PC plane by
 %%%
 \begin{equation}
 d_{ij} = \sum_n U_{in} V_{nj} + \bar d_j
 \end{equation}
 %%%
-where $\bar d_j$ is the offset of the PC plane, which is in our case the time average of apparent albedo in the case of $\alpha = 90^{\circ }$. 
-The excursion of the trajectory is larger for the light curve at a larger phase angle, i.e., at crescent phase, and shrinks as the phase angle decreases because a larger surface area is averaged together.  
+where $U_{in}$ is the trajectory on the PC plane and $\bar d_j$ is the time average of the colors as the offset. 
+The trajectory of the light curves at $\alpha = 90^{\circ }$ onto this PC plane is shown by the olive line in Figure \ref{fig:trajectory}. 
+The set of PCs ($V_{nj}$) and the offset ($\bar d_j$) uniquely specifies the PC plane. 
+
+We may plot the trajectories of the light curves at different phase angles on the same plane because the PC plane should be the same plane (under the noiseless condition) when we use the same 3 surface types assuming that they are Lambertian scatterers. 
+(Note that PCA on individual light curves do not necessarily find the same PCs, because it depends on how the data points are scattered on the PC plane.)
+The trajectories of the mock light curves at different phase angles projected onto the same PC plane are also shown in the lower panel of Figure \ref{fig:trajectory}. 
+The color excursions are greater at a larger phase angle, i.e., at crescent phase, and shrinks as the phase angle decreases because a larger surface area is averaged together.  
 The points in the figure indicate the input albedo spectra of the three surface types. 
 As described above, the trajectories are always inside the triangle defined by these points. 
 %Because the apparent albedo at any time of the observations is a linear combination of input surface colors (Equation \ref{eq:tilde_d_f_ast_s}) under the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}), the trajectories should always be inside the triangle defined by these points.  
@@ -434,17 +421,19 @@ Note that the associated matrix, $\fast _{ik}$, can always be found.
 
 Additional constraints come from the condition (\ref{eq:tilde_s_range}). 
 In Figure \ref{fig:trajectory} any points in the shadowed region are rejected based on this condition: specifically, the left, right, and bottom boundaries are set by $s_{k,4}> 0$, $s_{k,1}> 0$, and $s_{k,3}> 0$. 
-While in this particular example the permitted region happens to be a triangle, shape can differ depending on the relative configuration of the boundaries\memoYF{In more detail?}. 
-Although this limits the region where $\{ {\bf s}_k \}$ can exist,   
-this is in general not sufficient to result in a unique solution. 
+While in this particular example the permitted region happens to be a triangle, shape can differ depending on the relative configuration of the boundaries. 
+Since each of 4 bands has lower and upper bounds on albedo, $0<s<1$, the physically allowed region of color space is a 4-dimensional hypercube, also known as tesseract. Dependeing on the orientation of the PC plane with this tesseract, the allowed region may have a variety of geometries. 
+In general, the allowed region is a $K-1$ dimensional slice through a $J$-dimensional hypercube. 
+
+Although this is not sufficient to result in a unique solution, it does impact the precision of rotational spectral unmixing as discussed below. 
 
 In Figure \ref{fig:trajectory} we show two random triangles that enclose the trajectory; these triangles satisfy the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}), as do many others. 
-One can have spectrally interesting surface spectra and boring geography (small longitudinal variation in area fractions) {\it or} one can have boring surface spectra (closer to flat) and interesting geography. \memoYF{Need to reconsider this phrasing. }
+One can have spectrally interesting surface spectra and boring geography (small longitudinal variation in area fractions) {\it or} one can have boring surface spectra (different surfaces look similar) and interesting geography. \memoYF{Need to reconsider this phrasing. }
 Therefore, predicting ${\bf \fast }$ and ${\bf s}$ from ${\bf d}$ is clearly a ill-posed problem. 
 
 A formally equivalent degeneracy is found in Equation (\ref{eq:d_f_s}) coupled with the conditions (\ref{eq:f_range})-(\ref{eq:s_range}). 
 Essentially, the term $\sum _k f_{lk} s_{kj}$ represents the average albedo spectra of $l$-th slice and $W_{il}$ is the matrix that convolve them into the light curves. 
-Suppose idealistically that we can retrieve the average spectra of longitudinal slices from the light curves through $W_{il}$; the trajectory in the panel C of Figure \ref{fig:trajectory} represents the color variation along the longitude.  
+Suppose idealistically that we can retrieve the average spectra of longitudinal slices from the light curves through $W_{il}$; the black trajectory in the bottom panel of Figure \ref{fig:trajectory} represents the color variation along the longitude.  
 Again, we can have different sets of $\{ {\bf s}_k \}$ that enclose the averaged albedo spectra of longitudinal slices {\it and} are located in the range of condition (\ref{eq:s_range}), any of which can make up the given averaged albedo spectra with the associated $f_{lk}$. 
 Nevertheless, the excursions of the longitudinal colors are more dramatic than the disk-integrated colors of the light curves, thus the possible solutions are somewhat more restricted. 
 % For disk-integrated light curves, the color excursions are more muted than the intrinsic longitudinal map, so the degeneracy becomes severer. 
@@ -484,7 +473,7 @@ Nevertheless, the excursions of the longitudinal colors are more dramatic than t
 \includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l40deg.pdf}
     \end{center}
      \end{minipage}
-    \caption{(From top-left) A: Probability of surface albedo spectra estimated from the light curves of $\alpha = 90^{\circ }$ in the procedure described in Section \ref{ss:guess}. B: same as A but from the light curves of  $\alpha = 135^{\circ }$. C: same as A but from the colors of longitudinal slices.  D: same as A but from the light curves where the geographical maps of soil and vegetation are swaped. E: same as A but with regularization with $\Delta_ t = 2$ hr. F: same as A but with regularization with $\Delta_ t = 2.7$ hr. \memoYF{This is a tentative set of panels.} }
+    \caption{(From top-left) A: Probability of surface albedo spectra estimated from the light curves of $\alpha = 90^{\circ }$ in the procedure described in Section \ref{ss:guess}. B: same as A but from the light curves of  $\alpha = 135^{\circ }$. C: same as A but from the colors of longitudinal slices.  D: same as A but from the light curves where the geographical maps of soil and vegetation are swaped. E: same as A but with regularization with $\Delta_ t = 2$ hr. F: same as A but with regularization with $\Delta_ t = 2.7$ hr. \memoYF{This is a tentative set of panels.} \memoNBC{Panel letters are not on plots....}}
 \label{fig:noreg}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -499,8 +488,8 @@ While such an assumption does not uniquely specify the colors of all $K$ surface
 For example, in Figure \ref{fig:trajectory}, in order to enclose the trajectory with three surface types within the permitted region, we must have at least one point near the bottom left corner of the permitted region (white triangle); this is consistent with the fact that one of the input albedo spectra (ocean) resides there. 
 
 In order to see this more quantitatively, we make a grid on the PC plane  with an interval of 0.2 and consider all combinations of three grid points. 
-Then, we assumed that all of the combinations that enclose the trajectory are equally likely to be a solution, and found the marginalized probability of having a surface type at each location of the PC plane. 
-Specifically, we consider the following Bayesean expression and attempt to find the posterior distribution:
+Then, we assume that all of the combinations that enclose the trajectory are equally likely to be a solution, and find the marginalized probability of having a surface type at each location of the PC plane. 
+Specifically, we consider the following Bayesian expression and attempt to find the posterior distribution:
 %%%
 \begin{equation}
 P_{\rm posterior} ( t_{kn} | U_{in} ) = P ( U_{in} | t_{kn} ) \cdot P_{\rm prior} (  t_{kn} ) 
@@ -578,7 +567,7 @@ t_{31} & t_{32} & 1
 \label{eq:f=ds-1}
 \end{equation}
 %%%
-Note that the last matrix is a $K\times K$ matrix, and thus inverse is found if $\{ {\bf t}_k \}$ forms a triangle (rather than a straight line or a single dot, in which case $\{ {\bf t}_k \}$ is not a solution anyways).
+Note that the last matrix is a $K\times K$ matrix, and thus an inverse exists if $\{ {\bf t}_k \}$ forms a triangle (rather than a straight line or a single dot, in which case $\{ {\bf t}_k \}$ is not a solution anyways).
 Then, we ask if the resultant $\fast_{ik}$ are within the range of (\ref{eq:tilde_f_range}). 
 
 Finally, we marginalize the posterior distribution, i.e.,
@@ -592,10 +581,10 @@ $P_{\rm posterior} ( {\bf t}_1) $ is normalized so that it sums up to unity.
 
 The resultant probability distribution is shown in Figure \ref{fig:noreg}. 
 As expected, we find a relatively definite peak near the point of ocean. 
-On the other hand, the peak that corresponds to soil is a blur, and it is almost not constrained. 
+On the other hand, the peak that corresponds to soil is a blur, and it is almost unconstrained. 
 The vegetation in the bottom right corner is moderately constrained. 
 
-We iterate that in this framework the success of the guess critically depends on the relative configuration of the trajectory and allowed region. 
+We reiterate that in this framework the success of the surface retrieval critically depends on the relative configuration of the trajectory and allowed region. 
 In panel D of Figure \ref{fig:noreg}, we show another example where we switched the geographical map of soil and vegetation; as a result, the trajectory moves toward soil rather than vegetation. However, because the allowed region near the soil is large, soil is still not sufficiently constrained. 
 
 
@@ -665,7 +654,7 @@ In this particular case, it appears that the dominant surface type (ocean) is be
     \begin{center}
 	\includegraphics[width=\hsize]{raddata_2_PCplane_noreg.pdf}
     \end{center}
-    \caption{PC plane from EPOXI observation of June 2008. \memoYF{I have not computed the exact location of ocean, soil, or clouds, but roughly, ocean is probably around (-0.2, 0.4), soil is around (0.5, 0.0), and cloud is around (0.1,-0.5).}}
+    \caption{PC plane from EPOXI observation of June 2008. \memoYF{I have not computed the exact location of ocean, soil, or clouds, but roughly, ocean is probably around (-0.2, 0.4), soil is around (0.5, 0.0), and cloud is around (0.1,-0.5).} \memoNBC{This plot doesn't use regularization, correct?}\memoYF{Correct, it does not use regularization.}}
 \label{fig:EPOXI}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -677,10 +666,11 @@ Specifically we use the same datasets as \citet{Cowan2013}, i.e., the 7-band diu
 Using two dominant PCs we extracted, we performed the same analysis described in the previous section 
 
 Figure \ref{fig:EPOXI} shows the trajectory of the light curve projected onto the PC plane, with the grayed region being the forbidden region. 
-While the permitted region appears to be close to a square, it is in fact a heptagon, bounded by 7 inequalities. Overall, the upper boundaries come from the requirement of $s_{kj}>0$ while the lower boundaries comes from the requirement of $s_{kj}<1$. 
+While the permitted region appears to be close to a square, it is in fact a heptagon, bounded by 7 inequalities \memoNBC{(2D slice through a 7D hypercube)}. 
+Overall, the upper boundaries come from the requirement of $s_{kj}>0$ while the lower boundaries comes from the requirement of $s_{kj}<1$. 
 
-In this case, the trajectory of planetary light curves is away from the boundary because the color variations of the real Earth are muted by the cloud cover. 
-Consequently, we do not see three peaks but a spectrum of the potential. 
+In this case, the trajectory of planetary light curves is far from the boundary because the color variations of the real Earth are muted by the cloud cover. 
+Consequently, we do not see three peaks but a spectrum of the potential. \memoNBC{Likelihood?} \memoYF{Posterior probability would be the better word, probably}. 
 Nevertheless, we are likely to find one surface type near the upper right part of the allowed region. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -713,16 +703,16 @@ In fact, the decomposition into $\fast $ and $s$ does not require the informatio
 What matters most in this case is the uncertainty in the normalization of apparent albedo. 
 In reality, direct imaging observations alone provide the intensity of the 
 planetary light and the intensity of the stellar light, and in order to convert this to the unit of albedo we need to know the orbital distance from the star, phase angle, and planetary radius. 
-If there are uncertainties in these estimates, the relative configuration among the light curve trajectories, the boundaries coming from $s_{jk} < 1$, and those coming from $s_{jk} > 0$ are changed, thus the estimates can be substantially biased. 
+If there are uncertainties in these estimates, the relative configuration among the light curve trajectories, the boundaries coming from $s_{jk} < 1$, and those coming from $s_{jk} > 0$ are changed \memoNBC{Why?}, thus the estimates can be substantially biased. 
 
 \subsection{Deviation from Lambert's Law}
 \label{ss:deviateLambert}
 
-We have assumed that the scattering by surface obeys Lambert's law, but in reality they are not perfect Lambert scatterers, as noted. 
+We have assumed that the surface scattering obeys Lambert's law, but in reality they are not perfect Lambert scatterers, as noted. 
 In particular, scattering by ocean exhibits prominent specular reflection and the reflectivity increases when the incident light is grazing, or equivalently at crescent phase \citep[e.g.,][]{Williams2008}. 
-Furthermore, when we take account of an atmosphere above the surface, the albedo spectra of surface overlaid by an atmosphere changes in phase angle.  
+Furthermore, when we take account of an atmosphere above the surface, the albedo spectra of surface overlaid by an atmosphere changes with phase angle.  
 Considering these effects, the trajectories of the light curves at different phases do not have to reside in the same PC plane. 
-These light curves can be analyzed independently, and the components varying with phase would rather give us insights into the anisotropic scatterers. 
+These light curves can be analyzed independently, and the components varying with phase would give us insights into the anisotropic scatterers. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -737,6 +727,14 @@ We demonstrate using a simplified toy model of the Earth that such constraints w
 ...
 %The constraints can be...
 
+
+\acknowledgements
+
+ISSI Bern Exo-Cartography workshop
+
+McGill Space Institude
+
+Institut de Recherle sur les exoplanetis 
 
 
 \bibliography{ref}
