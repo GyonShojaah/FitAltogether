@@ -130,26 +130,25 @@ yuka.fujii.ebihara@gmail.com
 \label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Direct imaging is expected to play a vital role in characterizing Earth analogs in habitable zones and beyond. 
+Direct imaging of exoplanets is expected to play a vital role in characterizing Earth analogs in habitable zones and beyond. 
 Substantial work has gone into prediciting detectable features in disk-integrated spectra of the Earth and other planets, as they are observed from an astronomical distance. 
-Atmospheric molecules are identifiable through spectral absorption features \citep[e.g.,][]{DesMarais2002} but surface reflectance spectra also affect the spectra, which could be measured through low-resolution spectra, or multi-band photometry \citep[e.g.,][]{Ford2001}. 
+Atmospheric molecules are identifiable through spectral absorption features \citep[e.g.,][]{DesMarais2002} but surface reflectance spectra also affect the spectra, which could be measured through low-resolution spectra, or multi-band photometry. 
 However, interpreting disk-integrated colors is not trivial. 
 This is particularly true for Earth-like planets that harbor diverse atmospheric and surface characteristics including liquid water, partial cloud cover, continents, and possibly vegetation. 
 
-A key here is to leverage the time variation of the spectrum: the regions that contributes to the scattered light change due to the planetary rotation and  orbital motion, so the time variability can in principle be translated to the heterogeneity of the surface environment.  
+A key here is to leverage the time variation of the spectrum \citep{Ford2001}: the regions that contributes to the scattered light change due to the planetary rotation and  orbital motion, so the time variability can in principle be translated to the heterogeneity of the surface environment.  
 \citet{Cowan2009, Cowan2011} performed Principal Component Analysis (PCA) on the observed multi-band photometry of Earth. They found that the number of surface types can be inferred from the number of dominant principle components: (\# of surface types) $\ge $ (\# of principal components) $+ 1$. %) and that the variation pattern is indicative of the surface properties. 
 \citet{Fujii2010, Fujii2011} decomposed multi-band photometric data of the Earth assuming the template reflectance spectra of the known major surface types, and they found that the relative abundance and the longitudinal variation of these surface types are approximately recovered. 
-Moreover, by coupling the time variation due to rotation with phase variation due to orbital revolution, a 2-dimensional information of the surface may be retrieved \citep{Kawahara2010, Kawahara2011, Fujii2012}. 
+Moreover, by coupling the time variation due to rotation with phase variation due to orbital revolution, a 2-dimensional map of the surface may be retrieved \citep{Kawahara2010, Kawahara2011, Fujii2012}. 
 
 \citet{Cowan2013} took another approach to the same inverse problem. 
-Their strategy was to try to estimate the reflectance spectra if surfaces and their distribution across the globe simultaneously, by making all of them fitting parameters. 
-The result appeared successful to the extent that the obtained reflectance spectra roughly match the average spectra of clouds, ocean, and continents. 
+Their strategy was to try to estimate the reflectance spectra of surfaces and their distribution across the globe simultaneously, by making all of them fitting parameters. 
+The result appeared successful in so far as the obtained reflectance spectra roughly match the average spectra of clouds, ocean, and continents. 
 However, the longitudinal map of these components did not match the actual geographyical distribution of surfaces. 
 
 We were motivated by this unsatisfactory result to revisit their analysis. 
 Specifically, the updates are (1) Revisiting the formulation and point out the inherit degeneracy between surface spectra and geography, and (2) Introducing regularization terms to enforce smooth longitudinal maps. 
-We limit our discussions to the analysis of noise-free data. Clearly, noise in realistic observations of exoplanets are expected to be substantially larger, and the effect of such observations will be discussed elsewhere. 
-
+%We limit our discussions to the analysis of noise-free data. Clearly, noise in realistic observations of exoplanets are expected to be substantially larger, and the effect of such observations will be discussed elsewhere. 
 The organization of this paper is as follows. 
 Section \ref{s:frame} revisits the problem, ....
 
@@ -174,36 +173,43 @@ Section \ref{s:frame} revisits the problem, ....
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %The aim of this paper is to present how to constrain the albedo spectra of representative surface types from multi-band light curves. 
-In order to facilitate the discussions in the following sections about the procedures to constrain the albedo spectra of representative surface types from multi-band light curves, we shall introduce a dataset to be used for demonstrations in this section. 
+In order to facilitate the discussions in the following sections, we shall introduce a mock dataset to be used for demonstrations in this section. 
 
 We consider diurnal light curves of a toy model of the atmosphere-less Earth, in 4 photometric bands. 
 We use a simplified surface map as shown in the upper left panel of Figure \ref{fig:mockdata}. 
 This map is based on the land classification by the International Geosphere-Biosphere Programme (IGBP)\footnote{\url{https://climatedataguide.ucar.edu/climate-data/ceres-igbp-land-classification}}. 
-Although the original classification assumes 16 land surface types plus ocean, in this paper we assume 3 surface types for simplicity regarding ``Open Shrubs'', ``Urban'', ``Snow/Ice'', and ``Barren/Desert'' as ``soil'' (red in the upper left panel of Figure \ref{fig:mockdata}) and other land surface types as ``vegetation'' (green), while keeping the ``ocean'' regions. 
+Although the original classification assumes 16 land surface types plus ocean, in this paper we adopt 3 surface types for simplicity regarding ``Open Shrubs'', ``Urban'', ``Snow/Ice'', and ``Barren/Desert'' as ``soil'' (red in the upper left panel of Figure \ref{fig:mockdata}) and other land surface types as ``vegetation'' (green), while keeping the ``ocean'' regions. 
 
 
 The assumed albedo spectra of these surface types in 4 photometric bands are shown in the upper right panel of Figure \ref{fig:mockdata}. 
-These 4 photometric bands actually correspond to the 0.4-0.5 $\mu $m, 0.5-0.6 $\mu $m, 0.6-0.7 $\mu $m, and 0.7-0.8 $\mu $m, respectively, but they will be simply called by the band indices unless otherwise noted. \memoJLY{I think it would be helpful to make the "band \#"-axis wavelength in microns, and then perhaps refer to the band \# in the text or in an upper x-axis. }
+These 4 photometric bands actually correspond to 0.4-0.5 $\mu $m, 0.5-0.6 $\mu $m, 0.6-0.7 $\mu $m, and 0.7-0.8 $\mu $m, respectively, but they will be simply called by the band indices unless otherwise noted. \memoJLY{I think it would be helpful to make the "band \#"-axis wavelength in microns, and then perhaps refer to the band \# in the text or in an upper x-axis. }
 The albedo spectrum for ocean is based on \citet{Mclinden1997}, 
 and the data for soil and vegetation are taken from ASTER spectral library\footnote{\url{https://speclib.jpl.nasa.gov/}. 
 Specifically, we adopt  ``Brown to dark brown sand'' for ``soil'', and ``Grass'' for the ``vegetation''}. 
 The scattering phase function by the surface is assumed to obey the Lambert law, i.e., the radiance is (incident flux)$\times $(albedo)/$\pi$, independent of the direction of the scattering. 
-Note that in reality they are not Lambertian scatterers; among others,  scattering by ocean is very anisotropic (Section \ref{ss:deviateLambert}).  
+Note that in reality they are not Lambertian scatterers; among others,  scattering by the ocean is very anisotropic (Section \ref{ss:deviateLambert}).  
 
 % and the albedo spectra of ocean overlaid with atmosphere  
 %\memoJLY{A phase of 135 deg is right in the range that Ty (Robinson et al. 2010; 2011) shows will deviate most from a Lambertian scatterer due the ocean glint...}
 
-The light curves are synthesized given the relative potisions of the star, planet, and observer.  
+\color{red} 
+The diurnal light curves are synthesized given the relative positions of the star, planet, and observer. 
+% We consider light curves of 1 rotation at a fixed orbital phases. 
 For the sake of simplicity, we consider a planet with zero obliquity in an edge-on orbit, and change the phase angle (the planet-centric angle between the star and the observer) denoted by $\alpha $. 
+We also assume that spin period is significantly shorter than the orbital period and the orbital phase does not change while the planet rotates. 
 However, the following discussion does not depend on these assumptions. 
+We consider noise-free data. Clearly, noise in realistic observations of exoplanets are expected to be substantially large, and the effect of such observations will be discussed elsewhere. 
+\color{black}
 
 The bottom panels of Figure \ref{fig:mockdata} display the examples of diurnal light curves in 4 photometric bands, represented in terms of {\it apparent albedo}. 
-Apparent albedo is the planetary intensity normalized by that of a loss-less Lambert sphere with the same radius and at the same phase \citep{Qiu2003, Seager2010}; in this paper we will use apparent albedo unless otherwise noted. 
+Apparent albedo is the albedo of the planet weighted by illumination and visibility. 
+More specifically, it is obtained by normalizing the planetary intensity by that of a loss-less Lambert sphere with the same radius and at the same phase \citep{Qiu2003, Seager2010}. 
+In this paper we will use apparent albedo unless otherwise noted. 
 The apparent albedo is straightforwardly obtained from the observed planetary intensity, if and only if the planetary radius and the observational geometry are completely known: latitude/longitude of the sub-stellar/sub-observer points, and the distance between the star and the planet. 
 %\memoYF{Later in the paper, mention that the uncertainty in radius estimation severely affects the constraints. }
 %(We will discuss the effect of this assumptions later in Section ??.)
 
-The problem throughout this paper is, from this kind of multi-band diurnal light curves, how and how well we can retrieve the albedo spectra of different surface types as well as the longitudinal distribution of these surface types. 
+The problem throughout this paper is, from these kinds of multi-band diurnal light curves, how and how well we can retrieve the albedo spectra of different surface types and the longitudinal distribution of these surface types. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
