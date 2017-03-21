@@ -344,7 +344,7 @@ Now, the relevant problem is, given $d$, estimate $\{f, s\}$ subject to the cons
     \begin{center}
 \includegraphics[width=\hsize]{schematics.pdf}
     \end{center}
-    \caption{Schematic figure to illustrate the relation between $\{{\bf s}_k\} $ and $\{{\bf d}_i\} $ (see text). The cross points represent observed data. \memoNBC{Explain ``observed data"" in caption instead of as legend. }}
+    \caption{Schematic figure to illustrate the relation between surface spectra ($\{{\bf s}_k\} $; filled points) and the observed data ($\{{\bf d}_i\} $; crosses). \memoNBC{Explain ``observed data"" in caption instead of as legend. }}
 \label{fig:schematic}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -413,7 +413,7 @@ Dotted lines are random triangle that could be solutions (see text). }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Formal Degeneracy}
+\subsection{Degeneracy}
 \label{ss:degeneracy}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -423,10 +423,10 @@ Note that the associated matrix, $\fast _{ik}$, can always be found.
 Additional constraints come from the condition (\ref{eq:tilde_s_range}). 
 In Figure \ref{fig:trajectory} any points in the shadowed region are rejected based on this condition: specifically, the left, right, and bottom boundaries are set by $s_{k,4}> 0$, $s_{k,1}> 0$, and $s_{k,3}> 0$. 
 While in this particular example the permitted region happens to be a triangle, shape can differ depending on the relative configuration of the boundaries. 
-Since each of 4 bands has lower and upper bounds on albedo, $0<s<1$, the physically allowed region of color space is a 4-dimensional hypercube, also known as tesseract. Dependeing on the orientation of the PC plane with this tesseract, the allowed region may have a variety of geometries. 
+Since each of 4 bands has lower and upper bounds on albedo, $0<s<1$, the physically allowed region of color space is a 4-dimensional hypercube, also known as tesseract. Depending on the orientation of the PC plane with this tesseract, the allowed region may have a variety of geometries. 
 In general, the allowed region is a $K-1$ dimensional slice through a $J$-dimensional hypercube. 
 
-Although this is not sufficient to result in a unique solution, it does impact the precision of rotational spectral unmixing as discussed below. 
+%Although this is not sufficient to result in a unique solution, it does impact the precision of rotational spectral unmixing as discussed below. 
 
 In Figure \ref{fig:trajectory} we show two random triangles that enclose the trajectory; these triangles satisfy the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}), as do many others. 
 One can have spectrally interesting surface spectra and boring geography (small longitudinal variation in area fractions) {\it or} one can have boring surface spectra (different surfaces look similar) and interesting geography. \memoYF{Need to reconsider this phrasing. }
@@ -463,19 +463,34 @@ Nevertheless, the excursions of the longitudinal colors are more dramatic than t
     \begin{center}
 \includegraphics[width=\hsize]{IGBP_lon_noreg.pdf}
     \end{center}
-     \end{minipage} 
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l30deg.pdf}
-    \end{center}
-     \end{minipage}      
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l40deg.pdf}
-    \end{center}
      \end{minipage}
-    \caption{(From top-left) A: Probability of surface albedo spectra estimated from the light curves of $\alpha = 90^{\circ }$ in the procedure described in Section \ref{ss:guess}. B: same as A but from the light curves of  $\alpha = 135^{\circ }$. C: same as A but from the colors of longitudinal slices.  D: same as A but from the light curves where the geographical maps of soil and vegetation are swaped. E: same as A but with regularization with $\Delta_ t = 2$ hr. F: same as A but with regularization with $\Delta_ t = 2.7$ hr. \memoYF{This is a tentative set of panels.} \memoNBC{Panel letters are not on plots....}}
-\label{fig:noreg}
+%   \begin{minipage}{0.33\hsize}
+%    \begin{center}
+%\includegraphics[width=\hsize]{IGBP_PCplane_Nside0.pdf}
+%    \end{center}
+%     \end{minipage}   
+%    \begin{minipage}{0.33\hsize}
+%    \begin{center}
+%\includegraphics[width=\hsize]{IGBP_PCplane_Nside1.pdf}
+%    \end{center}
+%     \end{minipage} 
+%   \begin{minipage}{0.33\hsize}
+%    \begin{center}
+%\includegraphics[width=\hsize]{IGBP_PCplane_Nside2.pdf}
+%    \end{center}
+%     \end{minipage}
+%   \begin{minipage}{0.33\hsize}
+%    \begin{center}
+%\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l30deg.pdf}
+%    \end{center}
+%     \end{minipage}      
+%   \begin{minipage}{0.33\hsize}
+%    \begin{center}
+%\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l40deg.pdf}
+%    \end{center}
+%     \end{minipage}
+    \caption{Upper panels: Probability of surface albedo spectra estimated from the light curves of $\alpha = 90^{\circ }$ (left), from the light curves of $\alpha = 135^{\circ }$ (middle) and from the colors of longitudinal slices. (Lower panels) Making the map coarser using HealPix. Left: 192 pixels, Middle: 48 pixels, Right: 12 pixels. }
+\label{fig:PCplane}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -580,13 +595,40 @@ P_{\rm posterior} ( {\bf t}_1) = \iint P_{\rm posterior} ( t_{kn} | d_{ij} ) d^2
 given the symmetry of ${\bf t}_1$, ${\bf t}_2$, and ${\bf t}_3$. 
 $P_{\rm posterior} ( {\bf t}_1) $ is normalized so that it sums up to unity. 
 
-The resultant probability distribution is shown in Figure \ref{fig:noreg}. 
+The resultant probability distribution is shown in Figure \ref{fig:PCplane}. 
 As expected, we find a relatively definite peak near the point of ocean. 
 On the other hand, the peak that corresponds to soil is a blur, and it is almost unconstrained. 
 The vegetation in the bottom right corner is moderately constrained. 
 
-We reiterate that in this framework the success of the surface retrieval critically depends on the relative configuration of the trajectory and allowed region. 
-In panel D of Figure \ref{fig:noreg}, we show another example where we switched the geographical map of soil and vegetation; as a result, the trajectory moves toward soil rather than vegetation. However, because the allowed region near the soil is large, soil is still not sufficiently constrained. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Conditions for Successful Guess of Surface Spectra}
+\label{ss:guess}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+We reiterate that in this framework the success of the surface retrieval critically depends on the relative configuration of the trajectory and the allowed region. 
+More specifically, the good constraints on the colors of ocean appears to be due to the combination of the large covering fraction of ocean and the location of the color of ocean close to a corner in the PC plane (due to low albedo at longer wavelength). 
+
+In order to illustrate these two effects and see under what conditions we can faithfully retrieve surface spectra, we created two additional mock light curves, (a) with the geographical maps of the soil and vegetation being swapped, and  (b) with the geographical maps of the soil and ocean being swapped. 
+The left and right panels of Figure \ref{fig:swap} correspond to (a) and (b), respectively. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb!]
+    \begin{center}
+    \includegraphics[width=\hsize]{swap.pdf}
+    \end{center}
+    \caption{Left: Trajectory of the light curves with the geographical maps of the soil and vegetation being swapped, and the resultant color contour of the posterior probability of albedo spectra of surface types. (b) Same as (a) but with the geographical maps of the soil and ocean being swapped.}
+\label{fig:swap}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+When we swap soil and vegetation (left panel) the covering fraction of vegetation becomes smaller, and the trajectory of the light curves does not approach the vegetation endmember. As a result, the constraints of the color of vegetation becomes weaker. Thus, a large covering fraction of the surface type tend to yield a better constraint on the albedo spectra of that type. 
+
+Meanwhile, in (b) where we swapped the soil and ocean, although soil is the dominant component, the true location of the soil is rather not preferred based on our analysis to other locations toward the top, because there are larger space there. 
+Therefore, large covering fraction is not a sufficient condition to better constrain the spectral albedo. 
+In other words, a surface spectrum can be well retrieved if it has favorable geography (ideally an entire hemisphere solely covered with that surface) and it has favorable albedo spectrum (albedo close to 0 or 1 at as many wavelengths as possible). 
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -594,55 +636,16 @@ In panel D of Figure \ref{fig:noreg}, we show another example where we switched 
 \label{ss:regularization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\memoYF{I still have some concerns about this and the text needs revision. }
+Occasionally, we may want to adopt additional constraints such as the smoothness of the covering fraction as a function of time/longitude, and/or the smoothness of the albedo spectra as a function of wavelength. 
+Their smoothness can be imposed as regularization terms with appropriate correlation lengths. 
 
-A possible constraining assumption we might make is the correlation length of the area fraction as a function of time, or as a function of longitude.  
-Smooth time or longitudinal variation with correlation lengths may be imposed as Gaussian Process \citep{Rasmussen2005}, which means the any finite number of the covering fractions have a joint Gaussian distribution. 
-In our case, the prior for $f_{lk}$ for each $k$ is then:
-%%%
-\begin{eqnarray}
-&& P_{\rm prior} (  \fast_{1k}, \fast_{2k}, ..., \fast_{Ik} ) \\
-&& \propto \frac{1}{\sqrt{| \tilde \Sigma^{(k)} |}}  \exp\left[ - (\fast^{T})_{ki} ( \tilde \Sigma ^{(k)} )^{-1}_{ii'} \fast_{i'k} \right]
-\end{eqnarray}
-%%%
-where
-%%%
-\begin{equation}
-\tilde \Sigma _{ll'} = \lambda \exp \left( - \frac{|t_i- t_i'|^2}{2 \Delta_ t^2} \right)
-\end{equation}
-%%%
-or
-%%%
-\begin{eqnarray}
-&& P_{\rm prior} (  f_{1k}, f_{2k}, ..., f_{Lk} ) \\
-&& \propto \frac{1}{\sqrt{| \Sigma^{(k)} |}}  \exp\left[ - (f^{T})_{kl} ( \Sigma ^{(k)} )^{-1}_{ll'} f_{l'k} \right]
-\end{eqnarray}
-%%%
-where
-%%%
-\begin{equation}
-\Sigma _{ll'} = \lambda \exp \left( - \frac{|\phi_l- \phi_{l'}|^2}{2 \Delta _{\phi }^2} \right). 
-\end{equation}
-%%%
+The regularization for the smoothness of albedo spectra as a function of wavelength may be regarded as a prior probability distribution on the PC plane. 
+For example, in Figure \ref{fig:PCplane}, albedo spectra corresponding to the upper part of the permitted region exhibits a dramatic decrease in albedo from 0.65$\mu $m to $0.75\mu $m, which we may think is less likely to be the color of a physical surface just because we do not think of the surface type with such a feature. 
+It should always be noted, however, that such constraints are based upon our prior assumptions and may not be true. 
+For example, albedo spectra of vegetation have the sharp edge known as red edge. 
+In addition, in a realistic case with an atmosphere, absorption by atmospheric molecules can also produce sharp changes in albedo spectra. 
 
-The posterior will be
-%%%
-\begin{eqnarray}
-P_{\rm posterior} ( t_{kn} | d_{ij} ) &=& P ( d_{ij} | t_{kn}, f_{lk} ) \\
-&& \times \, P_{\rm prior} (  t_{kn} ) P_{\rm prior} (  f_{lk} ) \\
-P ( d_{ij} | t_{kn}, f_{lk} ) &=& \delta( f_{lk} - f_{lk}^{(0)} (t_{kn}) )
-\end{eqnarray}
-%%%
-where $f_{lk}^{(0)}$ is the solution of Equation (\ref{eq:f=ds-1}). 
-\memoYF{Very acrobatic. Am I doing right? I am not sure.}
 
-Panel E and F of Figure \ref{fig:noreg} are the results where $\Delta_ t = 2$ hr and $2.7$ hr, respectively. 
-In this case, we find the higher peak of albedo spectra of ocean closer to the ``answer'', while the vegetation is identified far off the ``answer''; vegetation is intermediate. 
-
-We must take caution here that the actual covering fraction of surface types do not necessarily obey gaussian process. 
-In this particular case, it appears that the dominant surface type (ocean) is better approximated by gaussian processes.... \memoYF{??}
-
-%\memoYF{Have to do with regularization on the maps, but how should we proceed without doing MCMC with both $f_{lk}$ and $s_{kj}$ being fitting parameters? I could operate $W^{+}_{li} \fast_{ik}$ to find $f_{lk}$ with condition (\ref{eq:f_range}) and (\ref{eq:f_sum}); this itself is a bounded linear inversion problem and thus needs some minimization. Also, without regularization, I tend to find scattered $f_{lk}$, perhaps because of the instability of inverse matrix??. }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -654,13 +657,12 @@ In this particular case, it appears that the dominant surface type (ocean) is be
 \begin{figure}[tbh!]
     \begin{center}
 	\includegraphics[width=\hsize]{raddata_2_PCplane_noreg.pdf}
+	\includegraphics[width=\hsize]{raddata_2_norm_Mj_PCs.pdf}
     \end{center}
-    \caption{PC plane from EPOXI observation of June 2008. \memoYF{I have not computed the exact location of ocean, soil, or clouds, but roughly, ocean is probably around (-0.2, 0.4), soil is around (0.5, 0.0), and cloud is around (0.1,-0.5).} \memoNBC{This plot doesn't use regularization, correct?}\memoYF{Correct, it does not use regularization.}}
+    \caption{Upper panel: PC plane from EPOXI observation of June 2008. \memoYF{I have not computed the exact location of ocean, soil, or clouds, but roughly, ocean is probably around (-0.2, 0.4), soil is around (0.5, 0.0), and cloud is around (0.1,-0.5).} \memoNBC{This plot doesn't use regularization, correct?}\memoYF{Correct, it does not use regularization.} Lower panel: albedo spectra of the upper left peak in the upper panel. }
 \label{fig:EPOXI}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 In this section, we apply our analysis procedure to the observed multi-band light curves of the Earth observed by EPOXI mission. 
 Specifically we use the same datasets as \citet{Cowan2013}, i.e., the 7-band diurnal light curves observed in June of 2008 \citep{Livengood2011}. 
@@ -673,17 +675,6 @@ Overall, the upper boundaries come from the requirement of $s_{kj}>0$ while the 
 In this case, the trajectory of planetary light curves is far from the boundary because the color variations of the real Earth are muted by the cloud cover. 
 Consequently, we do not see three peaks but a spectrum of the potential. \memoNBC{Likelihood?} \memoYF{Posterior probability would be the better word, probably}. 
 Nevertheless, we are likely to find one surface type near the upper right part of the allowed region. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbh!]
-    \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_Mj_PCs.pdf}
-    \end{center}
-    \caption{Albedo spectra of the upper left peak in Figure \ref{fig:EPOXI}. }
-\label{fig:EPOXI}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 
 
@@ -731,11 +722,10 @@ We demonstrate using a simplified toy model of the Earth that such constraints w
 
 \acknowledgements
 
-ISSI Bern Exo-Cartography workshop
-
-McGill Space Institude
-
-Institut de Recherle sur les exoplanetis 
+We acknowledge Exo-Cartography workshop held in 2016 under the support of International Space Science Institute (ISSI). 
+Y. F. acknowledges the generous support from Universities Space Research Association through an appointment to the NASA Postdoctoral Program at the NASA Goddard Institute for Space Studies. 
+Y. F. also acknowledges support from the NASA Astrobiology Program through the Nexus for Exoplanet System Science.
+McGill Space Institute, Institut de recherche sur les exoplan\'etes? 
 
 
 \bibliography{ref}
@@ -743,40 +733,6 @@ Institut de Recherle sur les exoplanetis
 \appendix
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Swapping Geographical Maps}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% In this section we demonstrate how the albedo spectra and geographical maps of the surface types affect our retrieval. 
-In our fiducial model, the color of ocean was best constrained (see Figure \ref{fig:noreg}). 
-%
-This appears to be due to the combination of the large covering fraction of ocean and the location of the color of ocean close to a corner in the PC plane (due to low albedo at longer wavelength). 
-In other words, something about the geography and/or color of ocean makes it relatively easy to retrieve. 
-To illustrate these two effects, we created two additional mock light curves, (a) with the geographical maps of the soil and vegetation being swapped, and  (b) with the geographical maps of the soil and ocean being swapped. 
-The left and right panels of Figure \ref{fig:swap} correspond to (a) and (b), respectively. 
-%
-When we swap soil and vegetation (left panel) the covering fraction of vegetation becomes smaller, and the trajectory of the light curves does not approach the vegetation endmember. As a result, the constraints of the color of vegetation becomes weaker. Thus, a large covering fraction of the surface type tend to yield a better constraint on the albedo spectra of that type. 
-%
-Meanwhile, in (b) where we swapped the soil and ocean, although soil is the dominant component, the true location of the soil is rather not preferred based on our analysis to other locations toward the top, because there are larger space there. 
-Therefore, large covering fraction is not a sufficient condition to better constrain the spectral albedo. 
-In other words, a surface spectrum can be well retrieved if it has favorable geography (ideally an entire hemisphere solely covered with that surface) and it has favorable albedo spectrum (albedo close to 0 or 1 at as many wavelengths as possible). 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbh!]
-    \begin{center}
-   \begin{minipage}{0.33\hsize}
-\includegraphics[width=\hsize]{mockdata_90deg_3types2_t360_lc_noreg.pdf}
-     \end{minipage}
-   \begin{minipage}{0.33\hsize}
-%    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_3types3_t360_lc_noreg.pdf}
-%    \end{center}
-     \end{minipage}
-    \end{center}
-    \caption{Left: Trajectory of the light curves with the geographical maps of the soil and vegetation being swapped, and the resultant color contour of the posterior probability of albedo spectra of surface types. (b) Same as (a) but with the geographical maps of the soil and ocean being swapped. \memoNBC{Show the corresponding maps!} }
-\label{fig:swap}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -796,7 +752,7 @@ In the case of observations of diurnal light curves, as we go closer to crescent
 However, changing the width of the illuminated and visible area is different from changing the spatial resolution using HEALPix as described above. 
 This is because even at crescent phase, colors of very distant pixels, beyond the correlation length of the geography, are mixed together---for example, the colors of the arctic, tropics, and antarctic are mixed in an equatorial observation, no matter how extreme the orbital phase is. 
 % On the other hand, lowering resolution in HEALPix maintain the 
-Figure \ref{fig:lowresolution} should thus be compared with the trajectory in the upper right panel of Figure \ref{fig:noreg}, which is the colors of 360 longitudinal slices (width: $1^{\circ }$). 
+Figure \ref{fig:lowresolution} should thus be compared with the trajectory in the upper right panel of Figure \ref{fig:PCplane}, which is the colors of 360 longitudinal slices (width: $1^{\circ }$). 
 Despite the number of slices, the colors of individual slices never approach the colors of vegetation or soil. 
 This limits our ability to retrieve the surface types. 
 
@@ -826,3 +782,40 @@ This limits our ability to retrieve the surface types.
 
 
 \end{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Swapping Geographical Maps}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% In this section we demonstrate how the albedo spectra and geographical maps of the surface types affect our retrieval. 
+In our fiducial model, the color of ocean was best constrained (see Figure \ref{fig:PCplane}). 
+%
+This appears to be due to the combination of the large covering fraction of ocean and the location of the color of ocean close to a corner in the PC plane (due to low albedo at longer wavelength). 
+In other words, something about the geography and/or color of ocean makes it relatively easy to retrieve. 
+To illustrate these two effects, we created two additional mock light curves, (a) with the geographical maps of the soil and vegetation being swapped, and  (b) with the geographical maps of the soil and ocean being swapped. 
+The left and right panels of Figure \ref{fig:swap} correspond to (a) and (b), respectively. 
+%
+When we swap soil and vegetation (left panel) the covering fraction of vegetation becomes smaller, and the trajectory of the light curves does not approach the vegetation endmember. As a result, the constraints of the color of vegetation becomes weaker. Thus, a large covering fraction of the surface type tend to yield a better constraint on the albedo spectra of that type. 
+%
+Meanwhile, in (b) where we swapped the soil and ocean, although soil is the dominant component, the true location of the soil is rather not preferred based on our analysis to other locations toward the top, because there are larger space there. 
+Therefore, large covering fraction is not a sufficient condition to better constrain the spectral albedo. 
+In other words, a surface spectrum can be well retrieved if it has favorable geography (ideally an entire hemisphere solely covered with that surface) and it has favorable albedo spectrum (albedo close to 0 or 1 at as many wavelengths as possible). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbh!]
+    \begin{center}
+   \begin{minipage}{0.33\hsize}
+\includegraphics[width=\hsize]{mockdata_90deg_3types2_t360_lc_noreg.pdf}
+     \end{minipage}
+   \begin{minipage}{0.33\hsize}
+%    \begin{center}
+\includegraphics[width=\hsize]{mockdata_90deg_3types3_t360_lc_noreg.pdf}
+%    \end{center}
+     \end{minipage}
+    \end{center}
+    \caption{Left: Trajectory of the light curves with the geographical maps of the soil and vegetation being swapped, and the resultant color contour of the posterior probability of albedo spectra of surface types. (b) Same as (a) but with the geographical maps of the soil and ocean being swapped. \memoNBC{Show the corresponding maps!} }
+\label{fig:swap}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
