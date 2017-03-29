@@ -117,6 +117,15 @@ yuka.fujii.ebihara@gmail.com
 
 \begin{abstract}
 
+Unmixing the disk-integrated spectra of exoplanets is a clue to the detailed surface properties which we cannot directly resolve in a foreseeable future. 
+It is particularly important for terrestrial planets with a distinct diversity in surface compositions like the Earth. 
+Although previous work of unmixing the spectra of the Earth from disk-integrated multi-band light curves appear successful, here we show that there is a mathematical degeneracy between the surface colors and their distributions. 
+Nevertheless, due to the constraint that albedo should be between 0 to 1, useful constraints on the spectral albedo of individual surface types may be obtained on the spectral shape of the surface types, depending on the nature of the trajectories of the light curves in the band space \memoYF{how can I call it?}. 
+We demonstrate the degeneracy and the possible constraints using the mock data based on a toy model of the Earth and the observed data of the Earth. 
+
+\memoYF{May have to be modified depending on our discussions...}
+\memoYF{Shall we mention the }
+
 \end{abstract}
 
 \keywords{planets and satellites: surfaces --- planets and satellites: terrestrial planets}
@@ -654,10 +663,12 @@ In other words, a surface spectrum can be well retrieved if it has favorable geo
 %	\includegraphics[width=\hsize]{raddata_2_norm_Mj_PCs.pdf}
 	\includegraphics[width=\hsize]{raddata_2_norm_spectra.pdf}
     \end{center}
-    \caption{Upper panel: PC plane from EPOXI observation of June 2008 \citep{Livengood2011}. The ocean, soil, and clouds appear to be close to A, D, and F/I, respectively. }
+    \caption{Upper panel: PC plane from EPOXI observation of June 2008 \citep{Livengood2011}. Lower panel: the spectra corresponding to the locations (A$\sim$J) shown in the upper panel. The ocean, soil, and clouds appear to be close to A, D, and F, respectively. }
 \label{fig:EPOXI}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 In this section, we apply our procedure to the observed multi-band light curves of the Earth observed by EPOXI mission. 
 Specifically we use the same datasets as \citet{Cowan2013}, i.e., the 7-band diurnal light curves observed in June of 2008 \citep{Livengood2011}. 
@@ -678,68 +689,6 @@ Nevertheless, we are likely to find one surface type near the upper right part o
 \section{Discussion}
 \label{s:discussion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Enhancing Constraints}
-\label{ss:enhancing_constraints}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Invoking Additional Assumptions}
-
-Occasionally, we may want to adopt additional constraints on the behavior of $\fast $ ($f$) or $s$ based on the prior assumptions. 
-
-For example, we could assume that the covering fractions of surface types  ``smoothly'' vary as a function of time or longitude. 
-Such an assumption may be imposed by Gaussian Process \citep[e.g.,][]{Rasmussen2005}, i.e., at any time/longitude, the  with the of the correlation length. 
-We must take caution that the actual covering fractions of surface types do not necessarily obey Gaussian Process. In our mock data, ocean appears to be better approximated by Gaussian Processes than vegetation and soil. As a result, imposing Gaussian Process tends to yield better estimation of ocean color and biased estimation of soil color. 
-
-We could also consult with the regularization on albedo spectra as a function of wavelengths. 
-This can be regarded as a prior probability distribution on the PC plane. 
-For example, in Figure \ref{fig:PCplane}, albedo spectra corresponding to the upper part of the permitted region exhibits a dramatic decrease in albedo from 0.65$\mu $m to $0.75\mu $m, which we may not relate to a real surface type in our knowledge. 
-However, again, such constraints are based upon our prior assumptions and may not be true. 
-For example, albedo spectra of vegetation have the sharp edge known as red edge, and similarly unique, unfamiliar features may exist somewhere. 
-In addition, with an atmosphere, absorption by atmospheric molecules can also produce sharp changes in albedo spectra. 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Utilizing Light Curves at Different Phases}
-
-Light curves at different orbital phases will help us unmix the surface spectra. 
-At different orbital phases, different locations on the surface contribute to the diurnal light curves with varying weight, exploring the PC plane in different directions. 
-Since the true surfaces are among the combinations that enclose all of the data points, more data points would narrow the parameter space where the solution can exist. 
-In particular, the diurnal light curves at thinner phase tend to exhibit larger color variations, potentially giving tighter constraints (but see the caveat in Section \ref{ss:deviateLambert}). 
-
-Multi-epoch light curves also allow us to reconstruct 2-dimensional surface maps in principle \citep{Kawahara2010,Kawahara2011,Fujii2012}, and we could  estimate the surface spectra from the spectra of individual pixels, with the same spirit as that of estimating $f$ and $s$. 
-In fact, this ``map first'' approach would be even more significant with 2-dimensional maps than with longitudinal slices. 
-Indeed one of the difficulties in estimating the surface colors from diurnal light curves at a single phase is that, even at crescent phase, colors of very distant pixels, beyond the correlation length of the geography, are mixed together---for example, the colors of the arctic, tropics, and antarctic are mixed in an equatorial observation, no matter how extreme the orbital phase is. 
-As a result, the colors of longitudinal slices never approach the colors of vegetation or soil despite the number of slices, as shown in the right panel of Figure \ref{fig:PCplane}. 
-The situation would be different when we gradually lower the resolution of the 2-dimensional maps and consider the colors of pixels. 
-Figure \ref{fig:lowresolution} shows the colors of HEALPix pixels \citep{Gorski2005} with varying resolutions: from left to right, we change the resolution from 192 pixels, 48 pixels to 12 pixels, starting from the map in Figure \ref{fig:mockdata}. 
-The triangular shape of the locus of points becomes apparent with 48 pixels. 
-Thus, resolving the map in 2 dimensions will help our success in retrieving the surface spectra. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[tbh!]
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{IGBP_PCplane_Nside2.pdf}
-    \end{center}
-     \end{minipage}   
-    \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{IGBP_PCplane_Nside1.pdf}
-    \end{center}
-     \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-\includegraphics[width=\hsize]{IGBP_PCplane_Nside0.pdf}
-    \end{center}
-     \end{minipage}
-    \caption{Making the map coarser using HealPix. Left: 192 pixels, Middle: 48 pixels, Right: 12 pixels. }
-\label{fig:lowresolution}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Confronting Factors}
@@ -782,12 +731,94 @@ These light curves can be analyzed independently, and the components varying wit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Degenerate Dimensions in PC Plane}
 
-\memoYF{I felt like mentioning this issue but do you think it worth?}
+\memoYF{I felt like mentioning this issue, but what do you think?}
 
 The retrieval would become more complicated if $N + 1 < K$, i.e., the dimension of the PC plane is smaller than the number of surface types plus 1. 
-For example, suppose the number of important surface types in EPOXI are actually four rather than three, which we cannot reject based on the data alone, then we would have to consider a triangle to enclose all of the data points rather than a triangle. 
+For example, suppose the number of important surface types in EPOXI are actually four rather than three, which we cannot reject based on the data alone, then we would have to consider a tetragon to enclose all of the data points rather than a triangle. 
 This affects our estimation of surface spectra. 
-Obtaining the light curves in as many bands as possible will help disentangling the surface colors in the $J$-dimensional band space. 
+Obtaining the light curves in as many bands as possible will help disentangle the surface colors in the $J$-dimensional band space. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Enhancing Constraints}
+\label{ss:enhancing_constraints}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Invoking Additional Assumptions}
+
+Occasionally, we may want to adopt additional constraints on the behavior of $\fast _{ik}$ ($f_{lk}$) or $s_{kj}$ based on the prior assumptions. 
+
+For example, we may assume that the covering fractions of surface types  ``smoothly'' vary as a function of time or longitude. 
+Such an assumption could be imposed by Gaussian Process \citep[e.g.,][]{Rasmussen2005}, i.e., the area fractions at different time slices have joint gaussian distribution with the relevant correlation length. 
+We must take caution that the actual covering fractions of surface types do not necessarily obey Gaussian Process. 
+%In our mock data, ocean appears to be better approximated by Gaussian Processes than vegetation and soil. 
+As a result, imposing Gaussian Process tends to yield better estimation of ocean color and biased estimation of soil color. 
+
+We could also consult with the regularization on albedo spectra as a function of wavelength. 
+This can be regarded as a prior probability distribution on the PC plane. 
+For example, in Figure \ref{fig:PCplane}, albedo spectra corresponding to the upper part of the permitted region exhibits a dramatic decrease in albedo from 0.65$\mu $m to $0.75\mu $m, which we may not relate to a real surface type in our knowledge. 
+However, again, such constraints are based upon our prior assumptions and may not be true. 
+In reality, albedo spectra of vegetation have the sharp edge known as red edge, and similarly unique, unfamiliar features may exist somewhere. 
+In addition, with an atmosphere, absorption by atmospheric molecules can also produce sharp changes in albedo spectra. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Utilizing Light Curves at Different Phases}
+
+Light curves at different orbital phases are useful in spectral unmixing, because they shed light on different locations on the surface with varying weight, exploring the PC plane in different directions. 
+As a result, the parameter space where the solution can exist will be narrowed.  
+In particular, the diurnal light curves at thinner phase tend to exhibit larger color variations, giving tighter constraints (but see the caveat in Section \ref{ss:deviate_Lambert}). 
+
+In addition, light curves at different phases in principle allow us to reconstruct 2-dimensional surface maps  \citep{Kawahara2010,Kawahara2011,Fujii2012}. 
+We could then use the mapped spectra (spectra of various surface patches resolved in 2 dimensions) to identify different surface types, in the same spirit as that of estimating the covering fraction of longitudinal slices $f_{lk}$ and $s_{kj}$ . 
+In fact, this ``map first'' approach are likely more significant with 2-dimensional maps than with longitudinal slices for the following reason. 
+In the diurnal light curves at a single phase, colors of very distant pixels beyond the correlation length of the geography are mixed together, even at crescent phases---for example, the colors of the arctic, tropics, and antarctic are mixed in an equatorial observation, no matter how extreme the orbital phase is. 
+As a result, the colors of longitudinal slices never approach the colors of vegetation or soil despite the number of slices, as shown in the right panel of Figure \ref{fig:PCplane}. 
+The situation would be different when we gradually lower the resolution of the 2-dimensional maps. 
+Figure \ref{fig:lowresolution} shows the colors of HEALPix pixels \citep{Gorski2005} with varying resolutions: from left to right, we change the resolution from 192 pixels, 48 pixels to 12 pixels, starting from the map in Figure \ref{fig:mockdata}. 
+The triangular shape of the locus of points becomes apparent with as low resolution as 48 pixels. 
+Thus, resolving the surface colors in 2 dimensions will ease our challenge to identify the surface types. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[tbh!]
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+\includegraphics[width=\hsize]{IGBP_PCplane_Nside2.pdf}
+    \end{center}
+     \end{minipage}   
+    \begin{minipage}{0.33\hsize}
+    \begin{center}
+\includegraphics[width=\hsize]{IGBP_PCplane_Nside1.pdf}
+    \end{center}
+     \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+\includegraphics[width=\hsize]{IGBP_PCplane_Nside0.pdf}
+    \end{center}
+     \end{minipage}
+    \caption{Making the map coarser using HealPix. Left: 192 pixels, Middle: 48 pixels, Right: 12 pixels. }
+\label{fig:lowresolution}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Power of Many Bands}
+
+\memoYF{What do you think about this subsection? I thought we could include this in conclusion and abstract. }
+
+As we discussed Section \ref{ss:guess}, the constraints on the surface spectra rely on the relative configuration between the light curve trajectories and the boundaries of the physically permitted region (defined by the condition (\ref{eq:tilde_s_range}) or (\ref{eq:s_range})). 
+It depends on geography and the albedo spectra of the surface types, nither of which we can directly change. 
+However, we can potentially increase the number of boundaries of the permitted region by increasing the number of photometric bands, and some of them may have tighter constraints than others. 
+Observing the light curves in as many bands as possible will therefore be beneficial.  
+In particular, observing at wavelengths where one or more surface types have albedo close to 0 or 1 would more tightly constrain the possible albedo. 
+Albedo closer to 0 (i.e., the condition of $0 \le s_{kj}$) are more useful because it does not depend on the uncertainties in the radius. 
+In reality, albedo of ocean is close to 0 at longer wavelength toward near infrared, that of soil is small at 0.4 $\mu $m and shortward, that of vegetation is close to 0 at 0.7 $\mu$m and shortward, and that of H$_2$O snow is close to 1 in the visible and closer to 0 at 1.5 $\mu$m and 2 $\mu$m bands. 
+Observations at different bands covering these characteristic wavelengths would be useful. 
+Conversely, surfaces overlaid with clouds have muted spectral features with higher albedo than the bare surfaces, which would make the retrieval more challenging. 
+
+
 
 
 
@@ -800,6 +831,7 @@ In this paper, we revisited the framework to estimate the albedo spectra of majo
 We pointed out the inherit degeneracy which makes it impossible to find unique solutions. 
 While admitting the degeneracy, some constraints about the solutions are found due to the nature of albedo which is between 0 and 1. 
 We demonstrate using a simplified toy model of the Earth that such constraints let us pin down the likely solution for the surface types and their geographical maps. 
+\memoYF{Ending statement needed here.}
 
 
 \acknowledgements
@@ -810,12 +842,99 @@ Y. F. also acknowledges support from the NASA Astrobiology Program through the N
 J.~L.~Y. is supported by the NASA Astrobiology Institute's Virtual Planetary Laboratory under Cooperative Agreement number NNA13AA93A. 
 McGill Space Institute, Institut de recherche sur les exoplan\'etes? 
 
+\newpage
 
 \bibliography{ref}
 
+\newpage
+
 \appendix
 
+\newpage
 
+\section{Labeling three components}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[tbh!]
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{mockdata_90deg_3types_t360_lc_noreg_0.pdf}
+    \end{center}	
+   \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{mockdata_90deg_3types_t360_lc_noreg_1.pdf}
+    \end{center}	
+   \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{mockdata_90deg_3types_t360_lc_noreg_2.pdf}
+    \end{center}	
+   \end{minipage}    
+   \caption{Attempt to make color contours for individual components from mock data. }
+\label{fig:EPOXI_individual}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[tbh!]
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{raddata_2_norm_noreg_0.pdf}
+    \end{center}	
+   \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{raddata_2_norm_noreg_1.pdf}
+    \end{center}	
+   \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{raddata_2_norm_noreg_2.pdf}
+    \end{center}	
+   \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{raddata_2_norm_noreg_0_sp.pdf}
+    \end{center}	
+   \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{raddata_2_norm_noreg_1_sp.pdf}
+    \end{center}	
+   \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{raddata_2_norm_noreg_2_sp.pdf}
+    \end{center}	
+   \end{minipage}    \caption{Attempt to make color contours for individual components from EPOXI data. }
+\label{fig:EPOXI_individual}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\section{Fixing one point ($\sim $ ocean) at (-0.2,0.3) }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[tbh!]
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{raddata_2_norm_noreg_fixedocean_1.pdf}
+    \end{center}	
+   \end{minipage}
+   \begin{minipage}{0.33\hsize}
+    \begin{center}
+	\includegraphics[width=\hsize]{raddata_2_norm_noreg_fixedocean_2.pdf}
+    \end{center}	
+   \end{minipage}
+   \caption{\memoYF{I don't get this...}}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \end{document}
