@@ -12,6 +12,7 @@
 \usepackage{comment}
 \usepackage{color,xcolor}
 \usepackage{url}
+\usepackage{ulem}
 \usepackage{here}
 \usepackage{hyperref}
 \hypersetup{colorlinks,linkcolor={blue!50!black},citecolor={blue!50!black},urlcolor={blue!50!black}}
@@ -120,11 +121,11 @@ yuka.fujii.ebihara@gmail.com
 
 Unmixing the disk-integrated spectra of exoplanets provides a clue to  detailed surface properties that we cannot directly resolve in the foreseeable future. 
 It is particularly important for terrestrial planets with diverse surface compositions in surface compositions like Earth. 
-Although previous work on unmixing the spectra of Earth from disk-integrated multi-band light curves appeared successful, here we show that there is a mathematical degeneracy between the surface colors and their spatial  distributions. 
-Nevertheless, \edit{useful constraints on the spectral shape of individual surface types may be obtained due to the constraint that albedo should be between 0 to 1, depending the trajectory of the planet in color space}.  
+Although previous work on unmixing the spectra of Earth from disk-integrated multi-band light curves appeared successful, here we \edit{point out} a mathematical degeneracy between the surface colors and their spatial  distributions. 
+Nevertheless, \edit{useful constraints on the spectral shape of individual surface types may be obtained from the fact that albedo should be between 0 to 1, depending the trajectory of the planet in color space}.  
 We demonstrate the degeneracy and the possible constraints using the mock data based on both a toy model of Earth and the observed data of Earth. 
 Despite the severe degeneracy, we are still able to recover an approximate albedo spectra for ocean. 
-\memoYF{Why...}
+\edit{We discuss that observing at many wavelengths so that surfaces albedo is close to 0 or 1 at multiple bands will provide better constraints, as well as the large covering fractions. }
 
 \end{abstract}
 
@@ -141,11 +142,12 @@ Despite the severe degeneracy, we are still able to recover an approximate albed
 
 Direct imaging of exoplanets is expected to play a vital role in characterizing Earth analogs in habitable zones and beyond. 
 Substantial work has gone into prediciting detectable features in disk-integrated spectra of Earth and other planets, as they are observed from an astronomical distance. 
-Atmospheric molecules are identifiable through spectral absorption features \citep[e.g.,][]{DesMarais2002} but surface reflectance spectra also affect the spectra, which could be measured through low-resolution spectra, or multi-band photometry. 
+\edit{Disk-integrated spectra or even multi-band photometry (colors) in principle include the effects of the surface reflectance as well as the atmosphere. }
+%Atmospheric molecules are identifiable through spectral absorption features \citep[e.g.,][]{DesMarais2002} but surface reflectance spectra also affect the spectra, which could be measured through low-resolution spectra, or multi-band photometry. 
 However, interpreting disk-integrated colors is not trivial. 
 This is particularly true for Earth-like planets that harbor diverse atmospheric and surface characteristics including liquid water, partial cloud cover, continents, and possibly vegetation. 
 
-A key here is to leverage the time variation of the spectrum \citep{Ford2001}: the regions that contributes to the scattered light change due to the planetary rotation and  orbital motion, so the time variability can in principle be translated to the heterogeneity of the surface environment.  
+A key here is to leverage the time variation of the spectrum\edit{/color}  \citep{Ford2001}: the regions that contributes to the scattered light change due to the planetary rotation and  orbital motion, so \edit{the time variability can be used to map the} heterogeneity of the surface environment.  
 \citet{Cowan2009, Cowan2011} performed Principal Component Analysis (PCA) on the observed multi-band photometry of Earth. They found that the number of surface types can be inferred from the number of dominant principle components: (\# of surface types) $\ge $ (\# of principal components) $+ 1$. %) and that the variation pattern is indicative of the surface properties. 
 \citet{Fujii2010, Fujii2011} decomposed multi-band photometric data of the Earth assuming the template reflectance spectra of the known major surface types, and they found that the relative abundance and the longitudinal variation of these surface types are approximately recovered. 
 Moreover, by coupling the time variation due to rotation with phase variation due to orbital revolution, a 2-dimensional map of the surface may be retrieved \citep{Kawahara2010, Kawahara2011, Fujii2012}. 
@@ -347,7 +349,7 @@ In principle, constraints (\ref{eq:f_sum}) and (\ref{eq:s_range}) are more strin
     \begin{center}
 \includegraphics[width=\hsize]{schematics_ver2.pdf}
     \end{center}
-    \caption{Schematic figure to illustrate the relation between surface spectra ($\{{\bf s}_k\} $; filled points) and the observed data ($\{{\bf d}_i\} $; crosses). }
+    \caption{\edit{Schematic figure to illustrate the relation between observed data ($\{{\bf d}_i\} $; crosses) and surface spectra ($\{{\bf s}_k\} $; filled points). }}
 \label{fig:schematic}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -372,31 +374,28 @@ Consequently, the number of major principal components (PCs) are equal to or les
 Note that non-Lambertian reflectance, partially transparent cloud cover, or observational noise would in practice ensure that the PC plane has some thickness (see also Section \ref{ss:deviate_Lambert}). 
 
 From the mock light curves prepared in Section \ref{s:mockdata}, 
-we use PCA to extract two dominant principal components through PCA with other components having virtually zero contributions, consistent with the 3 input surface types.  
+we use PCA to extract two dominant principal components (PCs) through PCA with other components having virtually zero contributions, consistent with the 3 input surface types.  
 The PCs extracted from the light curves at $\alpha = 90^{\circ }$ (olive lines in Figure \ref{fig:mockdata}) are presented in the upper panel of Figure \ref{fig:trajectory}. 
 For later use, we denote these PCs by $V_{nj}$ where $n=1$ or $2$  corresponding to the 1st and 2nd PC. 
-Since we use the same thre surface spectra throughout, the principal component plane is the same in all cases, but the individual PCs may be rotated. 
+Since we use the same three surface spectra throughout, the principal component plane is the same in all cases, but the individual PCs may be rotated. 
 
-Using $V_{nj}$, the light curves at $\alpha = 90^{\circ }$ ($d_{ij}$) are  projected onto the PC plane by
+\edit{Using $V_{nj}$ and the time average of the colors in the case of $\alpha = 90^{\circ }$, $\bar d_j$, the light curves are projected onto the PC plane by}:
 %%%
 \begin{equation}
 d_{ij} = \sum_n U_{in} V_{nj} + \bar d_j
 \end{equation}
 %%%
-where $U_{in}$ is the trajectory in the PC plane and $\bar d_j$ is the time average of the colors. % as the offset. 
-The trajectory of the light curves at $\alpha = 90^{\circ }$ onto this PC plane is shown by the olive line in Figure \ref{fig:trajectory}. 
-The dominant PCs ($V_{nj}$) and the time-averaged colors ($\bar d_j$) uniquely specify the PC plane. 
-
-We may plot the trajectories of other light curves at different phase angles on the same plane because the PC plane should be the same plane regardless of orbital phase. %(under the noiseless condition) because we use the same 3 surface types and assume Lambertian surfaces. 
+where $U_{in}$ is the trajectory. %\edit{\sout{The $V_{nj}$) and the time-averaged colors ($\bar d_j$) uniquely specify the PC plane. }
+% in the PC plane and $\bar d_j$ is the time average of the colors. % as the offset. 
+\edit{The trajectory of the light curves at different orbital phases are shown by the olive line in Figure \ref{fig:trajectory}. }
+%\edit{\sout{The dominant PCs ($V_{nj}$) and the time-averaged colors ($\bar d_j$) uniquely specify the PC plane. }}
+%We may plot the trajectories of other light curves at different phase angles on the same plane because the PC plane should be the same\edit{\sout{ plane regardless of orbital phase}}. %(under the noiseless condition) because we use the same 3 surface types and assume Lambertian surfaces. 
 % (Note that PCA on individual light curves does not necessarily find the same PCs, because it depends on how the data points are scattered on the PC plane.)
-Thus, the trajectories of the mock light curves at different phase angles are also shown in the lower panel of Figure \ref{fig:trajectory}. 
+%Thus, the trajectories of the mock light curves at different phase angles are also shown in the lower panel of Figure \ref{fig:trajectory}. 
 The color excursions are greater at a larger phase angle (crescent phase), because less surface area is averaged together.  
 The points in the figure indicate the input albedo spectra of the three surface types. 
 As described above, the trajectories are always inside the triangle defined by these points. 
 %Because the apparent albedo at any time of the observations is a linear combination of input surface colors (Equation \ref{eq:tilde_d_f_ast_s}) under the conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}), the trajectories should always be inside the triangle defined by these points.  
-
-
-
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{figure}[tbh!]
@@ -420,7 +419,7 @@ Dotted lines are random triangle that could be solutions (see text). }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Degeneracy}
+\subsection{\edit{Degenerate Solutions}}
 \label{ss:degeneracy}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -551,8 +550,7 @@ On the other hand, the likelihood is
 \right.
 \end{eqnarray}
 %%%
-Although the graphical meaning of conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) is simply to enclose the data, the judgement is numerically made as follows. 
-We first find $\fast $ that satisfies condition (\ref{eq:tilde_f_sum}) from
+Although the graphical meaning of conditions (\ref{eq:tilde_f_range}) and (\ref{eq:tilde_f_sum}) is simply to enclose the data, the judgement is numerically made \edit{by finding $\fast $ that satisfies condition (\ref{eq:tilde_f_sum}) from}\footnote{\edit{Note that the last matrix is a $K\times K$ matrix, and thus an inverse exists if $\{ {\bf t}_k \}$ forms a triangle (rather than a straight line or a single dot, in which case $\{ {\bf t}_k \}$ is not a solution anyways).}}
 %%%
 \begin{equation}
 \begin{pmatrix}
@@ -590,12 +588,11 @@ U_{I1} & U_{I2} & 1
 t_{11} & t_{12} & 1 \\
 t_{21} & t_{22} & 1 \\
 t_{31} & t_{32} & 1 
-\end{pmatrix}^{-1}
+\end{pmatrix}^{-1} 
 \label{eq:f=ds-1}
 \end{equation}
 %%%
-Note that the last matrix is a $K\times K$ matrix, and thus an inverse exists if $\{ {\bf t}_k \}$ forms a triangle (rather than a straight line or a single dot, in which case $\{ {\bf t}_k \}$ is not a solution anyways).
-Then, we ask if the resultant $\fast_{ik}$ are within the range of (\ref{eq:tilde_f_range}). 
+\edit{and asking if the resultant $\fast_{ik}$ are within the range of (\ref{eq:tilde_f_range}). }
 
 Finally, we marginalize the posterior distribution, i.e.,
 %%%
@@ -603,7 +600,7 @@ Finally, we marginalize the posterior distribution, i.e.,
 P_{\rm posterior} ( {\bf t}_1) = \iint P_{\rm posterior} ( t_{kn} | d_{ij} ) d^2 {\bf t}_2 d^2 {\bf t}_3
 \end{equation}
 %%%
-given the symmetry of ${\bf t}_1$, ${\bf t}_2$, and ${\bf t}_3$ \memoYF{Yes, I mean labeling degeneracy}. 
+given the \edit{labeling degeneracy among} ${\bf t}_1$, ${\bf t}_2$, and ${\bf t}_3$. 
 $P_{\rm posterior} ( {\bf t}_1) $ is normalized so that it sums up to unity. 
 
 The resultant probability distribution is shown in Figure \ref{fig:PCplane}. 
@@ -613,7 +610,7 @@ The vegetation in the bottom right corner is moderately constrained.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Conditions for Successful Guess of Surface Spectra}
+\subsection{Conditions for Successful Guess\\of Surface Spectra}
 \label{ss:guess}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -669,14 +666,12 @@ Specifically we use the same datasets as \citet{Cowan2013}, i.e., the 7-band diu
 Using the two dominant PCs for these data, we performed the same analysis described in the previous section 
 
 Figure \ref{fig:EPOXI} shows the trajectory of the light curve projected onto the PC plane, with the grayed region being the forbidden region. 
-While the permitted region appears to be close to a square, it is in fact a heptagon, bounded by 7 inequalities (2D slice through a 7D hypercube). 
+While the permitted region appears to be close to a square, it is in fact a heptagon, bounded by 7 inequalities (2\edit{-dimensional} slice through a 7\edit{-dimensional} hypercube). 
 Overall, the upper boundaries come from the requirement of $s_{kj}>0$ while the lower boundaries comes from the requirement of $s_{kj}<1$. 
 
 In this case, the trajectory of planetary color is far from the boundary because the color variations of the real Earth are muted by the cloud cover. 
 Consequently, we do not see three peaks but a spectrum of the posterior probability distribution. 
-Nevertheless, we are likely to find one surface type in the upper part of the allowed region, near label A. 
-
-
+Nevertheless, we are likely to find one surface type in the upper part of the allowed region, near label A \edit{, which may be interpreted as ocean}. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -713,6 +708,16 @@ In this case, our guess of the surface types would be deteriorated.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Degenerate Dimensions in PC Plane}
+
+The retrieval would become more complicated if \edit{the actual number of surface types is larger than the dimension of the PC plane plus 1 ($K > N + 1 $)}. 
+For example, suppose the number of important surface types in EPOXI are actually four rather than three, which we cannot reject based on the data alone, then we would have to consider a tetragon to enclose all of the data points rather than a triangle. 
+This affects our estimation of surface spectra. 
+The greater the number of wavebands, the more improbable it is for multiple surface spectra to line on the same principle component hyperplane. 
+Obtaining light curves in as many bands as possible will therefore help disentangle the surface colors in the $J$-dimensional band space. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Deviation from Lambert's Law}
 \label{ss:deviate_Lambert}
 
@@ -723,14 +728,6 @@ Considering these effects, the trajectories of the light curves at different pha
 These light curves can be analyzed independently, and the components varying with phase would give us insights into the anisotropic scatterers. 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Degenerate Dimensions in PC Plane}
-
-The retrieval would become more complicated if $N + 1 < K$, i.e., the dimension of the PC plane is smaller than the number of surface types plus 1. 
-For example, suppose the number of important surface types in EPOXI are actually four rather than three, which we cannot reject based on the data alone, then we would have to consider a tetragon to enclose all of the data points rather than a triangle. 
-This affects our estimation of surface spectra. 
-The greater the number of wavebands, the more improbable it is for multiple surface spectra to line on the same principle component hyperplane. 
-Obtaining light curves in as many bands as possible will therefore help disentangle the surface colors in the $J$-dimensional band space. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -747,7 +744,7 @@ For example, we may assume that the covering fractions of surface types  ``smoot
 Such an assumption could be implemented via a Gaussian Process \citep[e.g.,][]{Rasmussen2005}, i.e., the area fractions at different times/longitudes have joint gaussian distribution with the relevant correlation length. 
 We must exercise because the actual covering fractions of surface types are not necessarily a Gaussian Process. 
 %In our mock data, ocean appears to be better approximated by Gaussian Processes than vegetation and soil. 
-As a result, imposing Gaussian Process tends to yield better estimation of ocean color and biased estimation of \edit{sand} color. 
+\edit{\sout{As a result, imposing Gaussian Process tends to yield better estimation of ocean color and biased estimation of \edit{sand} color. }}
 
 We could also consider a regularization on albedo spectra as a function of wavelength. 
 This can be regarded as a prior probability distribution on the PC plane. 
@@ -806,7 +803,7 @@ As we discussed Section \ref{ss:guess}, the constraints on the surface spectra r
 It depends on geography and the albedo spectra of the surface types, neither of which we can directly change. 
 However, we can potentially increase the number of boundaries of the permitted region by increasing the number of photometric bands, and some of them may have tighter constraints than others. 
 Observing the light curves in as many bands as possible will therefore be beneficial.  
-In particular, observing at wavelengths where one or more surface types have albedo close to 0 or 1 would more tightly constrain the possible albedo. 
+In particular, observing at wavelengths where one or more surface types have albedo close to 0 or 1 \edit{constrain the possible albedo more tightly}. 
 Albedo closer to 0 (i.e., the condition of $0 \le s_{kj}$) are more useful because it does not depend on the uncertainties in the radius. 
 In reality, albedo of ocean is close to 0 at longer wavelength toward near infrared, that of \edit{sand} is small at 0.4 $\mu $m and shortward, that of vegetation is close to 0 at 0.7 $\mu$m and shortward, and that of H$_2$O snow is close to 1 in the visible and closer to 0 at 1.5 $\mu$m and 2 $\mu$m bands. 
 Observations at different bands covering these characteristic wavelengths would be useful. 
@@ -821,10 +818,14 @@ Observations at different bands covering these characteristic wavelengths would 
 \label{s:conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this paper, we revisited the problem of estimating the albedo spectra of major surface type and their distribution from disk-integrated multi-band photometry of exoplanets. 
+In this paper, we revisited the problem of estimating the albedo spectra of major surface type and their distribution\edit{s} from disk-integrated \edit{colors} of exoplanets. 
 We pointed out the inherit degeneracy which makes it impossible to find unique solutions. 
-Despite the degeneracy, some useful constraints on the surface spectra can be obtained due to the nature of albedo which is between 0 and 1. 
-We demonstrate using a simplified toy model of Earth that such constraints let us pin down the likely solution for the surface types and their geographical maps. 
+Despite the degeneracy, 
+\edit{some useful constraints on the surface spectra may be obtained, depending on the orientation of the trajectories of the disk-integrated colors in the color space.  %
+We demonstrated using both a simplified toy model of Earth and the observed data by EPOXI that such constraints let us narrow down the likely solutions for the surface types. %
+We found that the keys to better estimates are to observe at the wavelengths where surface albedo are close to 0 or 1, as well as large covering fractions of a given surface type at least at one epoch. %
+We also discussed how the unknown geometries }
+
 
 %\memoYF{Ending statement needed here.}
 
