@@ -119,13 +119,13 @@ yuka.fujii.ebihara@gmail.com
 
 \begin{abstract}
 
-Unmixing the disk-integrated spectra of exoplanets provides a clue to  detailed surface properties that we cannot directly resolve in the foreseeable future. 
-It is particularly important for terrestrial planets with diverse surface compositions in surface compositions like Earth. 
+Unmixing the disk-integrated spectra of exoplanets provides a clue to \edit{heterogeneous surfaces} that we cannot directly resolve in the foreseeable future. 
+It is particularly important for terrestrial planets with diverse surface compositions like Earth. 
 Although previous work on unmixing the spectra of Earth from disk-integrated multi-band light curves appeared successful, here we \edit{point out} a mathematical degeneracy between the surface colors and their spatial  distributions. 
-Nevertheless, \edit{useful constraints on the spectral shape of individual surface types may be obtained from the fact that albedo should be between 0 to 1, depending the trajectory of the planet in color space}.  
-We demonstrate the degeneracy and the possible constraints using the mock data based on both a toy model of Earth and the observed data of Earth. 
+Nevertheless, \edit{useful constraints on the spectral shape of individual surface types may be obtained from the fact that albedo should be between 0 to 1, depending the orientation of the trajectory of the planet in color space}.  
+We demonstrate the degeneracy and the possible constraints using both the mock data based on a toy model of Earth and the observed data of Earth. 
 Despite the severe degeneracy, we are still able to recover an approximate albedo spectra for ocean. 
-\edit{We discuss that observing at many wavelengths so that surfaces albedo is close to 0 or 1 at multiple bands will provide better constraints, as well as the large covering fractions. }
+\edit{We discuss that observing at many wavelengths so that surfaces albedo is close to 0 or 1 at multiple wavelengths will provide better constraints, as well as the large covering fractions. }
 
 \end{abstract}
 
@@ -459,45 +459,22 @@ Nevertheless, the excursions of the longitudinal colors are more dramatic than t
 \begin{figure*}[tbh!]
    \begin{minipage}{0.33\hsize}
     \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_noreg.pdf}
+\includegraphics[width=\hsize]{mockdata_90deg_3types_t360_lc_noreg_allowedregion_gray.pdf}
+%\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_noreg.pdf}
     \end{center}
      \end{minipage}   
     \begin{minipage}{0.33\hsize}
     \begin{center}
-%\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_noreg.pdf}
-\includegraphics[width=\hsize]{mockdata_135deg_3types_t360_lc_noreg.pdf}
+\includegraphics[width=\hsize]{mockdata_135deg_3types_t360_lc_noreg_allowedregion_gray.pdf}
+%\includegraphics[width=\hsize]{mockdata_135deg_3types_t360_lc_noreg.pdf}
     \end{center}
      \end{minipage}
    \begin{minipage}{0.33\hsize}
     \begin{center}
-\includegraphics[width=\hsize]{IGBP_lon_noreg.pdf}
+%\includegraphics[width=\hsize]{IGBP_lon_noreg.pdf}
+\includegraphics[width=\hsize]{IGBP_lon_noreg_allowedregion_gray.pdf}
     \end{center}
      \end{minipage}
-%   \begin{minipage}{0.33\hsize}
-%    \begin{center}
-%\includegraphics[width=\hsize]{IGBP_PCplane_Nside0.pdf}
-%    \end{center}
-%     \end{minipage}   
-%    \begin{minipage}{0.33\hsize}
-%    \begin{center}
-%\includegraphics[width=\hsize]{IGBP_PCplane_Nside1.pdf}
-%    \end{center}
-%     \end{minipage} 
-%   \begin{minipage}{0.33\hsize}
-%    \begin{center}
-%\includegraphics[width=\hsize]{IGBP_PCplane_Nside2.pdf}
-%    \end{center}
-%     \end{minipage}
-%   \begin{minipage}{0.33\hsize}
-%    \begin{center}
-%\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l30deg.pdf}
-%    \end{center}
-%     \end{minipage}      
-%   \begin{minipage}{0.33\hsize}
-%    \begin{center}
-%\includegraphics[width=\hsize]{mockdata_90deg_3types_t12_lc_reg_l40deg.pdf}
-%    \end{center}
-%     \end{minipage}
     \caption{Upper panels: Probability of surface albedo spectra estimated from the light curves of $\alpha = 90^{\circ }$ (left), from the light curves of $\alpha = 135^{\circ }$ (middle) and from the colors of longitudinal slices. (Lower panels) Making the map coarser using HealPix. Left: 192 pixels, Middle: 48 pixels, Right: 12 pixels. }
 \label{fig:PCplane}
 \end{figure*}
@@ -624,7 +601,8 @@ The left and right panels of Figure \ref{fig:swap} correspond to (a) and (b), re
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb!]
     \begin{center}
-    \includegraphics[width=\hsize]{swap.pdf}
+    \includegraphics[width=\hsize]{swap_map.pdf}
+    \includegraphics[width=\hsize]{mockdata_90deg_3types23_t360_lc_noreg_allowedregion_gray.pdf}
     \end{center}
     \caption{Left: Trajectory of the light curves with the geographical maps of the \edit{sand} and vegetation being swapped, and the resultant color contour of the posterior probability of albedo spectra of surface types. (b) Same as (a) but with the geographical maps of the \edit{sand} and ocean being swapped.}
 \label{fig:swap}
@@ -650,7 +628,7 @@ In other words, a surface spectrum can be well retrieved if it has favorable geo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh!]
     \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_PCplane_noreg_labels.pdf}
+	\includegraphics[width=\hsize]{raddata_2_norm_noreg.pdf}
 %	\includegraphics[width=\hsize]{raddata_2_norm_Mj_PCs.pdf}
 	\includegraphics[width=\hsize]{raddata_2_norm_spectra.pdf}
     \end{center}
@@ -744,7 +722,7 @@ For example, we may assume that the covering fractions of surface types  ``smoot
 Such an assumption could be implemented via a Gaussian Process \citep[e.g.,][]{Rasmussen2005}, i.e., the area fractions at different times/longitudes have joint gaussian distribution with the relevant correlation length. 
 We must exercise because the actual covering fractions of surface types are not necessarily a Gaussian Process. 
 %In our mock data, ocean appears to be better approximated by Gaussian Processes than vegetation and soil. 
-\edit{\sout{As a result, imposing Gaussian Process tends to yield better estimation of ocean color and biased estimation of \edit{sand} color. }}
+\edit{\sout{As a result, imposing Gaussian Process tends to yield better estimation of ocean color and biased estimation of \edit{sand} color. }[YF: removed because it is hard to understand without more detailed description, which I doubt needs here.]}
 
 We could also consider a regularization on albedo spectra as a function of wavelength. 
 This can be regarded as a prior probability distribution on the PC plane. 
@@ -823,7 +801,7 @@ We pointed out the inherit degeneracy which makes it impossible to find unique s
 Despite the degeneracy, 
 \edit{some useful constraints on the surface spectra may be obtained, depending on the orientation of the trajectories of the disk-integrated colors in the color space.  %
 We demonstrated using both a simplified toy model of Earth and the observed data by EPOXI that such constraints let us narrow down the likely solutions for the surface types. %
-We found that the keys to better estimates are to observe at the wavelengths where surface albedo are close to 0 or 1, as well as large covering fractions of a given surface type at least at one epoch. %
+We found that the keys to better estimates is to observe at the wavelengths where surface albedo are close to 0 or 1. %
 We also discussed how the unknown geometries }
 
 
@@ -841,132 +819,3 @@ N.~B.~C. is supported by the McGill Space Institute and Institut de recherche su
 \bibliography{ref}
 
 \end{document}
-
-\appendix
-
-\newpage
-
-\section{Labeling three components}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[tbh!]
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{mockdata_90deg_3types_t360_lc_noreg_0.pdf}
-    \end{center}	
-   \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{mockdata_90deg_3types_t360_lc_noreg_1.pdf}
-    \end{center}	
-   \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{mockdata_90deg_3types_t360_lc_noreg_2.pdf}
-    \end{center}	
-   \end{minipage}    
-   \caption{Attempt to make color contours for individual components from mock data. }
-\label{fig:EPOXI_individual}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[tbh!]
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_noreg_0.pdf}
-    \end{center}	
-   \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_noreg_1.pdf}
-    \end{center}	
-   \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_noreg_2.pdf}
-    \end{center}	
-   \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_noreg_0_sp.pdf}
-    \end{center}	
-   \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_noreg_1_sp.pdf}
-    \end{center}	
-   \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_noreg_2_sp.pdf}
-    \end{center}	
-   \end{minipage}    \caption{Attempt to make color contours for individual components from EPOXI data. }
-\label{fig:EPOXI_individual}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-
-\section{Fixing one point ($\sim $ ocean) at (-0.2,0.3) }
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[tbh!]
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_noreg_fixedocean_1.pdf}
-    \end{center}	
-   \end{minipage}
-   \begin{minipage}{0.33\hsize}
-    \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_noreg_fixedocean_2.pdf}
-    \end{center}	
-   \end{minipage}
-   \caption{\memoYF{I don't get this...}}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\end{document}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Swapping Geographical Maps}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% In this section we demonstrate how the albedo spectra and geographical maps of the surface types affect our retrieval. 
-In our fiducial model, the color of ocean was best constrained (see Figure \ref{fig:PCplane}). 
-%
-This appears to be due to the combination of the large covering fraction of ocean and the location of the color of ocean close to a corner in the PC plane (due to low albedo at longer wavelength). 
-In other words, something about the geography and/or color of ocean makes it relatively easy to retrieve. 
-To illustrate these two effects, we created two additional mock light curves, (a) with the geographical maps of the \edit{sand} and vegetation being swapped, and  (b) with the geographical maps of the \edit{sand} and ocean being swapped. 
-The left and right panels of Figure \ref{fig:swap} correspond to (a) and (b), respectively. 
-%
-When we swap \edit{sand} and vegetation (left panel) the covering fraction of vegetation becomes smaller, and the trajectory of the light curves does not approach the vegetation endmember. As a result, the constraints of the color of vegetation becomes weaker. Thus, a large covering fraction of the surface type tend to yield a better constraint on the albedo spectra of that type. 
-%
-Meanwhile, in (b) where we swapped the \edit{sand} and ocean, although \edit{sand} is the dominant component, the true projected color of the \edit{sand} is poorly constrained due to the large available parameter space in the upper region of the PC plane. 
-%the true location of the soil is rather not preferred based on our analysis to other locations toward the top, because there are larger space there. 
-Therefore, large covering fraction is not a sufficient condition to better constrain the spectral albedo. 
-In other words, a surface spectrum can be well retrieved if it has favorable geography (ideally an entire hemisphere solely covered with that surface) and it has favorable albedo spectrum (albedo close to 0 or 1 at as many wavelengths as possible). 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[tbh!]
-    \begin{center}
-   \begin{minipage}{0.33\hsize}
-\includegraphics[width=\hsize]{mockdata_90deg_3types2_t360_lc_noreg.pdf}
-     \end{minipage}
-   \begin{minipage}{0.33\hsize}
-%    \begin{center}
-\includegraphics[width=\hsize]{mockdata_90deg_3types3_t360_lc_noreg.pdf}
-%    \end{center}
-     \end{minipage}
-    \end{center}
-    \caption{Left: Trajectory of the light curves with the geographical maps of the \edit{sand} and vegetation being swapped, and the resultant color contour of the posterior probability of albedo spectra of surface types. (b) Same as (a) but with the geographical maps of the \edit{sand} and ocean being swapped. \memoNBC{Show the corresponding maps!} }
-\label{fig:swap}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
