@@ -121,11 +121,11 @@ yuka.fujii.ebihara@gmail.com
 
 Unmixing the disk-integrated spectra of exoplanets provides a clue to \edit{heterogeneous surfaces} that we cannot directly resolve in the foreseeable future. 
 It is particularly important for terrestrial planets with diverse surface compositions like Earth. 
-Although previous work on unmixing the spectra of Earth from disk-integrated multi-band light curves appeared successful, here we \edit{point out} a mathematical degeneracy between the surface colors and their spatial  distributions. 
-Nevertheless, \edit{useful constraints on the spectral shape of individual surface types may be obtained from the fact that albedo should be between 0 to 1, depending the orientation of the trajectory of the planet in color space}.  
+Although previous work on unmixing the spectra of Earth from disk-integrated multi-band light curves appeared successful, we \edit{point out} a mathematical degeneracy between the surface colors and their spatial  distributions. 
+Nevertheless, \edit{useful constraints on the spectral shape of individual surface types may be obtained from the fact that albedo should be between 0 to 1, depending on the trajectory of the planet in color space}.  
 We demonstrate the degeneracy and the possible constraints using both the mock data based on a toy model of Earth and the observed data of Earth. 
 Despite the severe degeneracy, we are still able to recover an approximate albedo spectra for ocean. 
-\edit{We discuss that observing at many wavelengths so that surfaces albedo is close to 0 or 1 at multiple wavelengths will provide better constraints, as well as the large covering fractions. }
+\edit{We find that observing at multiple wavelengths where surfaces albedo is close to 0 or 1 will provide better constraints. }
 
 \end{abstract}
 
@@ -142,7 +142,7 @@ Despite the severe degeneracy, we are still able to recover an approximate albed
 
 Direct imaging of exoplanets is expected to play a vital role in characterizing Earth analogs in habitable zones and beyond. 
 Substantial work has gone into prediciting detectable features in disk-integrated spectra of Earth and other planets, as they are observed from an astronomical distance. 
-\edit{Disk-integrated spectra or even multi-band photometry (colors) in principle include the effects of the surface reflectance as well as the atmosphere. }
+\edit{Disk-integrated spectra or even multi-band photometry (colors) in principle include the effects of the surface reflectance as well as the atmosphere. (We use the term spectra and colors interchangeably.) }
 %Atmospheric molecules are identifiable through spectral absorption features \citep[e.g.,][]{DesMarais2002} but surface reflectance spectra also affect the spectra, which could be measured through low-resolution spectra, or multi-band photometry. 
 However, interpreting disk-integrated colors is not trivial. 
 This is particularly true for Earth-like planets that harbor diverse atmospheric and surface characteristics including liquid water, partial cloud cover, continents, and possibly vegetation. 
@@ -347,9 +347,9 @@ In principle, constraints (\ref{eq:f_sum}) and (\ref{eq:s_range}) are more strin
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[b!]
     \begin{center}
-\includegraphics[width=\hsize]{schematics_ver2.pdf}
+\includegraphics[width=0.8\hsize]{schematics_ver3.pdf}
     \end{center}
-    \caption{\edit{Schematic figure to illustrate the relation between observed data ($\{{\bf d}_i\} $; crosses) and surface spectra ($\{{\bf s}_k\} $; filled points). }}
+    \caption{\edit{Schematic figure to illustrate the relation between observed data ($\{{\bf d}_i\} $; crosses) and surface spectra ($\{{\bf s}_k\} $; filled points). The dashed cube shows the range where physical albedo can exist (between 0 and 1). }}
 \label{fig:schematic}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -616,6 +616,7 @@ Although \edit{sand} is now the dominant component,
 %the true location of the soil is rather not preferred based on 
 our analysis prefers other locations toward the top of the allowed region, because there is more space there. 
 Therefore, large covering fraction is not a sufficient condition for obtaining strong constraints on the color of a surface. 
+\edit{Better constraints surface spectra can be obtained if its location on the PC plane is close to more than one boundaries of the allowed region. }
 In other words, a surface spectrum can be well retrieved if it has favorable geography (ideally an entire hemisphere solely covered with that surface) {\it and} it has favorable albedo spectrum (albedo close to 0 or 1 at as many wavelengths as possible). 
 
 
@@ -628,11 +629,12 @@ In other words, a surface spectrum can be well retrieved if it has favorable geo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tbh!]
     \begin{center}
-	\includegraphics[width=\hsize]{raddata_2_norm_noreg.pdf}
+	\includegraphics[width=0.85\hsize]{PCs_raddata_2_norm.eps}
+	\includegraphics[width=0.88\hsize]{raddata_2_norm_noreg_ver2.pdf}
 %	\includegraphics[width=\hsize]{raddata_2_norm_Mj_PCs.pdf}
-	\includegraphics[width=\hsize]{raddata_2_norm_spectra.pdf}
+	\includegraphics[width=0.85\hsize]{raddata_2_norm_spectra.pdf}
     \end{center}
-    \caption{Upper panel: PC plane from EPOXI observation of June 2008 \citep{Livengood2011}. Lower panel: the spectra corresponding to the locations (A$\sim$J) shown in the upper panel. The ocean, \edit{sand}, and clouds appear to be close to A, D, and F, respectively. }
+    \caption{Top panel: PCs from EPOXI June data. Middel panel: color contour similar to Figure \ref{fig:PCplane}, but based on EPOXI observation of June 2008 \citep{Livengood2011}. The red line shows the light curve trajectory. Bottom panel: the spectra corresponding to the locations (A$\sim$J) shown in the upper panel. The ocean, \edit{sand}, and clouds appear to be close to A, D, and F, respectively. }
 \label{fig:EPOXI}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -649,7 +651,7 @@ Overall, the upper boundaries come from the requirement of $s_{kj}>0$ while the 
 
 In this case, the trajectory of planetary color is far from the boundary because the color variations of the real Earth are muted by the cloud cover. 
 Consequently, we do not see three peaks but a spectrum of the posterior probability distribution. 
-Nevertheless, we are likely to find one surface type in the upper part of the allowed region, near label A \edit{, which may be interpreted as ocean}. 
+Nevertheless, we are likely to find one surface type in the upper part of the allowed region, near label A \edit{, which can be interpreted as ocean}. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -713,44 +715,24 @@ These light curves can be analyzed independently, and the components varying wit
 \label{ss:enhancing_constraints}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Invoking Additional Assumptions}
-
-Occasionally, we may want to adopt additional constraints on the behavior of $\fast _{ik}$ ($f_{lk}$) or $s_{kj}$ based on the prior assumptions. 
-
-For example, we may assume that the covering fractions of surface types  ``smoothly'' vary as a function of time or longitude. 
-Such an assumption could be implemented via a Gaussian Process \citep[e.g.,][]{Rasmussen2005}, i.e., the area fractions at different times/longitudes have joint gaussian distribution with the relevant correlation length. 
-We must exercise because the actual covering fractions of surface types are not necessarily a Gaussian Process. 
-%In our mock data, ocean appears to be better approximated by Gaussian Processes than vegetation and soil. 
-\edit{\sout{As a result, imposing Gaussian Process tends to yield better estimation of ocean color and biased estimation of \edit{sand} color. }[YF: removed because it is hard to understand without more detailed description, which I doubt needs here.]}
-
-We could also consider a regularization on albedo spectra as a function of wavelength. 
-This can be regarded as a prior probability distribution on the PC plane. 
-For example, in Figure \ref{fig:PCplane}, albedo spectra corresponding to the upper part of the permitted region exhibit a dramatic decrease in albedo between 0.65$\mu $m and $0.75\mu $m, which we may seem implausible. 
-However, such constraints are based upon our prior assumptions and may not be true. 
-Albedo spectra of vegetation in fact have a sharp feature, the red edge, and similar, unfamiliar features may exist on other planets. 
-In addition, with an atmosphere, absorption by atmospheric molecules can also produce sharp changes in albedo spectra. 
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Utilizing Light Curves at Different Phases}
+\subsubsection{Power of Many Bands}
 
-Light curves at different orbital phases are useful in spectral unmixing, because they shed light on different locations on the surface with varying weight, exploring the PC plane in different directions. 
-As a result, the volume of color space where the solution can exist will be narrowed.  
-In particular, the diurnal light curves at thinner phase tend to exhibit larger color variations, giving tighter constraints (but see the caveat in Section \ref{ss:deviate_Lambert}). 
+%\memoYF{What do you think about this subsection? I thought we could include this in conclusion and abstract. }
 
-In addition, diurnal light curves at different orbital phases in principle allow us to map the color in 2 dimensions.   \citep{Kawahara2010,Kawahara2011,Fujii2012}. 
-We could then use the mapped spectra (spectra of various surface patches resolved in 2 dimensions) to identify different surface types, in the same spirit as that of estimating the covering fraction of longitudinal slices $f_{lk}$ and $s_{kj}$ . 
-In fact, this ``map first'' approach is likely more appropriate with 2-dimensional maps than with longitudinal maps for the following reason. 
-In the diurnal light curves at a single phase, colors of very distant pixels beyond the correlation length of the geography are mixed together, even at crescent phases---for example, the colors of the arctic, tropics, and antarctic are mixed in an equatorial observation, no matter how extreme the orbital phase is. 
-As a result, the colors of longitudinal slices never approach the colors of vegetation or \edit{sand} despite the number of slices, as shown in the right panel of Figure \ref{fig:PCplane}. 
-The situation is different when we gradually lower the resolution of the 2-dimensional maps. 
-Figure \ref{fig:lowresolution} shows the colors of HEALPix pixels \citep{Gorski2005} with varying resolutions: from left to right, we change the resolution from 192 pixels, 48 pixels to 12 pixels, starting from the map in Figure \ref{fig:mockdata}. 
-The triangular shape of the locus of points becomes apparent with as low resolution as 48 pixels. 
-Thus, resolving the surface colors in 2 dimensions will ease our challenge to identify the surface types. 
+As we discussed Section \ref{ss:guess}, the constraints on the surface spectra rely on the relative configuration between the light curve trajectories and the boundaries of the physically permitted region, namely that albedo of any surface must be between 0 and 1 at all wavelengths. 
+It depends on geography and the albedo spectra of the surface types, neither of which we can directly change. 
+However, we can potentially increase the number of boundaries of the permitted region by increasing the number of photometric bands, and some of them may have tighter constraints than others. 
+Observing the light curves in as many bands as possible will therefore be beneficial.  
+In particular, observing at wavelengths where one or more surface types have albedo close to 0 or 1 \edit{constrain the possible albedo more tightly}. 
+Albedo closer to 0 (i.e., the condition of $0 \le s_{kj}$) are more useful because it does not depend on the uncertainties in the radius. 
+In reality, albedo of ocean is close to 0 at longer wavelength toward near infrared, that of \edit{sand} is small at 0.4 $\mu $m and shortward, that of vegetation is close to 0 at 0.7 $\mu$m and shortward, and that of H$_2$O snow is close to 1 in the visible and closer to 0 at 1.5 $\mu$m and 2 $\mu$m bands. 
+Observations at different bands covering these characteristic wavelengths would be useful. 
+% Conversely, surfaces overlaid with clouds have muted spectral features with higher albedo than the bare surfaces, which would make the retrieval more challenging. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[tbh!]
+\begin{figure*}[hbt!]
    \begin{minipage}{0.33\hsize}
     \begin{center}
 \includegraphics[width=\hsize]{IGBP_PCplane_Nside2.pdf}
@@ -773,39 +755,60 @@ Thus, resolving the surface colors in 2 dimensions will ease our challenge to id
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Power of Many Bands}
-
-%\memoYF{What do you think about this subsection? I thought we could include this in conclusion and abstract. }
-
-As we discussed Section \ref{ss:guess}, the constraints on the surface spectra rely on the relative configuration between the light curve trajectories and the boundaries of the physically permitted region, namely that albedo of any surface must be between 0 and 1 at all wavelengths. 
-It depends on geography and the albedo spectra of the surface types, neither of which we can directly change. 
-However, we can potentially increase the number of boundaries of the permitted region by increasing the number of photometric bands, and some of them may have tighter constraints than others. 
-Observing the light curves in as many bands as possible will therefore be beneficial.  
-In particular, observing at wavelengths where one or more surface types have albedo close to 0 or 1 \edit{constrain the possible albedo more tightly}. 
-Albedo closer to 0 (i.e., the condition of $0 \le s_{kj}$) are more useful because it does not depend on the uncertainties in the radius. 
-In reality, albedo of ocean is close to 0 at longer wavelength toward near infrared, that of \edit{sand} is small at 0.4 $\mu $m and shortward, that of vegetation is close to 0 at 0.7 $\mu$m and shortward, and that of H$_2$O snow is close to 1 in the visible and closer to 0 at 1.5 $\mu$m and 2 $\mu$m bands. 
-Observations at different bands covering these characteristic wavelengths would be useful. 
-% Conversely, surfaces overlaid with clouds have muted spectral features with higher albedo than the bare surfaces, which would make the retrieval more challenging. 
+\subsubsection{Utilizing Light Curves at Different Phases}
 
 
+
+Light curves at different orbital phases are useful in spectral unmixing, because they shed light on different locations on the surface with varying weight, exploring the PC plane in different directions. 
+As a result, the volume of color space where the solution can exist will be narrowed.  
+In particular, the diurnal light curves at thinner phase tend to exhibit larger color variations, giving tighter constraints (but see the caveat in Section \ref{ss:deviate_Lambert}). 
+
+In addition, diurnal light curves at different orbital phases in principle allow us to map the color in 2 dimensions.   \citep{Kawahara2010,Kawahara2011,Fujii2012}. 
+We could then use the mapped spectra (spectra of various surface patches resolved in 2 dimensions) to identify different surface types, in the same spirit as that of estimating the covering fraction of longitudinal slices $f_{lk}$ and $s_{kj}$ . 
+In fact, this ``map first'' approach is likely more appropriate with 2-dimensional maps than with longitudinal maps for the following reason. 
+In the diurnal light curves at a single phase, colors of very distant pixels beyond the correlation length of the geography are mixed together, even at crescent phases---for example, the colors of the arctic, tropics, and antarctic are mixed in an equatorial observation, no matter how extreme the orbital phase is. 
+As a result, the colors of longitudinal slices never approach the colors of vegetation or \edit{sand} despite the number of slices, as shown in the right panel of Figure \ref{fig:PCplane}. 
+The situation is different when we gradually lower the resolution of the 2-dimensional maps. 
+Figure \ref{fig:lowresolution} shows the colors of HEALPix pixels \citep{Gorski2005} with varying resolutions: from left to right, we change the resolution from 192 pixels, 48 pixels to 12 pixels, starting from the map in Figure \ref{fig:mockdata}. 
+The triangular shape of the locus of points becomes apparent with as low resolution as 48 pixels. 
+Thus, resolving the surface colors in 2 dimensions will ease our challenge to identify the surface types. 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
+\subsubsection{Invoking Additional Assumptions}
+
+Occasionally, we may want to adopt additional constraints on the behavior of $\fast _{ik}$ ($f_{lk}$) or $s_{kj}$ based on the prior assumptions. 
+
+For example, we may assume that the covering fractions of surface types  ``smoothly'' vary as a function of time or longitude. 
+Such an assumption could be implemented via a Gaussian Process \citep[e.g.,][]{Rasmussen2005}, i.e., the area fractions at different times/longitudes have joint gaussian distribution with the relevant correlation length. 
+We must exercise because the actual covering fractions of surface types are not necessarily a Gaussian Process. 
+%In our mock data, ocean appears to be better approximated by Gaussian Processes than vegetation and soil. 
+\edit{\sout{As a result, imposing Gaussian Process tends to yield better estimation of ocean color and biased estimation of \edit{sand} color. }[YF: removed because it is hard to understand without more detailed description, which I doubt needs here.]}
+
+We could also consider a regularization on albedo spectra as a function of wavelength. 
+This can be regarded as a prior probability distribution on the PC plane. 
+For example, in Figure \ref{fig:PCplane}, albedo spectra corresponding to the upper part of the permitted region exhibit a dramatic decrease in albedo between 0.65$\mu $m and $0.75\mu $m, which we may seem implausible. 
+However, such constraints are based upon our prior assumptions and may not be true. 
+Albedo spectra of vegetation in fact have a sharp feature, the red edge, and similar, unfamiliar features may exist on other planets. 
+In addition, with an atmosphere, absorption by atmospheric molecules can also produce sharp changes in albedo spectra. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
 \label{s:conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In this paper, we revisited the problem of estimating the albedo spectra of major surface type and their distribution\edit{s} from disk-integrated \edit{colors} of exoplanets. 
 We pointed out the inherit degeneracy which makes it impossible to find unique solutions. 
-Despite the degeneracy, 
-\edit{some useful constraints on the surface spectra may be obtained, depending on the orientation of the trajectories of the disk-integrated colors in the color space.  %
-We demonstrated using both a simplified toy model of Earth and the observed data by EPOXI that such constraints let us narrow down the likely solutions for the surface types. %
-We found that the keys to better estimates is to observe at the wavelengths where surface albedo are close to 0 or 1. %
-We also discussed how the unknown geometries }
+Despite the degeneracy, \edit{the following physical conditions narrow down the possible  solutions for the surface albedos:
+the actual surface albedo spectra in the $J$-dimensional color space are (1) to be located on the PC (hyper-)plane, (2) to enclose all of the data points of the disk-integrated colors, and (3) to be in the $J$-dimensional hypercube, bounded by 0 and 1 for all axes. %
+We demonstrated using both a simplified toy model of Earth and the observed data by EPOXI that such constraints point us to the approximate spectra of ocean. }
 
-
-%\memoYF{Ending statement needed here.}
+\edit{In more general, we find that the success of the estimates critically depends on the degree of excursions of the trajectory of the disk-integrated colors, and its orientation in the color space.  %
+In other words, the estimates will be better if the covering fraction of each surface type becomes close to 1, as an intuition suggests. 
+In addition, observations at the many wavelengths where surface albedo are close to 0 or 1 could improve the estimates. }
+\edit{As the wavelength coverage/resolution increases, and as the light curves at more orbital phases are obtained, the performance of our procedure will be refined. [YF: too obvious??]}
 
 
 \acknowledgements
